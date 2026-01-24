@@ -1,6 +1,8 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
+import { db } from "./db";
+import { testTable} from "./db/schema";
 
 const app = new Hono();
 
@@ -23,6 +25,39 @@ app.get("/api/health", (c) => {
       timestamp: new Date().toISOString(),
     },
   });
+});
+
+// Test de la connexion DB
+app.get("/api/db-test", async (c) => {
+  try {
+    // Insérer un enregistrement de test
+    const inserted = await db
+      .insert(testTable)
+      .values({ message: "Hello from Drizzle!" })
+      .returning();
+
+    // Lire tous les enregistrements
+    const allRecords = await db.select().from(testTable);
+
+    return c.json({
+      success: true,
+      data: {
+        inserted: inserted[0],
+        totalRecords: allRecords.length,
+      },
+    });
+  } catch (error) {
+    return c.json(
+      {
+        success: false,
+        error: {
+          code: "DB_ERROR",
+          message: error instanceof Error ? error.message : "Unknown error",
+        },
+      },
+      500
+    );
+  }
 });
 
 // Route racine
