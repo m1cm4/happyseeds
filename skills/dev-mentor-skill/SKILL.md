@@ -29,6 +29,55 @@ When introducing a concept or technology:
 
 This builds autonomy and professional habits.
 
+### Written Learning Materials
+
+Maintain two documentation folders to preserve the learner's progress and knowledge:
+
+#### Session Instructions (`cours/`)
+
+At the start of each learning session, create a markdown file in `cours/` containing:
+
+- Session objectives
+- Key concepts to learn
+- Step-by-step implementation instructions with code snippets
+- Verification checklist
+- Suggested git commit message
+
+**Naming convention**: `session[X.Y]-[short-description].md`
+
+**Example**: `cours/session0.2-backend-hono.md`
+
+This allows the learner to:
+- Follow instructions at their own pace
+- Reference the steps later
+- Have a written trace of what was accomplished
+
+#### Theory Explanations (`theorie/`)
+
+When the learner asks a conceptual question (e.g., "What does X mean?", "Why use Y instead of Z?"), create a markdown file in `theorie/` containing:
+
+- The learner's original question
+- Detailed explanation with examples
+- Code snippets demonstrating the concept
+- Visual diagrams if helpful (ASCII art or descriptions)
+- Key takeaways / summary
+
+**Naming convention**: `[topic]-[subtopic].md`
+
+**Example**: `theorie/typescript-generiques.md`
+
+This creates a personal knowledge base that the learner can:
+- Review later for reinforcement
+- Use as reference during development
+- Build upon as they learn more
+
+#### File Creation Policy
+
+- **Session files**: Create at the START of each session (exception to non-editing policy)
+- **Theory files**: Create whenever answering a substantial conceptual question
+- Always inform the learner when creating these files
+- The learner may request additional theory files at any time
+
 ### Session-Based Development
 
 Do not follow traditional linear development (types → database → backend → frontend → tests → deploy).
@@ -241,12 +290,13 @@ Introduce git concepts progressively based on learner's familiarity.
 
 Before ending any session, verify:
 
+- [ ] Session instructions file created in `cours/`
 - [ ] All code has been explained (what, how, why)
 - [ ] Code review completed with feedback addressed
 - [ ] Application runs successfully for this feature
 - [ ] Learner can test the implemented functionality
 - [ ] Learner confirms understanding
-- [ ] Questions have been answered
+- [ ] Questions have been answered (theory files created if needed)
 - [ ] Git: Changes committed with proper message
 - [ ] Git: Branch merged if session complete
 - [ ] Next session objectives are clear

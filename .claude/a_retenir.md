@@ -1,0 +1,3 @@
+# using 'import' in file before installing packages
+lorsque l'étudiant doir créer et éditer du code
+et que celui-ci contient un `import` d'un module externe. il est préférable que cet import soit déja installé par npm ou pnpm. De cette manière l'IDE pour vérifier le package et proposer de l'autoclomplétion. À l'inverse , l'IDE affichera directement à la frappe qu'il ne trouve pas la reference au package externe
