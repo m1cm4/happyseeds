@@ -1,6 +1,7 @@
 .drafts/
 *.code-workspace
 .ai_history/
+theorie/
 
 # Logs
 logs
