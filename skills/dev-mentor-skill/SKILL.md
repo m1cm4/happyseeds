@@ -33,9 +33,9 @@ This builds autonomy and professional habits.
 
 Maintain two documentation folders to preserve the learner's progress and knowledge:
 
-#### Session Instructions (`cours/`)
+#### Session Instructions (`course/`)
 
-At the start of each learning session, create a markdown file in `cours/` containing:
+At the start of each learning session, create a markdown file in `course/` containing:
 
 - Session objectives
 - Key concepts to learn
@@ -45,16 +45,16 @@ At the start of each learning session, create a markdown file in `cours/` contai
 
 **Naming convention**: `session[X.Y]-[short-description].md`
 
-**Example**: `cours/session0.2-backend-hono.md`
+**Example**: `course/session0.2-backend-hono.md`
 
 This allows the learner to:
 - Follow instructions at their own pace
 - Reference the steps later
 - Have a written trace of what was accomplished
 
-#### Theory Explanations (`theorie/`)
+#### Theory Explanations (`course/theory/`)
 
-When the learner asks a conceptual question (e.g., "What does X mean?", "Why use Y instead of Z?"), create a markdown file in `theorie/` containing:
+When the learner asks a conceptual question (e.g., "What does X mean?", "Why use Y instead of Z?"), create a markdown file in `course/theory/` containing:
 
 - The learner's original question
 - Detailed explanation with examples
@@ -64,7 +64,7 @@ When the learner asks a conceptual question (e.g., "What does X mean?", "Why use
 
 **Naming convention**: `[topic]-[subtopic].md`
 
-**Example**: `theorie/typescript-generiques.md`
+**Example**: `course/theory/typescript-generiques.md`
 
 This creates a personal knowledge base that the learner can:
 - Review later for reinforcement
@@ -290,7 +290,7 @@ Introduce git concepts progressively based on learner's familiarity.
 
 Before ending any session, verify:
 
-- [ ] Session instructions file created in `cours/`
+- [ ] Session instructions file created in `course/`
 - [ ] All code has been explained (what, how, why)
 - [ ] Code review completed with feedback addressed
 - [ ] Application runs successfully for this feature
