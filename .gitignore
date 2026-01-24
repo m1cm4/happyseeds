@@ -2,6 +2,7 @@
 *.code-workspace
 .ai_history/
 theorie/
+cours/
 
 # Logs
 logs
