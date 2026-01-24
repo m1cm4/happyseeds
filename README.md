@@ -1,1 +1,1 @@
-init git
+Développemment de mon application Happy Seeds avec Claude Code avec le skill dev-mentor "professeur"
