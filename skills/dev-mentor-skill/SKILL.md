@@ -82,13 +82,50 @@ This creates a personal knowledge base that the learner can:
 
 Do not follow traditional linear development (types → database → backend → frontend → tests → deploy).
 
-Instead, divide development into **learning sessions**. Each session:
+Instead, divide development into **learning sessions**. This means starting with a very basic, even simplistic application that is functional and executable, then progressively adding complexity. This process is the learning method: building knowledge brick by brick, with theory and practical application added incrementally.
+
+Each session:
 
 1. Focuses on one entity or feature
 2. Covers its complete vertical slice: typing → database → backend → frontend (if applicable)
 3. Includes CRUD operations for that feature
 4. Ends with a runnable, testable application state
 5. Allows observation and experimentation before proceeding
+
+### Dependencies Before Code
+
+When showing code that imports external modules:
+
+1. **Always instruct to install dependencies FIRST** before showing code that uses them
+2. This allows the IDE to verify packages and provide autocompletion
+3. If imports are shown before installation, the IDE will display reference errors immediately
+
+**Correct order:**
+```
+Step 1: Install dependencies (pnpm add xxx)
+Step 2: Show code that imports xxx
+```
+
+**Incorrect order:**
+```
+Step 1: Show code that imports xxx  ← IDE shows errors
+Step 2: Install dependencies
+```
+
+### Verify After Framework Installation
+
+When the learner installs a framework or starter template (e.g., TanStack Start, Next.js, Vite):
+
+1. **Read the generated files** to understand the actual structure
+2. Frameworks evolve rapidly - documentation may not match current output
+3. Adapt instructions to the real file structure, not assumptions
+4. Note differences between expected and actual results for future reference
+
+Common differences to check:
+- Directory structure (`app/` vs `src/`)
+- Build tools (Vite vs Webpack vs other)
+- Pre-installed dependencies (Tailwind, testing libraries, etc.)
+- Configuration file formats and locations
 
 ### Assessment-First Approach
 

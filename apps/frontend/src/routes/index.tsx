@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button'
 import { createFileRoute } from '@tanstack/react-router'
 import {
   Zap,
@@ -8,42 +9,43 @@ import {
   Sparkles,
 } from 'lucide-react'
 
+// déclare cette route comme "/"
 export const Route = createFileRoute('/')({ component: App })
 
 function App() {
   const features = [
     {
-      icon: <Zap className="w-12 h-12 text-cyan-400" />,
-      title: 'Powerful Server Functions',
+      icon: <Zap className="w-6 h-6 text-cyan-200" />,
+      title: 'mon titre',
       description:
-        'Write server-side code that seamlessly integrates with your client components. Type-safe, secure, and simple.',
+        'mon texte',
     },
     {
-      icon: <Server className="w-12 h-12 text-cyan-400" />,
-      title: 'Flexible Server Side Rendering',
+      icon: <Server className="w-6 h-6 text-cyan-400" />,
+      title: 'mon titre',
       description:
-        'Full-document SSR, streaming, and progressive enhancement out of the box. Control exactly what renders where.',
+        'mon texte',
     },
     {
-      icon: <RouteIcon className="w-12 h-12 text-cyan-400" />,
+      icon: <RouteIcon className="w-6 h-6 text-cyan-400" />,
       title: 'API Routes',
       description:
         'Build type-safe API endpoints alongside your application. No separate backend needed.',
     },
     {
-      icon: <Shield className="w-12 h-12 text-cyan-400" />,
+      icon: <Shield className="w-6 h-6 text-cyan-400" />,
       title: 'Strongly Typed Everything',
       description:
         'End-to-end type safety from server to client. Catch errors before they reach production.',
     },
     {
-      icon: <Waves className="w-12 h-12 text-cyan-400" />,
+      icon: <Waves className="w-12 h-6 text-cyan-400" />,
       title: 'Full Streaming Support',
       description:
         'Stream data from server to client progressively. Perfect for AI applications and real-time updates.',
     },
     {
-      icon: <Sparkles className="w-12 h-12 text-cyan-400" />,
+      icon: <Sparkles className="w-12 h-6 text-cyan-400" />,
       title: 'Next Generation Ready',
       description:
         'Built from the ground up for modern web applications. Deploy anywhere JavaScript runs.',
@@ -51,6 +53,29 @@ function App() {
   ]
 
   return (
+    <>
+        <div className="flex min-h-screen items-center justify-center">
+      <div className="text-center">
+        <h1 className="text-4xl font-bold text-emerald-600 mb-4">
+          🌱 HappySeeds
+        </h1>
+        <p className="text-gray-600 mb-8">
+          Gérez votre grainothèque et planifiez vos semis
+        </p>
+        <div className="space-x-4">
+          <Button className='bg-emerald-600'>se connecter shadcn button</Button>
+          <Button className='text-emerald-600 border-emerald-600' variant="outline">S'inscrire shadcnbutton</Button><w/>
+          <button className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition">
+            Se connecter
+          </button>
+          <button className="border border-green-600 text-green-600 px-6 py-2 rounded-lg hover:bg-green-50 transition">
+            S'inscrire
+          </button>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <hr />
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
       <section className="relative py-20 px-6 text-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-purple-500/10"></div>
@@ -114,5 +139,6 @@ function App() {
         </div>
       </section>
     </div>
+    </>
   )
 }
