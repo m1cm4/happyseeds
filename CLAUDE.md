@@ -6,8 +6,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 HappySeeds is a seed library management and sowing planning web application. Users catalog seed collections, consult plant profiles, and create optimized sowing calendars based on climate data.
 
-**Current Status**: Project is in scaffolding phase - configuration drafts exist in `.drafts/` but need to be moved to root and actual code written.
-
 ## Technology Stack
 
 - **Monorepo**: Turborepo with pnpm 10.27.0
