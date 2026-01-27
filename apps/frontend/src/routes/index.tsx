@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router';
+import { useSession, signOut} from "../lib/auth-client";
 import {
   Zap,
   Server,
@@ -13,52 +14,45 @@ import {
 export const Route = createFileRoute('/')({ component: App })
 
 function App() {
-  const features = [
-    {
-      icon: <Zap className="w-6 h-6 text-cyan-200" />,
-      title: 'mon titre',
-      description:
-        'mon texte',
-    },
-    {
-      icon: <Server className="w-6 h-6 text-cyan-400" />,
-      title: 'mon titre',
-      description:
-        'mon texte',
-    },
-    {
-      icon: <RouteIcon className="w-6 h-6 text-cyan-400" />,
-      title: 'API Routes',
-      description:
-        'Build type-safe API endpoints alongside your application. No separate backend needed.',
-    },
-    {
-      icon: <Shield className="w-6 h-6 text-cyan-400" />,
-      title: 'Strongly Typed Everything',
-      description:
-        'End-to-end type safety from server to client. Catch errors before they reach production.',
-    },
-    {
-      icon: <Waves className="w-12 h-6 text-cyan-400" />,
-      title: 'Full Streaming Support',
-      description:
-        'Stream data from server to client progressively. Perfect for AI applications and real-time updates.',
-    },
-    {
-      icon: <Sparkles className="w-12 h-6 text-cyan-400" />,
-      title: 'Next Generation Ready',
-      description:
-        'Built from the ground up for modern web applications. Deploy anywhere JavaScript runs.',
-    },
-  ]
+  const { data: session, isPending } = useSession()
 
   return (
     <>
+    {/*  ------------ Header avec état de connexion ----------------------- */}
+      <header className="p-4 bg-white shadow">
+        <div className="max-w-6xl mx-auto flex justify-between items-center">
+          <h1 className="text-xl font-bold text-emerald-600">🌱 HappySeeds</h1>
+
+          {isPending ? (
+            <span className="text-slate-400">Chargement...</span>
+          ) : session ? (
+            <div className="flex items-center gap-4">
+              <span className="text-slate-600">
+                Bonjour, {session.user.name}
+              </span>
+              <Button
+                variant="outline"
+                onClick={() => signOut()}
+              >
+                Déconnexion
+              </Button>
+            </div>
+          ) : (
+            <div className="flex gap-2">
+              <Button variant="outline" asChild>
+                <a href="/login">Se connecter</a>
+              </Button>
+              <Button asChild>
+                <a href="/signup">S'inscrire</a>
+              </Button>
+            </div>
+          )}
+        </div>
+      </header>
+
+
         <div className="flex min-h-screen items-center justify-center">
       <div className="text-center">
-        <h1 className="text-4xl font-bold text-emerald-600 mb-4">
-          🌱 HappySeeds
-        </h1>
         <p className="text-gray-600 mb-8">
           Gérez votre grainothèque et planifiez vos semis
         </p>
@@ -120,24 +114,6 @@ function App() {
         </div>
       </section>
 
-      <section className="py-16 px-6 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10"
-            >
-              <div className="mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-semibold text-white mb-3">
-                {feature.title}
-              </h3>
-              <p className="text-gray-400 leading-relaxed">
-                {feature.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
     </div>
     </>
   )
