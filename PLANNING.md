@@ -926,19 +926,36 @@ Module 6: Dashboard ◀── Module 5: Calendrier ◀── Module 3: Seeds CRU
 
 ## Testing Strategy
 
-### Unit Tests (Phase 3)
+### Approche : Hybride (décision du 27/01/2026)
+
+Les tests sont introduits **dès le Module 2** plutôt qu'en fin de projet.
+
+| Module | Tests |
+|--------|-------|
+| Module 0-1 (Fondations, Auth) | ❌ Pas de tests (setup + Better-Auth gère l'auth) |
+| Module 2 (Plants) | ✅ Introduction Vitest + tests services backend |
+| Module 3 (Seeds) | ✅ Tests services + tests hooks custom |
+| Module 4-5 (Sessions, Calendar) | ✅ Tests logique métier (calculs dates) |
+| Module 6 (Dashboard) | ✅ Tests d'intégration API |
+| Phase finale | ✅ Tests E2E Playwright |
+
+### Session 2.0 : Introduction à Vitest (ajoutée)
+
+Avant le CRUD Plants, une session dédiée à la configuration et aux bases des tests.
+
+### Unit Tests (Modules 2+)
 
 - **Outil** : Vitest
 - **Cible** : Services backend, fonctions utilitaires, hooks custom
 - **Coverage** : Objectif > 70%
 
-### Integration Tests (Phase 3)
+### Integration Tests (Modules 2+)
 
 - **Outil** : Vitest + supertest
 - **Cible** : Routes API complètes
 - **Approche** : Base de données de test isolée
 
-### E2E Tests (Phase 3)
+### E2E Tests (Phase finale)
 
 - **Outil** : Playwright
 - **Cible** : Parcours utilisateur critiques
@@ -991,6 +1008,7 @@ VITE_API_URL=http://localhost:3001
 | 1.2 - Middleware Auth | Not Started | - | - | - |
 | 1.3 - Pages Auth Frontend | Not Started | - | - | - |
 | 1.4 - Protection Routes Frontend | Not Started | - | - | - |
+| 2.0 - Introduction Vitest | Not Started | - | - | Ajouté (approche hybride) |
 | 2.1 - Schema Plant & API | Not Started | - | - | - |
 | 2.2 - TanStack Query Intro | Not Started | - | - | - |
 | 2.3 - Liste Plants UI | Not Started | - | - | - |
