@@ -8,6 +8,8 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
   component: DashboardPage,
 });
 
+console.log(" ========== _authenticate/dashboard =============== ");
+
 function DashboardPage() {
   const { data: session } = useSession();
   const navigate = useNavigate();

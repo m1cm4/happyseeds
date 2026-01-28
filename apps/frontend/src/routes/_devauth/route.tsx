@@ -3,38 +3,15 @@ import { authClient, useSession } from "../../lib/auth-client";
 import { createIsomorphicFn } from "@tanstack/react-start";
 
 
-console.log(" ========== _authenticate/route =============== ");
-const getCookieFromRequest = createIsomorphicFn()
-       .server( async ()=>{
-          const { getRequest } = await import("@tanstack/react-start/server");
-          const request = getRequest();
-          return request.headers;
-          
-       })
-       .client( async ()=> null )
-  
 
-export const Route = createFileRoute("/_authenticated")({
+export const Route = createFileRoute("/_devauth")({
   beforeLoad: async ({ location }) => {
-    const inServer = (typeof window === "undefined");
-    // je teste une solution pour récupérer le cookie depuis coté server
-    console.log("=== _authenticated/route.beforeLoad() - server:", inServer);
-      
-    const headers = await getCookieFromRequest();
-    console.log("===  headers ", headers);
-    
-
-    // Côté serveur (SSR) : pas d'accès aux cookies, on laisse passer
-    // La vérification se fera côté client dans le composant
-    if (typeof window === "undefined") {
-      return;
-    }
+   // recuperer le cookie
 
     // Côté client : vérifier la session
     const { data: session } = await authClient.getSession({
       fetchOptions: { credentials: "include" }
     });
-    console.log("=== session : ", session);
 
     if (!session) {
       throw redirect({
