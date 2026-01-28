@@ -1,10 +1,10 @@
 .drafts/
 *.code-workspace
 .ai_history/
-theorie/
 cours/
 */a_retenir.md
 skills/
+conception/
 
 # Logs
 logs
