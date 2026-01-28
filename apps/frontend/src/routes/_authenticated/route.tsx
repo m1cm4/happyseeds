@@ -1,47 +1,50 @@
 import { createFileRoute, redirect, Outlet, useNavigate, useLocation } from "@tanstack/react-router";
 import { authClient, useSession } from "../../lib/auth-client";
 import { createIsomorphicFn } from "@tanstack/react-start";
+import { getRequestHeaders } from "@tanstack/react-start/server";
 
 
 console.log(" ========== _authenticate/route =============== ");
-const getCookieFromRequest = createIsomorphicFn()
-       .server( async ()=>{
-          const { getRequest } = await import("@tanstack/react-start/server");
-          const request = getRequest();
-          return request.headers;
-          
-       })
-       .client( async ()=> null )
-  
+
+const getSession = createIsomorphicFn()
+   .client(async () => {
+      // coté clien , betterAuth se charge de faire la requete au backend
+      console.log("==== getSession (client) ");
+      const { data: session } = await authClient.getSession({
+         fetchOptions: { credentials: "include" }
+      });
+      return session;
+   })
+   .server(async () => {
+    // executé côté server : on fait la rêquete nous même, en récuperant les cookie (dans le header entier) avet getRequestHeaders()
+     console.log("==== getSession (server)");
+      const headers = await getRequestHeaders();
+      const response = await fetch(
+         `http://localhost:3001/api/auth/get-session`,
+         {
+            method: "GET",
+            headers: headers,
+            credentials: "include",
+         }
+      );
+
+      if (!response.ok) {
+         return null;
+      }
+
+      const session = await response.json();
+      return session;
+   });
+
 
 export const Route = createFileRoute("/_authenticated")({
   beforeLoad: async ({ location }) => {
-    const inServer = (typeof window === "undefined");
-    // je teste une solution pour récupérer le cookie depuis coté server
-    console.log("=== _authenticated/route.beforeLoad() - server:", inServer);
-      
-    const headers = await getCookieFromRequest();
-    console.log("===  headers ", headers);
-    
-
-    // Côté serveur (SSR) : pas d'accès aux cookies, on laisse passer
-    // La vérification se fera côté client dans le composant
-    if (typeof window === "undefined") {
-      return;
-    }
-
-    // Côté client : vérifier la session
-    const { data: session } = await authClient.getSession({
-      fetchOptions: { credentials: "include" }
-    });
-    console.log("=== session : ", session);
-
+   
+    const session =  getSession();
     if (!session) {
       throw redirect({
         to: "/login",
-        search: {
-          redirect: location.pathname,
-        },
+        search: location.pathname == "/login" ? {} : { redirect: location.pathname,},
       });
     }
 
@@ -49,6 +52,7 @@ export const Route = createFileRoute("/_authenticated")({
   },
   component: AuthenticatedLayout,
 });
+
 
 function AuthenticatedLayout() {
   // Vérification côté client après hydratation (pour le cas SSR)
