@@ -1,20 +1,29 @@
 import { signUp } from "@/lib/auth-client";
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, useSearch } from "@tanstack/react-router";
 import { useState } from "react";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 
-
+type SignupSearch = {
+  redirect?: string;
+};
 
 
 // déclare cette route comme "/"
-export const Route = createFileRoute("/signup")({ component: SignupPAge })
+export const Route = createFileRoute("/signup")({
+  validateSearch: (search: Record<string, unknown>): SignupSearch => {
+    return {
+      redirect: typeof search.redirect === "string" ? search.redirect : undefined,
+    };
+  },
+  component: SignUpPage,
+});
 
-
-function SignupPAge(){
+function SignUpPage(){
 
       const navigate = useNavigate();
+      const { redirect: redirectUrl } = useSearch({ from: "/signup" });
       const [ errorMessage, setError] = useState<string | null>(null);
       const [loading, setLoading] = useState(false);
 
@@ -38,8 +47,11 @@ function SignupPAge(){
             setError( error.message || "Erruer lors de l'inscription");
             return;
           }
-          // Inscription réussie, redirection vers la page d'accueil
-          navigate({ to: "/" });
+          // Inscription réussie, redirection vers la page d'accueil sans redirection
+          //navigate({ to: "/" });
+          // redirection page courante ou dashboard
+          navigate({ to: redirectUrl || "/dashboard" });
+
       }
 
       return (

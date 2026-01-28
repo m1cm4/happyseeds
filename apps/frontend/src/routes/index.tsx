@@ -1,14 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { createFileRoute } from '@tanstack/react-router';
 import { useSession, signOut} from "../lib/auth-client";
-import {
-  Zap,
-  Server,
-  Route as RouteIcon,
-  Shield,
-  Waves,
-  Sparkles,
-} from 'lucide-react'
 
 // déclare cette route comme "/"
 export const Route = createFileRoute('/')({ component: App })
@@ -25,7 +17,8 @@ function App() {
 
           {isPending ? (
             <span className="text-slate-400">Chargement...</span>
-          ) : session ? (
+          ) 
+          : session ? (
             <div className="flex items-center gap-4">
               <span className="text-slate-600">
                 Bonjour, {session.user.name}
@@ -36,8 +29,11 @@ function App() {
               >
                 Déconnexion
               </Button>
-            </div>
-          ) : (
+            <a href="/dashboard" className="text-emerald-600 hover:text-emerald-700 font-medium"
+          >Mon Dashboard </a>
+          </div>
+          ) 
+          : (
             <div className="flex gap-2">
               <Button variant="outline" asChild>
                 <a href="/login">Se connecter</a>

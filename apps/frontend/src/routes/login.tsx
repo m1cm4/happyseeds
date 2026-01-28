@@ -1,17 +1,29 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, useSearch} from "@tanstack/react-router";
 import { useState } from "react";
 import { signIn } from "../lib/auth-client";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 
-export const Route = createFileRoute("/login")({
-  component: LoginPage,
+type LoginSearch = {
+  redirect?: string;
+}
+
+export const Route = createFileRoute("/login")({ 
+  component: LoginPage, 
+  validateSearch: (search: Record<string, unknown>): LoginSearch =>{
+    return {
+      redirect: typeof search.redirect === "string" ? search.redirect : undefined
+    }
+  }
 });
+
+
 
 function LoginPage() {
   const navigate = useNavigate();
   const [errorMessage, setError] = useState<string | null>(null);
+  const { redirect: redirectUrl } = useSearch({ from: "/login" });
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -35,8 +47,8 @@ function LoginPage() {
       return;
     }
 
-    // Connexion réussie, redirection vers la page d'accueil
-    navigate({ to: "/" });
+    // Connexion réussie, redirection l'url d'origine ou le dashboard
+    navigate({ to: redirectUrl || "/dashboard" });
   }
 
   return (
