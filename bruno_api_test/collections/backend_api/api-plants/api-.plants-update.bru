@@ -1,0 +1,26 @@
+meta {
+  name: api/.plants/update
+  type: http
+  seq: 4
+}
+
+patch {
+  url: http://localhost:3001/api/plants/34264516-9877-4277-a35e-0a2febb1fbfa
+  body: json
+  auth: inherit
+}
+
+headers {
+  Cookie: better-auth.session_token=W0vb5BbCzBnAD9VmfSTBIbUVx23TIvoS.RCq9gl5D%2BJeAh2UywF6Jf0%2F2xymCF1SJvC6qB1MJlmY%3D
+}
+
+body:json {
+  {
+    "name": "Tomate Cocktail"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

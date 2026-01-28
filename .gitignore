@@ -1,10 +1,10 @@
 .drafts/
 *.code-workspace
 .ai_history/
-theorie/
 cours/
 */a_retenir.md
 skills/
+conception/
 
 # Logs
 logs
@@ -147,3 +147,4 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+.turbo/

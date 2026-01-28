@@ -1,8 +1,8 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, useRouter } from "@tanstack/react-router";
 import { useSession, signOut } from "../../lib/auth-client";
 import { Button } from "../../components/ui/button";
 
-// convention de nommage : avec "_", "_autheticated" n'est pas visible 
+// convention de nommage : avec "_", "_autheticated" n'est pas visible
 // le chemin réel sera "/dashboard"
 export const Route = createFileRoute("/_authenticated/dashboard")({
   component: DashboardPage,
@@ -11,11 +11,19 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
 function DashboardPage() {
   const { data: session } = useSession();
   const navigate = useNavigate();
+  const router = useRouter();
 
   //signout avec redirection
   const handleSignOut = async () =>{
-    await signOut();
-    navigate({to: "/"});
+    await signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          // Invalider le cache du router pour forcer une re-vérification
+          router.invalidate();
+          navigate({to: "/"});
+        },
+      },
+    });
   }
 
   return (

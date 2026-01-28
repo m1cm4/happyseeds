@@ -4,6 +4,7 @@ import { logger } from "hono/logger";
 import { db } from "./db";
 import { testTable} from "./db/schema";
 import { authRoutes} from "./routes/auth.routes";
+import { plantsRoutes } from "./routes/plants.routes";
 
 const app = new Hono();
 
@@ -38,11 +39,18 @@ app.use(
     });
   });
 
-  // Authentification
+
+
+  // Authentification --------------
   // montage des routes définies par le script
   app.route("/api/auth", authRoutes);
   
-  // Test de la connexion DB
+
+  // Plants CRUD --------------------
+app.route("/api/plants", plantsRoutes); // Ajouter
+
+
+  // Test de la connexion DB -------
   app.get("/api/db-test", async (c) => {
     try {
       // Insérer un enregistrement de test

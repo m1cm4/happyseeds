@@ -1,0 +1,20 @@
+meta {
+  name: api/.plants/ (suppression)
+  type: http
+  seq: 7
+}
+
+delete {
+  url: http://localhost:3001/api/plants/1df6f972-ca37-457f-abe3-63cd79c11c7b
+  body: none
+  auth: inherit
+}
+
+headers {
+  Cookie: better-auth.session_token=W0vb5BbCzBnAD9VmfSTBIbUVx23TIvoS.RCq9gl5D%2BJeAh2UywF6Jf0%2F2xymCF1SJvC6qB1MJlmY%3D
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
