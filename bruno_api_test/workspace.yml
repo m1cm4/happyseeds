@@ -1,0 +1,12 @@
+opencollection: 1.0.0
+info:
+  name: "happyseeds_claude"
+  type: workspace
+
+collections:
+  - name: "backend_api"
+    path: "collections/backend_api"
+
+specs:
+
+docs: ''
