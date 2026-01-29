@@ -50,8 +50,9 @@ happyseeds/
 │           └── lib/       # API client (Hono RPC)
 ├── packages/
 │   └── shared-types/      # Zod schemas & TypeScript types
-├── .drafts/               # Configuration drafts (move to root when scaffolding)
 └── skills/                # AI assistant skill definitions
+└── cours/                # instructions des sessions de travail
+│   └── theorie/      # documents sur des sujets du déveppement de l'application, et les réponses aux questions
 ```
 
 ## Architecture Patterns
