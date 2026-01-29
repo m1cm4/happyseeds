@@ -34,14 +34,6 @@ function DashboardPage() {
         <h1 className="text-3xl font-bold text-slate-800">
           Tableau de bord
         </h1>
-        <div className="flex items-center gap-4">
-          <span className="text-slate-600">
-            {session?.user?.name}
-          </span>
-          <Button variant="outline" onClick={handleSignOut}>
-            Déconnexion
-          </Button>
-        </div>
       </div>
 
       {/* Contenu du dashboard - à développer plus tard */}

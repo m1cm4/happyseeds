@@ -1,5 +1,5 @@
-import { createFileRoute, redirect, Outlet, useNavigate, useLocation, Link } from "@tanstack/react-router";
-import { authClient, useSession } from "../../lib/auth-client";
+import { createFileRoute, redirect, Outlet} from "@tanstack/react-router";
+import { useSession } from "../../lib/auth-client";
 import { hasSessionCookie } from "../../lib/auth"; 
 
 
@@ -28,10 +28,10 @@ export const Route = createFileRoute("/_authenticated")({
 function AuthenticatedLayout() {
   // Vérification côté client après hydratation (pour le cas SSR)
   const { data: session, isPending } = useSession();
-  const navigate = useNavigate();
-  const location = useLocation();
   
-  // Pendant le chargement, afficher un loader
+
+  // Guarde coté client : test d'auth lors de hydratation du composant
+  // // Pendant le chargement, afficher un loader
   if (isPending) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50">
@@ -41,39 +41,23 @@ function AuthenticatedLayout() {
   }
   
   // Pas de session après vérification côté client → rediriger
+  //const navigate = useNavigate();
   if (!session) {
     // Utiliser navigate au lieu de redirect pour éviter les erreurs React
-    navigate({
-      to: "/login",
-      search: { redirect: location.pathname },
-      replace: true,
-    });
-    return null;
+  //   navigate({
+  //     to: "/login",
+  //     replace: true,
+  //   });
+  //   return null;
+
+  // utilise window.location et non navigate pour vider le cache pour useSession()
+    window.location.href = "/login";                    
+    return null;   
   }
-  
+
   return (
-    <div className="min-h-screen bg-slate-50">
-    {/* Header de l'application authentifiée */}
-    <header className="bg-white shadow-sm border-b">
-    <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-    <Link to="/" className="text-xl font-bold text-emerald-600">
-    🌱 HappySeeds
-    </Link>
-    <nav className="flex items-center gap-4">
-    <Link to="/dashboard"
-    className="text-slate-600 hover:text-emerald-600"
-    >
-    Dashboard
-    </Link>
-    {/* Plus de liens seront ajoutés plus tard */}
-    </nav>
-    </div>
-    </header>
-    
-    {/* Contenu de la page enfant */}
     <main className="max-w-6xl mx-auto px-4 py-8">
-    <Outlet />
-    </main>
-    </div>
+      <Outlet />
+    </main> 
   );
 }

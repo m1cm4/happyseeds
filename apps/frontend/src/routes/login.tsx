@@ -1,6 +1,6 @@
-import { createFileRoute, Link, useNavigate, useSearch} from "@tanstack/react-router";
+import { createFileRoute, Link, useSearch} from "@tanstack/react-router";
 import { useState } from "react";
-import { signIn } from "../lib/auth-client";
+import { signIn, useSession } from "../lib/auth-client";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
@@ -10,21 +10,30 @@ type LoginSearch = {
 }
 
 export const Route = createFileRoute("/login")({ 
-  component: LoginPage, 
+
   validateSearch: (search: Record<string, unknown>): LoginSearch =>{
     return {
       redirect: typeof search.redirect === "string" ? search.redirect : undefined
     }
-  }
+  },
+  component: LoginPage,
 });
 
 
 
 function LoginPage() {
-  const navigate = useNavigate();
   const [errorMessage, setError] = useState<string | null>(null);
   const { redirect: redirectUrl } = useSearch({ from: "/login" });
   const [loading, setLoading] = useState(false);
+  // NOUVEAU : Vérifier si déjà connecté             
+  const { data: session } = useSession(); 
+
+  // Si déjà connecté, rediriger vers dashboard           
+  if (session) {                                     
+    window.location.href = "/dashboard";             
+    return null;                                     
+  }    
+ 
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -47,8 +56,10 @@ function LoginPage() {
       return;
     }
 
-    // Connexion réussie, redirection l'url d'origine ou le dashboard
-    navigate({ to: redirectUrl || "/dashboard" });
+    // on fait la redirection avec window.location
+    // pour mettre à zero le cache existant de useSession()
+    //navigate({ to: redirectUrl || "/dashboard" });
+    window.location.href = redirectUrl || "/dashboard";
   }
 
   return (
@@ -73,6 +84,7 @@ function LoginPage() {
               type="email"
               required
               placeholder="vous@exemple.com"
+              value="maesmichel@gmail.com"
             />
           </div>
 
@@ -84,6 +96,8 @@ function LoginPage() {
               type="password"
               required
               placeholder="Votre mot de passe"
+              value="$$$$$$$$"
+
             />
           </div>
 
