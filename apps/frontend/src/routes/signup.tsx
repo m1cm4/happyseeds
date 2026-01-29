@@ -1,5 +1,5 @@
 import { signUp } from "@/lib/auth-client";
-import { createFileRoute, useNavigate, useSearch } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate, useSearch } from "@tanstack/react-router";
 import { useState } from "react";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
@@ -109,9 +109,9 @@ function SignUpPage(){
 
         <p className="mt-4 text-center text-sm text-slate-600">
           Déjà un compte ?{" "}
-          <a href="/login" className="text-emerald-600 hover:underline">
+          <Link to="/login" className="text-emerald-600 hover:underline">
             Se connecter
-          </a>
+          </Link>
         </p>
       </div>
     </div>

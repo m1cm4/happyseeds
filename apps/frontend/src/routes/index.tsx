@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Link } from '@tanstack/react-router';
 import { useSession, signOut} from "../lib/auth-client";
 
 // déclare cette route comme "/"
@@ -30,16 +30,16 @@ function App() {
                 Déconnexion
               </Button>
             <a href="/dashboard" className="text-emerald-600 hover:text-emerald-700 font-medium"
-          >Mon Dashboard </a>
+          >Mon Dashboard</a>
           </div>
           ) 
           : (
             <div className="flex gap-2">
               <Button variant="outline" asChild>
-                <a href="/login">Se connecter</a>
+                <a href="/login">Se connecte</a>
               </Button>
               <Button asChild>
-                <a href="/signup">S'inscrire</a>
+                <a href="/signup">S'inscrir</a>
               </Button>
             </div>
           )}

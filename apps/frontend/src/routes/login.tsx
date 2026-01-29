@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate, useSearch} from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate, useSearch} from "@tanstack/react-router";
 import { useState } from "react";
 import { signIn } from "../lib/auth-client";
 import { Button } from "../components/ui/button";
@@ -94,9 +94,9 @@ function LoginPage() {
 
         <p className="mt-4 text-center text-sm text-slate-600">
           Pas encore de compte ?{" "}
-          <a href="/signup" className="text-emerald-600 hover:underline">
+          <Link to="/signup" className="text-emerald-600 hover:underline">
             S'inscrire
-          </a>
+          </Link>
         </p>
       </div>
     </div>
