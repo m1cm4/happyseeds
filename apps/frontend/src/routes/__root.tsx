@@ -5,6 +5,8 @@ import { TanStackDevtools } from '@tanstack/react-devtools'
 import appCss from '../styles.css?url'
 import { AppHeader } from '@/components/AppHeader'
 import TSDemoMenu from '@/components/TSDemoMenu'
+import { queryClient } from '@/router'
+import { QueryClientProvider } from '@tanstack/react-query'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -38,6 +40,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
+      <QueryClientProvider client={queryClient}>
         <AppHeader />
         {children}
         <footer>
@@ -54,6 +57,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
             },
           ]}
         />
+        </QueryClientProvider>
         <Scripts />
       </body>
     </html>
