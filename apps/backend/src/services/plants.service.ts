@@ -7,7 +7,6 @@ import { plants, Plant, NewPlant } from "../db/schema";
 // ============================================
 
 export type PlantFilters = {
-  userId: string;
   category?: string;
   search?: string;
 };
@@ -50,7 +49,7 @@ export const plantsService = {
 
     // Construire les conditions WHERE avec filtre sur userId, la categorie et le terme de recherche
     // un tableau de conditions
-    const conditions: SQL[] = [eq(plants.userId, filters.userId)];
+    const conditions: SQL[] = [];
 
     if (filters.category) {
       conditions.push(eq(plants.category, filters.category as any));
@@ -102,11 +101,11 @@ export const plantsService = {
    * Récupère une plante par son ID
    * Vérifie que l'utilisateur est bien le propriétaire
    */
-  async findById(id: string, userId: string): Promise<Plant | null> {
+  async findById(id: string): Promise<Plant | null> {
     const result = await db
       .select()
       .from(plants)
-      .where(and(eq(plants.id, id), eq(plants.userId, userId)))
+      .where(and(eq(plants.id, id)))
       .limit(1);
 
     return result[0] ?? null;
@@ -127,12 +126,12 @@ export const plantsService = {
   async update(
     id: string,
     userId: string,
-    data: Partial<Omit<NewPlant, "id" | "userId">>
+    data: Partial<Omit<NewPlant, "id" | "authorId">>
   ): Promise<Plant | null> {
     const result = await db
       .update(plants)
       .set(data)
-      .where(and(eq(plants.id, id), eq(plants.userId, userId)))
+      .where(and(eq(plants.id, id), eq(plants.authorId, userId)))
       .returning();
 
     return result[0] ?? null;
@@ -145,7 +144,7 @@ export const plantsService = {
   async delete(id: string, userId: string): Promise<boolean> {
     const result = await db
       .delete(plants)
-      .where(and(eq(plants.id, id), eq(plants.userId, userId)))
+      .where(and(eq(plants.id, id), eq(plants.authorId, userId)))
       .returning({ id: plants.id });
 
     return result.length > 0;

@@ -48,12 +48,10 @@ export const plantsRoutes = new Hono()
   // GET /api/plants - Liste avec filtres et pagination
   // ==========================================
   .get("/", zValidator("query", querySchema), async (c) => {
-    const userId = c.get("userId");
     const query = c.req.valid("query");
 
     const result = await plantsService.findAll(
       {
-        userId,
         category: query.category,
         search: query.search,
       },
@@ -72,10 +70,9 @@ export const plantsRoutes = new Hono()
   // GET /api/plants/:id - Détail d'une plante
   // ==========================================
   .get("/:id", async (c) => {
-    const userId = c.get("userId");
     const id = c.req.param("id");
 
-    const plant = await plantsService.findById(id, userId);
+    const plant = await plantsService.findById(id);
 
     if (!plant) {
       return c.json(
@@ -91,12 +88,12 @@ export const plantsRoutes = new Hono()
   // POST /api/plants - Créer une plante
   // ==========================================
   .post("/", zValidator("json", createPlantSchema), async (c) => {
-    const userId = c.get("userId");
+    const authorId = c.get("userId");
     const body = c.req.valid("json");
 
     const plant = await plantsService.create({
       ...body,
-      userId,
+      authorId,
     });
 
     return c.json({ success: true, data: plant }, 201);

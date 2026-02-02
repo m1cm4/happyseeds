@@ -86,8 +86,8 @@ export const seedsRelations = relations(seeds, ({ one }) => ({
 
 // Mise à jour des relations Plants pour inclure Seeds
 export const plantsRelationsUpdated = relations(plants, ({ one, many }) => ({
-  owner: one(user, {
-    fields: [plants.userId],
+  author: one(user, {
+    fields: [plants.authorId],
     references: [user.id],
   }),
   seeds: many(seeds),

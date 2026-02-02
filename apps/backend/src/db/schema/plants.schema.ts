@@ -52,7 +52,7 @@ export const plants = pgTable("plants", {
   id: uuid("id").primaryKey().defaultRandom(),
 
   // Relation avec l'utilisateur propriétaire
-  userId: text("user_id")
+  authorId: text("user_id")
     .notNull()
     .references(() => user.id, { onDelete: "cascade" }),
 
@@ -96,8 +96,8 @@ export const plants = pgTable("plants", {
  * Une plante appartient à un utilisateur
  */
 export const plantsRelations = relations(plants, ({ one }) => ({
-  owner: one(user, {
-    fields: [plants.userId],
+  author: one(user, {
+    fields: [plants.authorId],
     references: [user.id],
   }),
 }));

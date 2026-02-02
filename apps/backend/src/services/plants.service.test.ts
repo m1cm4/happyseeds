@@ -16,7 +16,7 @@ import { plantsService } from "./plants.service";
 // Données de test
 const mockPlant = {
   id: "plant-123",
-  userId: "user-456",
+  authorId: "user-456",
   name: "Tomate",
   latinName: "Solanum lycopersicum",
   category: "vegetable" as const,
@@ -45,7 +45,7 @@ describe("plantsService", () => {
   // Tests pour findById
   // ==========================================
   describe("findById", () => {
-    it("devrait retourner une plante si elle existe et appartient à l'utilisateur", async () => {
+    it("devrait retourner une plante si elle existe (lecture publique)", async () => {
       // Arrange : configurer le mock
       const mockSelect = vi.fn().mockReturnValue({
         from: vi.fn().mockReturnValue({
@@ -57,7 +57,7 @@ describe("plantsService", () => {
       (db.select as any).mockImplementation(mockSelect);
 
       // Act
-      const result = await plantsService.findById("plant-123", "user-456");
+      const result = await plantsService.findById("plant-123");
 
       // Assert
       expect(result).toEqual(mockPlant);
@@ -76,7 +76,7 @@ describe("plantsService", () => {
       (db.select as any).mockImplementation(mockSelect);
 
       // Act
-      const result = await plantsService.findById("inexistant", "user-456");
+      const result = await plantsService.findById("inexistant");
 
       // Assert
       expect(result).toBeNull();

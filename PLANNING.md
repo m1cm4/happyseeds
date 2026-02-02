@@ -207,7 +207,7 @@ happyseeds/
 | Field | Type | Constraints | Description |
 |-------|------|-------------|-------------|
 | id | UUID | PK | Identifiant unique |
-| userId | UUID | FK → User, NOT NULL | Propriétaire |
+| authorId | UUID | FK → User, NOT NULL | Auteur de la fiche (créateur) |
 | name | VARCHAR(100) | NOT NULL | Nom commun |
 | latinName | VARCHAR(100) | NULL | Nom latin |
 | category | ENUM | NOT NULL | vegetable, fruit, flower, herb, shrub, other |
@@ -291,8 +291,8 @@ happyseeds/
 ### Relationships
 
 ```
-User ─────┬───── 1:N ─────▶ Plant
-          ├───── 1:N ─────▶ Seed
+User ─────┬───── 1:N ─────▶ Plant (as author - public read, author-only write)
+          ├───── 1:N ─────▶ Seed  (as owner - private collection)
           └───── 1:N ─────▶ SowingSession
 
 Plant ────────── 1:N ─────▶ Seed
@@ -303,6 +303,10 @@ Seed ─────────── 1:N ─────▶ SowingEntry
 
 SowingEntry ──── 1:N ─────▶ Observation
 ```
+
+**Notes sur les permissions :**
+- **Plant** : Lecture publique (tous les utilisateurs authentifiés). Modification/suppression réservée à l'auteur (`authorId`).
+- **Seed** : Collection privée. Chaque graine appartient à un utilisateur (`userId`). CRUD réservé au propriétaire.
 
 ---
 

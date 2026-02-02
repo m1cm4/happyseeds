@@ -10,10 +10,10 @@ import { requireAuth } from "../middleware/auth.middleware";
 // ============================================
 
 const createSeedSchema = z.object({
-  varietyName: z.string().min(1, "Le nom de variété est requis").max(100),
   brand: z.string().max(100).optional(),
   quantity: z.number().int().min(0).default(0),
-  purchaseDate: z.string().optional(), // Format: YYYY-MM-DD
+  acquisitionType: z.enum(["harvest", "purchase", "gift", "unknown"]).optional(),
+  acquisitionDate: z.string().optional(), // Format: YYYY-MM-DD
   expirationDate: z.string().optional(),
   notes: z.string().max(2000).optional(),
 });
@@ -23,7 +23,7 @@ const updateSeedSchema = createSeedSchema.partial();
 const querySchema = z.object({
   page: z.coerce.number().int().positive().default(1),
   limit: z.coerce.number().int().positive().max(100).default(20),
-  sortBy: z.enum(["varietyName", "createdAt", "expirationDate"]).default("createdAt"),
+  sortBy: z.enum(["plantId","brand","quantity","acquisitionType","acquisitionDate","createdAt","expirationDate"]).default("createdAt"),
   sortOrder: z.enum(["asc", "desc"]).default("desc"),
 });
 
@@ -31,18 +31,38 @@ const querySchema = z.object({
 // Routes imbriquées sous /api/plants/:plantId/seeds
 // ============================================
 
-export const seedsRoutes = new Hono()
+type Variables = {
+  userId: string;
+  plantId: string;
+};
+
+
+export const seedsRoutes = new Hono<{ Variables: Variables }>()
   .use("/*", requireAuth)
+  // Middleware pour extraire et valider plantId du router parent
+  // le param plantID est de type string | undefined
+  // on vérifie qu'il est donné
+  .use("/*", async (c, next) => {
+    const plantId = c.req.param("plantId");
+    if (!plantId) {
+      return c.json(
+        { success: false, error: { code: "BAD_REQUEST", message: "plantId requis" } },
+        400
+      );
+    }
+    c.set("plantId", plantId);
+    await next();
+  })
 
   // ==========================================
   // GET /api/plants/:plantId/seeds - Liste des graines d'une plante
   // ==========================================
   .get("/", zValidator("query", querySchema), async (c) => {
     const userId = c.get("userId");
-    const plantId = c.req.param("plantId");
+    const plantId = c.get("plantId");
 
     // Vérifier que la plante existe et appartient à l'utilisateur
-    const plant = await plantsService.findById(plantId, userId);
+    const plant = await plantsService.findById(plantId);
     if (!plant) {
       return c.json(
         { success: false, error: { code: "NOT_FOUND", message: "Plante non trouvée" } },
@@ -87,11 +107,11 @@ export const seedsRoutes = new Hono()
   // POST /api/plants/:plantId/seeds - Créer une graine
   // ==========================================
   .post("/", zValidator("json", createSeedSchema), async (c) => {
+    const plantId = c.get("plantId");
     const userId = c.get("userId");
-    const plantId = c.req.param("plantId");
 
     // Vérifier que la plante existe et appartient à l'utilisateur
-    const plant = await plantsService.findById(plantId, userId);
+    const plant = await plantsService.findById(plantId);
     if (!plant) {
       return c.json(
         { success: false, error: { code: "NOT_FOUND", message: "Plante non trouvée" } },
