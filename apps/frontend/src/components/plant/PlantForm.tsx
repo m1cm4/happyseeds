@@ -1,16 +1,16 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
 import {
   createPlantSchema,
   plantCategoryOptions,
   sunRequirementOptions,
   waterRequirementOptions,
-} from "../lib/schemas/plant.schema";
-import type { Plant } from "../lib/api-client";
-import type { CreatePlantFormData } from "../lib/schemas/plant.schema";
+  CreatePlantFormData
+} from "../../schemas/plant.schema";
+import { Plant } from "@/@types/plant.types";
 
 type PlantFormProps = {
   defaultValues?: Partial<Plant>;
@@ -24,7 +24,7 @@ export function PlantForm({
   onSubmit,
   isSubmitting = false,
   submitLabel = "Enregistrer",
-}: PlantFormProps) {
+  }: PlantFormProps) {
   const {
     register,
     handleSubmit,

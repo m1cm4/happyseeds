@@ -1,5 +1,7 @@
+import { CreatePlantInput, PlantsQueryParams, UpdatePlantInput } from "@/@types/plant.types";
+import { plantsApi } from "@/services/plants.service";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { plantsApi, PlantsQueryParams, CreatePlantInput, UpdatePlantInput } from "../lib/api-client";
+
 
 /**
  * useQuery() pour les lecture GET

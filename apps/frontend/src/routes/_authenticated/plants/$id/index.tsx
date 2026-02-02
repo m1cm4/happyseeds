@@ -5,7 +5,8 @@ import {
   plantCategoryOptions,
   sunRequirementOptions,
   waterRequirementOptions,
-} from "../../../../lib/schemas/plant.schema";
+} from "../../../../schemas/plant.schema";
+import { SeedsSection } from "@/components/plant/plant-seed-selection";
 
 export const Route = createFileRoute("/_authenticated/plants/$id/")({
   component: PlantDetailPage,
@@ -25,7 +26,7 @@ function PlantDetailPage() {
     );
   }
 
-  if (error || !data?.data) {
+  if (error || !data?.success) {
     return (
       <div className="max-w-2xl mx-auto p-6">
         <div className="bg-red-50 text-red-700 p-4 rounded-lg">
@@ -164,6 +165,8 @@ function PlantDetailPage() {
           </div>
         )}
       </div>
+      <hr />
+      <SeedsSection plantId={plant.id} />
     </div>
   );
 }

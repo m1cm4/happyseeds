@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { PlantForm } from "../../../../components/PlantForm";
+import { PlantForm } from "../../../../components/plant/PlantForm";
 import { usePlant, useUpdatePlant } from "../../../../hooks/usePlants";
-import type { CreatePlantFormData } from "../../../../lib/schemas/plant.schema";
+import type { CreatePlantFormData } from "../../../../schemas/plant.schema";
 
 export const Route = createFileRoute("/_authenticated/plants/$id/edit")({
   component: EditPlantPage,
@@ -21,7 +21,7 @@ function EditPlantPage() {
     );
   }
 
-  if (error || !data?.data) {
+  if (error || !data?.success) {
     return (
       <div className="max-w-2xl mx-auto p-6">
         <div className="bg-red-50 text-red-700 p-4 rounded-lg">

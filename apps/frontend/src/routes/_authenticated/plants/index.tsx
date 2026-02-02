@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { usePlants } from "../../../hooks/usePlants";
 import { Button } from "../../../components/ui/button";
-import type { Plant } from "../../../lib/api-client";                          
+import { Plant } from "@/@types/plant.types";
+
 
 export const Route = createFileRoute("/_authenticated/plants/")({
   component: PlantsListPage,

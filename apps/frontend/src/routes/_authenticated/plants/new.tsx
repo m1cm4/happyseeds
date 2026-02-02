@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { PlantForm } from "../../../components/PlantForm";
+import { PlantForm } from "../../../components/plant/PlantForm";
 import { useCreatePlant } from "../../../hooks/usePlants";
-import type { CreatePlantFormData } from "../../../lib/schemas/plant.schema";
+import type { CreatePlantFormData } from "../../../schemas/plant.schema";
 
 export const Route = createFileRoute("/_authenticated/plants/new")({
   component: NewPlantPage,
