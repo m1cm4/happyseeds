@@ -112,57 +112,70 @@ happyseeds/
 ├── apps/
 │   ├── backend/
 │   │   ├── src/
-│   │   │   ├── index.ts              # Point d'entrée
-│   │   │   ├── app.ts                # Configuration Hono
+│   │   │   ├── index.ts              # Point d'entrée (démarre le serveur)
+│   │   │   ├── app.ts                # Configuration Hono + montage des routes
 │   │   │   ├── db/
 │   │   │   │   ├── index.ts          # Connexion DB
-│   │   │   │   ├── schema/           # Schémas Drizzle
-│   │   │   │   │   ├── users.ts
-│   │   │   │   │   ├── plants.ts
-│   │   │   │   │   ├── seeds.ts
-│   │   │   │   │   ├── sowing-sessions.ts
-│   │   │   │   │   ├── sowing-entries.ts
-│   │   │   │   │   └── observations.ts
-│   │   │   │   └── migrations/
-│   │   │   ├── routes/
-│   │   │   │   ├── index.ts          # Agrégateur de routes
-│   │   │   │   ├── auth.ts
-│   │   │   │   ├── plants.ts
-│   │   │   │   ├── seeds.ts
-│   │   │   │   ├── sessions.ts
-│   │   │   │   └── dashboard.ts
+│   │   │   │   └── schema/           # Schémas Drizzle
+│   │   │   │       ├── index.ts      # Export de tous les schémas
+│   │   │   │       ├── auth-schema.ts
+│   │   │   │       ├── plants.schema.ts
+│   │   │   │       ├── seed.schema.ts
+│   │   │   │       └── ...
+│   │   │   ├── routes/               # Routes Hono (montées dans app.ts)
+│   │   │   │   ├── auth.routes.ts
+│   │   │   │   ├── plants.routes.ts
+│   │   │   │   └── seeds.routes.ts
 │   │   │   ├── middleware/
-│   │   │   │   ├── auth.ts
-│   │   │   │   └── error-handler.ts
-│   │   │   └── services/
-│   │   │       └── calculation.service.ts
+│   │   │   │   └── auth.middleware.ts
+│   │   │   └── services/             # Business logic
+│   │   │       ├── plants.service.ts
+│   │   │       └── seeds.service.ts
 │   │   ├── drizzle.config.ts
 │   │   ├── package.json
 │   │   └── tsconfig.json
 │   │
 │   └── frontend/
-│       ├── app/
+│       ├── src/
+│       │   ├── @types/               # TypeScript type definitions
+│       │   │   ├── api.types.tsx     # ApiResponse, PaginatedResponse
+│       │   │   ├── plant.types.tsx   # Plant, CreatePlantInput, etc.
+│       │   │   └── seed.types.tsx    # Seed, CreateSeedInput, etc.
 │       │   ├── routes/
 │       │   │   ├── __root.tsx
 │       │   │   ├── index.tsx
 │       │   │   ├── login.tsx
-│       │   │   ├── register.tsx
+│       │   │   ├── signup.tsx
 │       │   │   └── _authenticated/
+│       │   │       ├── route.tsx     # Layout authentifié
 │       │   │       ├── dashboard.tsx
-│       │   │       ├── plants/
-│       │   │       ├── seeds/
-│       │   │       └── calendar/
+│       │   │       └── plants/
+│       │   │           ├── index.tsx
+│       │   │           ├── new.tsx
+│       │   │           └── $id/
+│       │   │               ├── index.tsx
+│       │   │               ├── edit.tsx
+│       │   │               └── seeds/
+│       │   │                   ├── new.tsx
+│       │   │                   └── $seedId/
+│       │   │                       └── edit.tsx
 │       │   ├── components/
 │       │   │   ├── ui/               # shadcn components
-│       │   │   ├── layout/
-│       │   │   ├── plants/
-│       │   │   ├── seeds/
-│       │   │   └── shared/
+│       │   │   ├── PlantForm.tsx
+│       │   │   └── AppHeader.tsx
 │       │   ├── hooks/
+│       │   │   └── usePlants.ts      # TanStack Query hooks
+│       │   ├── services/             # API services (utilisent request helper)
+│       │   │   ├── plants.service.ts
+│       │   │   └── seeds.service.ts
 │       │   ├── lib/
-│       │   │   ├── api-client.ts     # Hono RPC Client
-│       │   │   └── utils.ts
-│       │   └── styles/
+│       │   │   ├── api-client.ts     # request<T> helper + ApiError
+│       │   │   ├── auth-client.ts    # Better-Auth client
+│       │   │   ├── auth.ts           # Auth utilities
+│       │   │   ├── utils.ts          # cn() et autres utilitaires
+│       │   │   └── schemas/          # Zod schemas pour formulaires
+│       │   │       └── plant.schema.ts
+│       │   └── router.tsx
 │       ├── package.json
 │       └── tsconfig.json
 │
