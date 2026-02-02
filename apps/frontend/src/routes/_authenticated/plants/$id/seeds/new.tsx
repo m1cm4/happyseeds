@@ -1,4 +1,4 @@
-import { SeedForm } from "@/components/seed/SeedForm";
+import { SeedForm } from "@/components/seed/seed-form";
 import { usePlant } from "@/hooks/usePlants";
 import { useCreateSeed } from "@/hooks/useSeeds";
 import { CreateSeedFormData } from "@/schemas/seed.shema";

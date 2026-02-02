@@ -1,4 +1,4 @@
-import { SeedForm } from "@/components/seed/SeedForm";
+import { SeedForm } from "@/components/seed/seed-form";
 import { Button } from "@/components/ui/button";
 import { usePlant } from "@/hooks/usePlants";
 import { useDeleteSeed, useSeed, useUpdateSeed } from "@/hooks/useSeeds";

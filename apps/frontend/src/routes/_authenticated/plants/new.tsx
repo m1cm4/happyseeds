@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { PlantForm } from "../../../components/plant/PlantForm";
+import { PlantForm } from "../../../components/plant/plant-form";
 import { useCreatePlant } from "../../../hooks/usePlants";
 import type { CreatePlantFormData } from "../../../schemas/plant.schema";
 
