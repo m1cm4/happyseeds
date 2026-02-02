@@ -50,9 +50,6 @@ app.use(
   // Plants CRUD --------------------
 app.route("/api/plants", plantsRoutes); // Ajouter
 
-// Plants CRUD --------------------
-app.route("/api/plants", plantsRoutes); // Ajouter
-
 // Seeds CRUD -Routes imbriquées -----
 app.route("/api/plants/:plantId/seeds", seedsRoutes);
 
