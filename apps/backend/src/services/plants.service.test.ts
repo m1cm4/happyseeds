@@ -90,7 +90,7 @@ describe("plantsService", () => {
     it("devrait créer une plante et la retourner", async () => {
       // Arrange
       const newPlantData = {
-        userId: "user-456",
+        authorId: "user-456",
         name: "Carotte",
         category: "vegetable" as const,
       };
