@@ -5,6 +5,7 @@ import { db } from "./db";
 import { testTable} from "./db/schema";
 import { authRoutes} from "./routes/auth.routes";
 import { plantsRoutes } from "./routes/plants.routes";
+import { seedsRoutes } from "./routes/seeds.routes";
 
 const app = new Hono();
 
@@ -48,6 +49,12 @@ app.use(
 
   // Plants CRUD --------------------
 app.route("/api/plants", plantsRoutes); // Ajouter
+
+// Plants CRUD --------------------
+app.route("/api/plants", plantsRoutes); // Ajouter
+
+// Seeds CRUD -Routes imbriquées -----
+app.route("/api/plants/:plantId/seeds", seedsRoutes);
 
 
   // Test de la connexion DB -------

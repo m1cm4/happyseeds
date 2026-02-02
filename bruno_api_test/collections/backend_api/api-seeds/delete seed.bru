@@ -1,0 +1,16 @@
+meta {
+  name: delete seed
+  type: http
+  seq: 4
+}
+
+delete {
+  url: http://localhost:3001/api/plants/6d897535-6fee-4768-b082-2b99436f223c/seeds/461b4849-d150-4c75-99dc-2fed7d9ad937
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

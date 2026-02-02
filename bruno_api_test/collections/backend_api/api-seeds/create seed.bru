@@ -1,0 +1,24 @@
+meta {
+  name: create seed
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3001/api/plants/6d897535-6fee-4768-b082-2b99436f223c/seeds
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "quantity": 10,
+    "notes": "autre batch, récoltée chez moi",
+    "acquisitionType": "harvest"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
