@@ -4,7 +4,7 @@ import { useCreateSeed } from "@/hooks/useSeeds";
 import { CreateSeedFormData } from "@/schemas/seed.shema";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/_authenticated/plants/$id/seeds/new")({
+export const Route = createFileRoute("/_authenticated/plant/$id/seeds/new")({
   component: NewSeedPage,
 });
 
@@ -21,7 +21,7 @@ function NewSeedPage() {
 
     createSeed.mutate(cleanedData as any, {
       onSuccess: () => {
-        navigate({ to: "/plants/$id", params: { id: plantId } });
+        navigate({ to: "/plant/$id", params: { id: plantId } });
       },
     });
   };
@@ -29,11 +29,11 @@ function NewSeedPage() {
   return (
     <div className="max-w-xl mx-auto p-6">
       <Link
-        to="/plants/$id"
+        to="/plant/$id"
         params={{ id: plantId }}
         className="text-sm text-slate-500 hover:text-slate-700"
       >
-        ← Retour à { plantData?.success ? plantData.data.name : "la plante"}
+        ← Retour à { plantData?.success ? plantData.data.common_name : "la plante"}
       </Link>
 
       <h1 className="text-2xl font-bold text-slate-800 mt-2 mb-6">

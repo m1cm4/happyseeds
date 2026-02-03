@@ -44,8 +44,8 @@ export const plant = pgTable("plant", {
 
   // Classification
   category: plantCategoryEnum("category").notNull(),
-  commun_name: text("commun_name").notNull(),
-  other_commun_names: text("other_commun_names"),
+  common_name: text("common_name").notNull(),
+  other_common_names: text("other_common_names"),
   family: text("family"),
   genus: text("genus"),
   species: text("species"),

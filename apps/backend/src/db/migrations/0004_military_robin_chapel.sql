@@ -3,8 +3,8 @@ CREATE TYPE "public"."position" AS ENUM('full_sun', 'partial_shade', 'shade');--
 CREATE TABLE "plant" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"category" "plant_category" NOT NULL,
-	"commun_name" text NOT NULL,
-	"other_commun_names" text,
+	"common_name" text NOT NULL,
+	"other_common_names" text,
 	"family" text,
 	"genus" text,
 	"species" text,

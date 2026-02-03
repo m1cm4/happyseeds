@@ -1,12 +1,12 @@
 import { ApiResponse, PaginatedResponse } from "@/@types/api.types";
-import { CreatePlantInput, Plant, PlantsQueryParams, UpdatePlantInput } from "@/@types/plant.types";
+import { CreatePlantInput, Plant, PlantQueryParams, UpdatePlantInput } from "@/@types/plant.types";
 import { request } from "@/lib/api-client";
 
-export const plantsApi = {
+export const plantApi = {
   /**
    * Récupérer la liste des plantes avec filtres et pagination
    */
-  async getAll(params: PlantsQueryParams = {}) {
+  async getAll(params: PlantQueryParams = {}) {
     const searchParams = new URLSearchParams();
 
     if (params.page) searchParams.set("page", String(params.page));
@@ -17,7 +17,7 @@ export const plantsApi = {
     if (params.sortOrder) searchParams.set("sortOrder", params.sortOrder);
 
     const query = searchParams.toString();
-    const endpoint = `/api/plants${query ? `?${query}` : ""}`;
+    const endpoint = `/api/plant${query ? `?${query}` : ""}`;
 
     return request<PaginatedResponse<Plant>>(endpoint);
   },
@@ -26,14 +26,14 @@ export const plantsApi = {
    * Récupérer une plante par son ID
    */
   async getById(id: string) {
-    return request<ApiResponse<Plant>>(`/api/plants/${id}`);
+    return request<ApiResponse<Plant>>(`/api/plant/${id}`);
   },
 
   /**
    * Créer une nouvelle plante
    */
   async create(data: CreatePlantInput) {
-    return request<ApiResponse<Plant>>("/api/plants", {
+    return request<ApiResponse<Plant>>("/api/plant", {
       method: "POST",
       body: JSON.stringify(data),
     });
@@ -43,7 +43,7 @@ export const plantsApi = {
    * Mettre à jour une plante
    */
   async update(id: string, data: UpdatePlantInput) {
-    return request<ApiResponse<Plant>>(`/api/plants/${id}`, {
+    return request<ApiResponse<Plant>>(`/api/plant/${id}`, {
       method: "PATCH",
       body: JSON.stringify(data),
     });
@@ -53,7 +53,7 @@ export const plantsApi = {
    * Supprimer une plante
    */
   async delete(id: string) {
-    return request<ApiResponse<{ message: string }>>(`/api/plants/${id}`, {
+    return request<ApiResponse<{ message: string }>>(`/api/plant/${id}`, {
       method: "DELETE",
     });
   },

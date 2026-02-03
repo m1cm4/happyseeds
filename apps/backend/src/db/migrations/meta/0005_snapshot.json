@@ -409,14 +409,14 @@
           "primaryKey": false,
           "notNull": true
         },
-        "commun_name": {
-          "name": "commun_name",
+        "common_name": {
+          "name": "common_name",
           "type": "text",
           "primaryKey": false,
           "notNull": true
         },
-        "other_commun_names": {
-          "name": "other_commun_names",
+        "other_common_names": {
+          "name": "other_common_names",
           "type": "text",
           "primaryKey": false,
           "notNull": false

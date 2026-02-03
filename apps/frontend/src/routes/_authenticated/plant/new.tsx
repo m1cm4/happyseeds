@@ -1,9 +1,9 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { PlantForm } from "../../../components/plant/plant-form";
 import { useCreatePlant } from "../../../hooks/usePlants";
-import type { CreatePlantFormData } from "../../../schemas/plant.schema";
+import type { CreatePlantInput } from "../../../schemas/plant.schema";
 
-export const Route = createFileRoute("/_authenticated/plants/new")({
+export const Route = createFileRoute("/_authenticated/plant/new")({
   component: NewPlantPage,
 });
 
@@ -11,7 +11,7 @@ function NewPlantPage() {
   const navigate = useNavigate();
   const createPlant = useCreatePlant();
 
-  const handleSubmit = (data: CreatePlantFormData) => {
+  const handleSubmit = (data: CreatePlantInput) => {
     console.log("Form submitted:", data);
     // Nettoyer les valeurs vides
     const cleanedData = Object.fromEntries(
@@ -21,7 +21,7 @@ function NewPlantPage() {
     createPlant.mutate(cleanedData as any, {
       onSuccess: () => {
         console.log("Success!"); 
-        navigate({ to: "/plants" });
+        navigate({ to: "/plant" });
       },                                                               
       onError: (error) => {                                             
         console.error("Error:", error);  // ← Et celle-ci               

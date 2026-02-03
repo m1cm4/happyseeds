@@ -84,8 +84,8 @@ export const seedsRelations = relations(seeds, ({ one }) => ({
   }),
 }));
 
-// Mise à jour des relations Plants pour inclure Seeds
-export const plantsRelationsUpdated = relations(plant, ({ one, many }) => ({
+// Mise à jour des relations Plant pour inclure Seeds
+export const plantRelationsUpdated = relations(plant, ({ one, many }) => ({
   author: one(user, {
     fields: [plant.author_id],
     references: [user.id],

@@ -1,6 +1,6 @@
 {
-  "id": "e439530a-e6bf-4961-8b72-56ed409dd8fb",
-  "prevId": "e71ed0af-8076-488b-97ac-b901cf9dcb44",
+  "id": "bed16d6e-2b74-4341-bd8f-d22685ffb861",
+  "prevId": "d4752165-1a36-425e-969b-b337a20960aa",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -549,14 +549,14 @@
           "primaryKey": false,
           "notNull": false
         },
-        "sowing_information": {
-          "name": "sowing_information",
+        "sowing_info": {
+          "name": "sowing_info",
           "type": "text",
           "primaryKey": false,
           "notNull": false
         },
-        "growing_instruction": {
-          "name": "growing_instruction",
+        "growing_info": {
+          "name": "growing_info",
           "type": "text",
           "primaryKey": false,
           "notNull": false

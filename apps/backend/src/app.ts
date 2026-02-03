@@ -47,7 +47,7 @@ app.use(
   app.route("/api/auth", authRoutes);
   
 
-  // Plants CRUD --------------------
+  // Plant CRUD --------------------
 app.route("/api/plant", plantRoutes); // Ajouter
 
 // Seeds CRUD -Routes imbriquées -----

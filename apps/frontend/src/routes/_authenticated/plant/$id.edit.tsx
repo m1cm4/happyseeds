@@ -1,9 +1,9 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { PlantForm } from "../../../components/plant/plant-form";
 import { usePlant, useUpdatePlant } from "../../../hooks/usePlants";
-import type { CreatePlantFormData } from "../../../schemas/plant.schema";
+import type { CreatePlantInput } from "../../../schemas/plant.schema";
 
-export const Route = createFileRoute("/_authenticated/plants/$id/edit")({
+export const Route = createFileRoute("/_authenticated/plant/$id/edit")({
   component: EditPlantPage,
 });
 
@@ -27,7 +27,7 @@ function EditPlantPage() {
         <div className="bg-red-50 text-red-700 p-4 rounded-lg">
           <p>Plante non trouvée</p>
         </div>
-        <Link to="/plants" className="mt-4 inline-block text-emerald-600">
+        <Link to="/plant" className="mt-4 inline-block text-emerald-600">
           ← Retour à la liste
         </Link>
       </div>
@@ -36,7 +36,7 @@ function EditPlantPage() {
 
   const plant = data.data;
 
-  const handleSubmit = (formData: CreatePlantFormData) => {
+  const handleSubmit = (formData: CreatePlantInput) => {
     // Nettoyer les valeurs vides
     const cleanedData = Object.fromEntries(
       Object.entries(formData).filter(([_, v]) => v !== "" && v !== undefined)
@@ -46,7 +46,7 @@ function EditPlantPage() {
       { id, data: cleanedData as any },
       {
         onSuccess: () => {
-          navigate({ to: "/plants/$id", params: { id } });
+          navigate({ to: "/plant/$id", params: { id } });
         },
       }
     );
@@ -54,12 +54,12 @@ function EditPlantPage() {
 
   return (
     <div className="max-w-2xl mx-auto p-6">
-      <Link to="/plants/$id" params={{ id }} className="text-sm text-slate-500 hover:text-slate-700">
+      <Link to="/plant/$id" params={{ id }} className="text-sm text-slate-500 hover:text-slate-700">
         ← Retour au détail
       </Link>
 
       <h1 className="text-2xl font-bold text-slate-800 mt-2 mb-6">
-        Modifier : {plant.name}
+        Modifier : {plant.common_name}
       </h1>
 
       {updatePlant.error && (

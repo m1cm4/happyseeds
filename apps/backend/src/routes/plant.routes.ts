@@ -11,7 +11,7 @@ import { requireAuth } from "../middleware/auth.middleware";
 
 // Champs triables (doit correspondre à SortableField du service)
 const sortableFields = [
-  "commun_name",
+  "common_name",
   "family",
   "genus",
   "species",

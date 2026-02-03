@@ -5,7 +5,7 @@ import { useDeleteSeed, useSeed, useUpdateSeed } from "@/hooks/useSeeds";
 import { CreateSeedFormData } from "@/schemas/seed.shema";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/_authenticated/plants/$id/seeds/$seedId/edit")({
+export const Route = createFileRoute("/_authenticated/plant/$id/seeds/$seedId/edit")({
   component: EditSeedPage,
 });
 
@@ -46,7 +46,7 @@ function EditSeedPage() {
       { id: seedId, data: cleanedData as any },
       {
         onSuccess: () => {
-          navigate({ to: "/plants/$id", params: { id: plantId } });
+          navigate({ to: "/plant/$id", params: { id: plantId } });
         },
       }
     );
@@ -56,7 +56,7 @@ function EditSeedPage() {
     if (confirm("Supprimer cette graine ?")) {
       deleteSeed.mutate(seedId, {
         onSuccess: () => {
-          navigate({ to: "/plants/$id", params: { id: plantId } });
+          navigate({ to: "/plant/$id", params: { id: plantId } });
         },
       });
     }
@@ -65,11 +65,11 @@ function EditSeedPage() {
   return (
     <div className="max-w-xl mx-auto p-6">
       <Link
-        to="/plants/$id"
+        to="/plant/$id"
         params={{ id: plantId }}
         className="text-sm text-slate-500 hover:text-slate-700"
       >
-        ← Retour à {plantData?.success ? plantData.data.name : "la plante"}
+        ← Retour à {plantData?.success ? plantData.data.common_name : "la plante"}
       </Link>
 
       <div className="flex justify-between items-center mt-2 mb-6">

@@ -13,7 +13,7 @@ export type PlantFilters = {
 
 // Champs triables (tous sauf les champs longs/techniques)
 export type SortableField =
-  "commun_name"
+  "common_name"
   | "family"
   | "genus"
   | "species"
@@ -68,7 +68,7 @@ export const plantService = {
 
     if (filters.search) {
       // Recherche insensible à la casse sur le nom
-      conditions.push(ilike(plant.commun_name, `%${filters.search}%`));
+      conditions.push(ilike(plant.common_name, `%${filters.search}%`));
     }
 
 
@@ -82,7 +82,7 @@ export const plantService = {
 
     // Requête principale avec pagination ---------------
     const offset = (page - 1) * limit;
-    const orderByColumn = sortBy === "commun_name" ? plant.commun_name : plant.created_at;
+    const orderByColumn = sortBy === "common_name" ? plant.common_name : plant.created_at;
     const orderByDirection = sortOrder === "asc" ? asc : desc;
 
     const data = await db

@@ -11,7 +11,7 @@ vi.mock("../db", () => ({
 }));
 
 import { db } from "../db";
-import { plantsService } from "./plant.service";
+import { plantService } from "./plant.service";
 
 // Données de test
 const mockPlant = {
@@ -35,7 +35,7 @@ const mockPlant = {
   updatedAt: new Date(),
 };
 
-describe("plantsService", () => {
+describe("plantService", () => {
   beforeEach(() => {
     // Reset tous les mocks avant chaque test
     vi.clearAllMocks();
@@ -57,7 +57,7 @@ describe("plantsService", () => {
       (db.select as any).mockImplementation(mockSelect);
 
       // Act
-      const result = await plantsService.findById("plant-123");
+      const result = await plantService.findById("plant-123");
 
       // Assert
       expect(result).toEqual(mockPlant);
@@ -76,7 +76,7 @@ describe("plantsService", () => {
       (db.select as any).mockImplementation(mockSelect);
 
       // Act
-      const result = await plantsService.findById("inexistant");
+      const result = await plantService.findById("inexistant");
 
       // Assert
       expect(result).toBeNull();
@@ -90,9 +90,10 @@ describe("plantsService", () => {
     it("devrait créer une plante et la retourner", async () => {
       // Arrange
       const newPlantData = {
-        authorId: "user-456",
-        name: "Carotte",
+        author_id: "user-456",
+        common_name: "Carotte",
         category: "vegetable" as const,
+        hardiness: "perennial" as const,
       };
 
       const createdPlant = { ...mockPlant, ...newPlantData, id: "new-id" };
@@ -105,7 +106,7 @@ describe("plantsService", () => {
       (db.insert as any).mockImplementation(mockInsert);
 
       // Act
-      const result = await plantsService.create(newPlantData);
+      const result = await plantService.create(newPlantData);
 
       // Assert
       expect(result).toEqual(createdPlant);
@@ -131,13 +132,13 @@ describe("plantsService", () => {
       (db.update as any).mockImplementation(mockUpdate);
 
       // Act
-      const result = await plantsService.update("plant-123", "user-456", {
-        name: "Tomate cerise",
+      const result = await plantService.update("plant-123", "user-456", {
+        common_name: "Tomate cerise",
       });
 
       // Assert
       expect(result).toEqual(updatedPlant);
-      expect(result?.name).toBe("Tomate cerise");
+      expect(result?.common_name).toBe("Tomate cerise");
     });
 
     it("devrait retourner null si la plante n'existe pas", async () => {
@@ -152,8 +153,8 @@ describe("plantsService", () => {
       (db.update as any).mockImplementation(mockUpdate);
 
       // Act
-      const result = await plantsService.update("inexistant", "user-456", {
-        name: "Test",
+      const result = await plantService.update("inexistant", "user-456", {
+        common_name: "Test",
       });
 
       // Assert
@@ -175,7 +176,7 @@ describe("plantsService", () => {
       (db.delete as any).mockImplementation(mockDelete);
 
       // Act
-      const result = await plantsService.delete("plant-123", "user-456");
+      const result = await plantService.delete("plant-123", "user-456");
 
       // Assert
       expect(result).toBe(true);
@@ -191,7 +192,7 @@ describe("plantsService", () => {
       (db.delete as any).mockImplementation(mockDelete);
 
       // Act
-      const result = await plantsService.delete("inexistant", "user-456");
+      const result = await plantService.delete("inexistant", "user-456");
 
       // Assert
       expect(result).toBe(false);

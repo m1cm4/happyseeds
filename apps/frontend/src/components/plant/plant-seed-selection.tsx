@@ -17,7 +17,7 @@ export function SeedsSection({ plantId }: { plantId: string }) {
          <h2 className="text-xl font-semibold text-slate-800">
            Mes graines ({seeds.length})
          </h2>
-         <Link to="/plants/$id/seeds/new" params={{ id: plantId }}>
+         <Link to="/plant/$id/seeds/new" params={{ id: plantId }}>
            <Button size="sm">+ Ajouter une graine</Button>
          </Link>
        </div>
@@ -49,7 +49,7 @@ export function SeedsSection({ plantId }: { plantId: string }) {
                    Stock: {seed.quantity}
                  </span>
                  <Link
-                   to="/plants/$id/seeds/$seedId/edit"
+                   to="/plant/$id/seeds/$seedId/edit"
                    params={{ id: plantId, seedId: seed.id }}
                  >
                    <Button variant="outline" size="sm">

@@ -1,5 +1,5 @@
-import { CreatePlantInput, PlantsQueryParams, UpdatePlantInput } from "@/@types/plant.types";
-import { plantsApi } from "@/services/plants.service";
+import { CreatePlantInput, PlantQueryParams, UpdatePlantInput } from "@/@types/plant.types";
+import { plantApi } from "@/services/plant.service";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
 
@@ -25,12 +25,12 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 // Query Keys = Structure hiérarchique pour identifier les requêtes dans le cache
 
 
-export const plantsKeys = {
-  all: ["plants"] as const,
-  lists: () => [...plantsKeys.all, "list"] as const,
-  list: (params: PlantsQueryParams) => [...plantsKeys.lists(), params] as const,
-  details: () => [...plantsKeys.all, "detail"] as const,
-  detail: (id: string) => [...plantsKeys.details(), id] as const,
+export const plantKeys = {
+  all: ["plant"] as const,
+  lists: () => [...plantKeys.all, "list"] as const,
+  list: (params: PlantQueryParams) => [...plantKeys.lists(), params] as const,
+  details: () => [...plantKeys.all, "detail"] as const,
+  detail: (id: string) => [...plantKeys.details(), id] as const,
 };
 
 // ============================================
@@ -40,10 +40,10 @@ export const plantsKeys = {
 /**
  * Hook pour récupérer la liste des plantes
  */
-export function usePlants(params: PlantsQueryParams = {}) {
+export function usePlants(params: PlantQueryParams = {}) {
   return useQuery({
-    queryKey: plantsKeys.list(params),
-    queryFn: () => plantsApi.getAll(params),
+    queryKey: plantKeys.list(params),
+    queryFn: () => plantApi.getAll(params),
   });
 }
 
@@ -52,8 +52,8 @@ export function usePlants(params: PlantsQueryParams = {}) {
  */
 export function usePlant(id: string) {
   return useQuery({
-    queryKey: plantsKeys.detail(id),
-    queryFn: () => plantsApi.getById(id),
+    queryKey: plantKeys.detail(id),
+    queryFn: () => plantApi.getById(id),
     enabled: !!id, // Ne pas exécuter si pas d'ID
   });
 }
@@ -65,10 +65,10 @@ export function useCreatePlant() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (data: CreatePlantInput) => plantsApi.create(data),
+    mutationFn: (data: CreatePlantInput) => plantApi.create(data),
     onSuccess: () => {
       // Invalider le cache pour rafraîchir la liste
-      queryClient.invalidateQueries({ queryKey: plantsKeys.lists() });
+      queryClient.invalidateQueries({ queryKey: plantKeys.lists() });
     },
   });
 }
@@ -81,11 +81,11 @@ export function useUpdatePlant() {
 
   return useMutation({
     mutationFn: ({ id, data }: { id: string; data: UpdatePlantInput }) =>
-      plantsApi.update(id, data),
+      plantApi.update(id, data),
     onSuccess: (_, variables) => {
       // Invalider le cache de la liste et du détail
-      queryClient.invalidateQueries({ queryKey: plantsKeys.lists() });
-      queryClient.invalidateQueries({ queryKey: plantsKeys.detail(variables.id) });
+      queryClient.invalidateQueries({ queryKey: plantKeys.lists() });
+      queryClient.invalidateQueries({ queryKey: plantKeys.detail(variables.id) });
     },
   });
 }
@@ -97,9 +97,9 @@ export function useDeletePlant() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (id: string) => plantsApi.delete(id),
+    mutationFn: (id: string) => plantApi.delete(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: plantsKeys.lists() });
+      queryClient.invalidateQueries({ queryKey: plantKeys.lists() });
     },
   });
 }

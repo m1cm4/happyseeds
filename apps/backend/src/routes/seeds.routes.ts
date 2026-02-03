@@ -28,7 +28,7 @@ const querySchema = z.object({
 });
 
 // ============================================
-// Routes imbriquées sous /api/plants/:plantId/seeds
+// Routes imbriquées sous Link to="/plant/:plantId/seeds
 // ============================================
 
 type Variables = {
@@ -55,7 +55,7 @@ export const seedsRoutes = new Hono<{ Variables: Variables }>()
   })
 
   // ==========================================
-  // GET /api/plants/:plantId/seeds - Liste des graines d'une plante
+  // GET Link to="/plant/:plantId/seeds - Liste des graines d'une plante
   // ==========================================
   .get("/", zValidator("query", querySchema), async (c) => {
     const userId = c.get("userId");
@@ -85,7 +85,7 @@ export const seedsRoutes = new Hono<{ Variables: Variables }>()
   })
 
   // ==========================================
-  // GET /api/plants/:plantId/seeds/:id - Détail d'une graine
+  // GET Link to="/plant/:plantId/seeds/:id - Détail d'une graine
   // ==========================================
   .get("/:id", async (c) => {
     const userId = c.get("userId");
@@ -104,7 +104,7 @@ export const seedsRoutes = new Hono<{ Variables: Variables }>()
   })
 
   // ==========================================
-  // POST /api/plants/:plantId/seeds - Créer une graine
+  // POST Link to="/plant/:plantId/seeds - Créer une graine
   // ==========================================
   .post("/", zValidator("json", createSeedSchema), async (c) => {
     const plantId = c.get("plantId");
@@ -130,7 +130,7 @@ export const seedsRoutes = new Hono<{ Variables: Variables }>()
   })
 
   // ==========================================
-  // PATCH /api/plants/:plantId/seeds/:id - Mettre à jour une graine
+  // PATCH Link to="/plant/:plantId/seeds/:id - Mettre à jour une graine
   // ==========================================
   .patch("/:id", zValidator("json", updateSeedSchema), async (c) => {
     const userId = c.get("userId");
@@ -150,7 +150,7 @@ export const seedsRoutes = new Hono<{ Variables: Variables }>()
   })
 
   // ==========================================
-  // DELETE /api/plants/:plantId/seeds/:id - Supprimer une graine
+  // DELETE Link to="/plant/:plantId/seeds/:id - Supprimer une graine
   // ==========================================
   .delete("/:id", async (c) => {
     const userId = c.get("userId");

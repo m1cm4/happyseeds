@@ -1,0 +1,1 @@
+ALTER TABLE "plant" RENAME COLUMN "common_name" TO "common_name";

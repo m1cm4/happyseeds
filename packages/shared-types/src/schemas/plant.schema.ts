@@ -51,7 +51,11 @@ export const positionOptions = [
 // ============================================
 
 // Entier positif optionnel (pour durées en jours)
-const optionalPositiveInt = z.coerce.number().int().positive().optional();
+// preprocess gère les chaînes vides des inputs HTML avant coercion
+const optionalPositiveInt = z.preprocess(
+  (val) => (val === "" || val === null || val === undefined) ? undefined : val,
+  z.coerce.number().int().positive().optional()
+);
 
 // Texte court optionnel
 const shortText = (max = 100) => z.string().max(max).optional().or(z.literal(""));
@@ -66,8 +70,8 @@ const weekArraySchema = z.array(z.number().int().min(1).max(52)).optional();
 export const createPlantSchema = z.object({
   // Classification
   category: plantCategoryEnum,
-  commun_name: z.string().min(1, "Le nom est requis").max(100),
-  other_commun_names: z.string().optional().or(z.literal("")),
+  common_name: z.string().min(1, "Le nom est requis").max(100),
+  other_common_names: z.string().optional().or(z.literal("")),
   family: shortText(50),
   genus: shortText(50),
   species: shortText(100),
