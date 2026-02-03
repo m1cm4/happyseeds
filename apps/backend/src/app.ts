@@ -4,7 +4,7 @@ import { logger } from "hono/logger";
 import { db } from "./db";
 import { testTable} from "./db/schema";
 import { authRoutes} from "./routes/auth.routes";
-import { plantsRoutes } from "./routes/plants.routes";
+import { plantRoutes } from "./routes/plant.routes";
 import { seedsRoutes } from "./routes/seeds.routes";
 
 const app = new Hono();
@@ -48,10 +48,10 @@ app.use(
   
 
   // Plants CRUD --------------------
-app.route("/api/plants", plantsRoutes); // Ajouter
+app.route("/api/plant", plantRoutes); // Ajouter
 
 // Seeds CRUD -Routes imbriquées -----
-app.route("/api/plants/:plantId/seeds", seedsRoutes);
+app.route("/api/plant/:plantId/seeds", seedsRoutes);
 
 
   // Test de la connexion DB -------

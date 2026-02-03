@@ -11,7 +11,7 @@ vi.mock("../db", () => ({
 }));
 
 import { db } from "../db";
-import { plantsService } from "./plants.service";
+import { plantsService } from "./plant.service";
 
 // Données de test
 const mockPlant = {

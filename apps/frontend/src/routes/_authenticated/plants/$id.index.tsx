@@ -1,11 +1,11 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { usePlant, useDeletePlant } from "../../../../hooks/usePlants";
-import { Button } from "../../../../components/ui/button";
+import { usePlant, useDeletePlant } from "../../../hooks/usePlants";
+import { Button } from "../../../components/ui/button";
 import {
   plantCategoryOptions,
   sunRequirementOptions,
   waterRequirementOptions,
-} from "../../../../schemas/plant.schema";
+} from "../../../schemas/plant.schema";
 import { SeedsSection } from "@/components/plant/plant-seed-selection";
 
 export const Route = createFileRoute("/_authenticated/plants/$id/")({

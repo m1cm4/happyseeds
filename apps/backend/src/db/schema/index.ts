@@ -2,5 +2,5 @@
 
 export * from "./auth-schema";
 export * from "./test.schema";
-export * from "./plants.schema";
+export * from "./plant.schema";
 export * from "./seed.schema";

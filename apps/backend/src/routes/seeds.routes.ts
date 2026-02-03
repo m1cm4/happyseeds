@@ -2,7 +2,7 @@ import { Hono } from "hono";
 import { z } from "zod";
 import { zValidator } from "@hono/zod-validator";
 import { seedsService } from "../services/seeds.service";
-import { plantsService } from "../services/plants.service";
+import { plantService } from "../services/plant.service";
 import { requireAuth } from "../middleware/auth.middleware";
 
 // ============================================
@@ -62,7 +62,7 @@ export const seedsRoutes = new Hono<{ Variables: Variables }>()
     const plantId = c.get("plantId");
 
     // Vérifier que la plante existe et appartient à l'utilisateur
-    const plant = await plantsService.findById(plantId);
+    const plant = await plantService.findById(plantId);
     if (!plant) {
       return c.json(
         { success: false, error: { code: "NOT_FOUND", message: "Plante non trouvée" } },
@@ -111,7 +111,7 @@ export const seedsRoutes = new Hono<{ Variables: Variables }>()
     const userId = c.get("userId");
 
     // Vérifier que la plante existe et appartient à l'utilisateur
-    const plant = await plantsService.findById(plantId);
+    const plant = await plantService.findById(plantId);
     if (!plant) {
       return c.json(
         { success: false, error: { code: "NOT_FOUND", message: "Plante non trouvée" } },

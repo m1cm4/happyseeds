@@ -1,6 +1,6 @@
 import { eq, and, ilike, desc, asc, SQL } from "drizzle-orm";
 import { db } from "../db";
-import { plants, Plant, NewPlant } from "../db/schema";
+import { plant, Plant, NewPlant } from "../db/schema";
 
 // ============================================
 // Types pour les paramètres
@@ -11,10 +11,21 @@ export type PlantFilters = {
   search?: string;
 };
 
+// Champs triables (tous sauf les champs longs/techniques)
+export type SortableField =
+  "commun_name"
+  | "family"
+  | "genus"
+  | "species"
+  | "cultivar"
+  | "category"
+  | "created_at"
+  | "updated_at"
+
 export type PaginationParams = {
   page?: number;
   limit?: number;
-  sortBy?: "name" | "createdAt";
+  sortBy?: SortableField;
   sortOrder?: "asc" | "desc";
 };
 
@@ -32,7 +43,7 @@ export type PaginatedResult<T> = {
 // Service
 // ============================================
 
-export const plantsService = {
+export const plantService = {
   /**
    * Récupère toutes les plantes d'un utilisateur avec filtres et pagination
    */
@@ -43,7 +54,7 @@ export const plantsService = {
     const {
       page = 1,
       limit = 10,
-      sortBy = "createdAt",
+      sortBy = "created_at",
       sortOrder = "desc",
     } = pagination;
 
@@ -52,35 +63,31 @@ export const plantsService = {
     const conditions: SQL[] = [];
 
     if (filters.category) {
-      conditions.push(eq(plants.category, filters.category as any));
+      conditions.push(eq(plant.category, filters.category as any));
     }
 
     if (filters.search) {
       // Recherche insensible à la casse sur le nom
-      conditions.push(ilike(plants.name, `%${filters.search}%`));
+      conditions.push(ilike(plant.commun_name, `%${filters.search}%`));
     }
 
-    // Compter le total (pour la pagination)
-    const countResult = await db
-      .select({ count: plants.id })
-      .from(plants)
-      .where(and(...conditions));
 
     // Note: Drizzle ne fait pas de COUNT(*) directement, on compte les résultats
     const allForCount = await db
-      .select({ id: plants.id })
-      .from(plants)
+      .select({ id: plant.id })
+      .from(plant)
       .where(and(...conditions));
+
     const total = allForCount.length;
 
     // Requête principale avec pagination ---------------
     const offset = (page - 1) * limit;
-    const orderByColumn = sortBy === "name" ? plants.name : plants.createdAt;
+    const orderByColumn = sortBy === "commun_name" ? plant.commun_name : plant.created_at;
     const orderByDirection = sortOrder === "asc" ? asc : desc;
 
     const data = await db
       .select()
-      .from(plants)
+      .from(plant)
       .where(and(...conditions))
       .orderBy(orderByDirection(orderByColumn))
       .limit(limit)
@@ -104,8 +111,8 @@ export const plantsService = {
   async findById(id: string): Promise<Plant | null> {
     const result = await db
       .select()
-      .from(plants)
-      .where(and(eq(plants.id, id)))
+      .from(plant)
+      .where(and(eq(plant.id, id)))
       .limit(1);
 
     return result[0] ?? null;
@@ -115,7 +122,7 @@ export const plantsService = {
    * Crée une nouvelle plante
    */
   async create(data: NewPlant): Promise<Plant> {
-    const result = await db.insert(plants).values(data).returning();
+    const result = await db.insert(plant).values(data).returning();
     return result[0];
   },
 
@@ -126,12 +133,12 @@ export const plantsService = {
   async update(
     id: string,
     userId: string,
-    data: Partial<Omit<NewPlant, "id" | "authorId">>
+    data: Partial<Omit<NewPlant, "id" | "author_id">>
   ): Promise<Plant | null> {
     const result = await db
-      .update(plants)
+      .update(plant)
       .set(data)
-      .where(and(eq(plants.id, id), eq(plants.authorId, userId)))
+      .where(and(eq(plant.id, id), eq(plant.author_id, userId)))
       .returning();
 
     return result[0] ?? null;
@@ -143,9 +150,9 @@ export const plantsService = {
    */
   async delete(id: string, userId: string): Promise<boolean> {
     const result = await db
-      .delete(plants)
-      .where(and(eq(plants.id, id), eq(plants.authorId, userId)))
-      .returning({ id: plants.id });
+      .delete(plant)
+      .where(and(eq(plant.id, id), eq(plant.author_id, userId)))
+      .returning({ id: plant.id });
 
     return result.length > 0;
   },

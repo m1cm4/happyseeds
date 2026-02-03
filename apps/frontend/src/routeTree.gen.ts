@@ -20,13 +20,13 @@ import { Route as DemoStartApiRequestRouteImport } from './routes/demo/start.api
 import { Route as DemoApiNamesRouteImport } from './routes/demo/api.names'
 import { Route as AuthenticatedPlantsNewRouteImport } from './routes/_authenticated/plants/new'
 import { Route as DemoStartSsrIndexRouteImport } from './routes/demo/start.ssr.index'
-import { Route as AuthenticatedPlantsIdIndexRouteImport } from './routes/_authenticated/plants/$id/index'
+import { Route as AuthenticatedPlantsIdIndexRouteImport } from './routes/_authenticated/plants/$id.index'
 import { Route as DemoStartSsrSpaModeRouteImport } from './routes/demo/start.ssr.spa-mode'
 import { Route as DemoStartSsrFullSsrRouteImport } from './routes/demo/start.ssr.full-ssr'
 import { Route as DemoStartSsrDataOnlyRouteImport } from './routes/demo/start.ssr.data-only'
-import { Route as AuthenticatedPlantsIdEditRouteImport } from './routes/_authenticated/plants/$id/edit'
-import { Route as AuthenticatedPlantsIdSeedsNewRouteImport } from './routes/_authenticated/plants/$id/seeds/new'
-import { Route as AuthenticatedPlantsIdSeedsSeedIdEditRouteImport } from './routes/_authenticated/plants/$id/seeds/$seedId/edit'
+import { Route as AuthenticatedPlantsIdEditRouteImport } from './routes/_authenticated/plants/$id.edit'
+import { Route as AuthenticatedPlantsIdSeedsNewRouteImport } from './routes/_authenticated/plants/$id.seeds/new'
+import { Route as AuthenticatedPlantsIdSeedsSeedIdEditRouteImport } from './routes/_authenticated/plants/$id.seeds/$seedId.edit'
 
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',

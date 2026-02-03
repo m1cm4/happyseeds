@@ -9,7 +9,7 @@ import {
   uuid,
 } from "drizzle-orm/pg-core";
 import { user } from "./auth-schema";
-import { plants } from "./plants.schema";
+import { plant } from "./plant.schema";
 
 // ============================================
 // Enums
@@ -34,7 +34,7 @@ export const seeds = pgTable("seeds", {
   // relation
   plantId: uuid("plant_id")
     .notNull()
-    .references(() => plants.id),
+    .references(() => plant.id),
 
   // Relation avec l'utilisateur propriétaire
   userId: text("user_id")
@@ -73,9 +73,9 @@ export const seeds = pgTable("seeds", {
 
 export const seedsRelations = relations(seeds, ({ one }) => ({
   // Une graine appartient à une plante
-  plant: one(plants, {
+  plant: one(plant, {
     fields: [seeds.plantId],
-    references: [plants.id],
+    references: [plant.id],
   }),
   // Une graine appartient à un utilisateur
   owner: one(user, {
@@ -85,9 +85,9 @@ export const seedsRelations = relations(seeds, ({ one }) => ({
 }));
 
 // Mise à jour des relations Plants pour inclure Seeds
-export const plantsRelationsUpdated = relations(plants, ({ one, many }) => ({
+export const plantsRelationsUpdated = relations(plant, ({ one, many }) => ({
   author: one(user, {
-    fields: [plants.authorId],
+    fields: [plant.author_id],
     references: [user.id],
   }),
   seeds: many(seeds),

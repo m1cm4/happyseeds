@@ -1,11 +1,11 @@
 meta {
-  name: api/.plants/update
+  name: api/plants (creation)
   type: http
-  seq: 3
+  seq: 4
 }
 
-patch {
-  url: http://localhost:3001/api/plants/34264516-9877-4277-a35e-0a2febb1fbfa
+post {
+  url: http://localhost:3001/api/plant
   body: json
   auth: inherit
 }
@@ -16,7 +16,9 @@ headers {
 
 body:json {
   {
-    "name": "Tomate Cocktail"
+    "common_name": "Tomate",
+    "category": "vegetable",
+    "grow_info": "Délicieuse tomate rouge"
   }
 }
 

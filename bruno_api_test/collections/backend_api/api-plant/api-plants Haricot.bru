@@ -1,11 +1,11 @@
 meta {
-  name: api/plants (creation)
+  name: api/plants Haricot
   type: http
-  seq: 4
+  seq: 8
 }
 
 post {
-  url: http://localhost:3001/api/plants
+  url: http://localhost:3001/api/plant
   body: json
   auth: inherit
 }
@@ -16,9 +16,9 @@ headers {
 
 body:json {
   {
-    "name": "Tomate",
+    "commun_name": "Tomate",
     "category": "vegetable",
-    "description": "Délicieuse tomate rouge"
+    "grow_info": "Délicieuse tomate rouge"
   }
 }
 
