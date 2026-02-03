@@ -25,7 +25,7 @@
 **Types:**
 - PascalCase for type names: `PlantFilters`, `PaginationParams`, `PaginatedResult<T>`, `Plant`, `NewPlant`
 - Zod schemas exported with `Schema` suffix in type position: `createPlantSchema`, `plantSchema`
-- Inferred types from Zod: `CreatePlantFormData`, `CreatePlantInput`, `UpdatePlantInput`
+- Inferred types from Zod: `CreatePlantInput`, `CreatePlantInput`, `UpdatePlantInput`
 
 ## Code Style
 
@@ -66,7 +66,7 @@ import { Button } from "../ui/button";
 import {
   createPlantSchema,
   plantCategoryOptions,
-  CreatePlantFormData
+  CreatePlantInput
 } from "../../schemas/plant.schema";
 import { Plant } from "@/@types/plant.types";
 ```

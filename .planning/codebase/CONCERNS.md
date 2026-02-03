@@ -102,7 +102,7 @@ if (filters.category && plantCategoryEnum.safeParse(filters.category).success) {
 **Files:**
 - Frontend types: `apps/frontend/src/@types/plant.types.tsx` (defines `name`, `latinName`, `sowingDepthMm`, `sowingSpacingCm`, `germinationDaysMin`, `germinationDaysMax`, `growthDaysMin`, `growthDaysMax`, `sunRequirement`, `waterRequirement`, `notes`)
 - Frontend schema: `apps/frontend/src/schemas/plant.schema.ts` (imports from `@happyseeds/shared-types` but this package doesn't define plant.schema.ts)
-- Backend schema: `apps/backend/src/db/schema/plant.schema.ts` (defines `commun_name`, `family`, `genus`, `species`, `cultivar`, `position` (enum array), `stratification`, `sowing_depth`, `inside_sowing_period`, `outside_sowing_period`, etc. - completely different structure)
+- Backend schema: `apps/backend/src/db/schema/plant.schema.ts` (defines `common_name`, `family`, `genus`, `species`, `cultivar`, `position` (enum array), `stratification`, `sowing_depth`, `inside_sowing_period`, `outside_sowing_period`, etc. - completely different structure)
 
 **Problem:**
 Frontend schema file `apps/frontend/src/schemas/plant.schema.ts` imports from shared-types:
@@ -112,7 +112,7 @@ import {
   plantCategoryOptions,
   sunRequirementOptions,
   waterRequirementOptions,
-  CreatePlantFormData
+  CreatePlantInput
 } from "../../schemas/plant.schema";
 ```
 
