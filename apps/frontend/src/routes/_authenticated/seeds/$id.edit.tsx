@@ -10,10 +10,17 @@ export const Route = createFileRoute("/_authenticated/seeds/$id/edit")({
 });
 
 function EditSeedPage() {
+<<<<<<< HEAD
   const { id: plantId, id } = Route.useParams();
   const navigate = useNavigate();
   const { data: plantData } = usePlant(plantId);
   const { data: seedData, isLoading, error } = useSeed(plantId, id);
+=======
+  const { id: plantId, seedId } = Route.useParams();
+  const navigate = useNavigate();
+  const { data: plantData } = usePlant(plantId);
+  const { data: seedData, isLoading, error } = useSeed(plantId, seedId);
+>>>>>>> eac1b7832c56ac39f4ff3201699966a7e5e8a33f
   const updateSeed = useUpdateSeed(plantId);
   const deleteSeed = useDeleteSeed(plantId);
 
@@ -43,10 +50,17 @@ function EditSeedPage() {
     );
 
     updateSeed.mutate(
+<<<<<<< HEAD
       { id: id, data: cleanedData as any },
       {
         onSuccess: () => {
           navigate({ to: "/plants/$id", params: { id: plantId } });
+=======
+      { id: seedId, data: cleanedData as any },
+      {
+        onSuccess: () => {
+          navigate({ to: "/plant/$id", params: { id: plantId } });
+>>>>>>> eac1b7832c56ac39f4ff3201699966a7e5e8a33f
         },
       }
     );
@@ -54,9 +68,15 @@ function EditSeedPage() {
 
   const handleDelete = () => {
     if (confirm("Supprimer cette graine ?")) {
+<<<<<<< HEAD
       deleteSeed.mutate(id, {
         onSuccess: () => {
           navigate({ to: "/plants/$id", params: { id: plantId } });
+=======
+      deleteSeed.mutate(seedId, {
+        onSuccess: () => {
+          navigate({ to: "/plant/$id", params: { id: plantId } });
+>>>>>>> eac1b7832c56ac39f4ff3201699966a7e5e8a33f
         },
       });
     }
@@ -65,7 +85,11 @@ function EditSeedPage() {
   return (
     <div className="max-w-xl mx-auto p-6">
       <Link
+<<<<<<< HEAD
         to="/plants/$id"
+=======
+        to="/plant/$id"
+>>>>>>> eac1b7832c56ac39f4ff3201699966a7e5e8a33f
         params={{ id: plantId }}
         className="text-sm text-slate-500 hover:text-slate-700"
       >

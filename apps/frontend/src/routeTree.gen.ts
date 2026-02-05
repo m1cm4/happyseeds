@@ -22,7 +22,10 @@ import { Route as DemoApiNamesRouteImport } from './routes/demo/api.names'
 import { Route as AuthenticatedSeedsNewRouteImport } from './routes/_authenticated/seeds/new'
 import { Route as AuthenticatedPlantsNewRouteImport } from './routes/_authenticated/plants/new'
 import { Route as DemoStartSsrIndexRouteImport } from './routes/demo/start.ssr.index'
+<<<<<<< HEAD
 import { Route as AuthenticatedSeedsIdIndexRouteImport } from './routes/_authenticated/seeds/$id.index'
+=======
+>>>>>>> eac1b7832c56ac39f4ff3201699966a7e5e8a33f
 import { Route as AuthenticatedPlantsIdIndexRouteImport } from './routes/_authenticated/plants/$id.index'
 import { Route as DemoStartSsrSpaModeRouteImport } from './routes/demo/start.ssr.spa-mode'
 import { Route as DemoStartSsrFullSsrRouteImport } from './routes/demo/start.ssr.full-ssr'
@@ -95,12 +98,15 @@ const DemoStartSsrIndexRoute = DemoStartSsrIndexRouteImport.update({
   path: '/demo/start/ssr/',
   getParentRoute: () => rootRouteImport,
 } as any)
+<<<<<<< HEAD
 const AuthenticatedSeedsIdIndexRoute =
   AuthenticatedSeedsIdIndexRouteImport.update({
     id: '/$id/',
     path: '/$id/',
     getParentRoute: () => AuthenticatedSeedsRouteRoute,
   } as any)
+=======
+>>>>>>> eac1b7832c56ac39f4ff3201699966a7e5e8a33f
 const AuthenticatedPlantsIdIndexRoute =
   AuthenticatedPlantsIdIndexRouteImport.update({
     id: '/plants/$id/',
@@ -153,7 +159,10 @@ export interface FileRoutesByFullPath {
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
   '/plants/$id/': typeof AuthenticatedPlantsIdIndexRoute
+<<<<<<< HEAD
   '/seeds/$id/': typeof AuthenticatedSeedsIdIndexRoute
+=======
+>>>>>>> eac1b7832c56ac39f4ff3201699966a7e5e8a33f
   '/demo/start/ssr/': typeof DemoStartSsrIndexRoute
 }
 export interface FileRoutesByTo {
@@ -174,7 +183,10 @@ export interface FileRoutesByTo {
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
   '/plants/$id': typeof AuthenticatedPlantsIdIndexRoute
+<<<<<<< HEAD
   '/seeds/$id': typeof AuthenticatedSeedsIdIndexRoute
+=======
+>>>>>>> eac1b7832c56ac39f4ff3201699966a7e5e8a33f
   '/demo/start/ssr': typeof DemoStartSsrIndexRoute
 }
 export interface FileRoutesById {
@@ -197,7 +209,10 @@ export interface FileRoutesById {
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
   '/_authenticated/plants/$id/': typeof AuthenticatedPlantsIdIndexRoute
+<<<<<<< HEAD
   '/_authenticated/seeds/$id/': typeof AuthenticatedSeedsIdIndexRoute
+=======
+>>>>>>> eac1b7832c56ac39f4ff3201699966a7e5e8a33f
   '/demo/start/ssr/': typeof DemoStartSsrIndexRoute
 }
 export interface FileRouteTypes {
@@ -220,7 +235,10 @@ export interface FileRouteTypes {
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
     | '/plants/$id/'
+<<<<<<< HEAD
     | '/seeds/$id/'
+=======
+>>>>>>> eac1b7832c56ac39f4ff3201699966a7e5e8a33f
     | '/demo/start/ssr/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -241,7 +259,10 @@ export interface FileRouteTypes {
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
     | '/plants/$id'
+<<<<<<< HEAD
     | '/seeds/$id'
+=======
+>>>>>>> eac1b7832c56ac39f4ff3201699966a7e5e8a33f
     | '/demo/start/ssr'
   id:
     | '__root__'
@@ -263,7 +284,10 @@ export interface FileRouteTypes {
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
     | '/_authenticated/plants/$id/'
+<<<<<<< HEAD
     | '/_authenticated/seeds/$id/'
+=======
+>>>>>>> eac1b7832c56ac39f4ff3201699966a7e5e8a33f
     | '/demo/start/ssr/'
   fileRoutesById: FileRoutesById
 }
@@ -374,6 +398,7 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemoStartSsrIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+<<<<<<< HEAD
     '/_authenticated/seeds/$id/': {
       id: '/_authenticated/seeds/$id/'
       path: '/$id'
@@ -381,6 +406,8 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSeedsIdIndexRouteImport
       parentRoute: typeof AuthenticatedSeedsRouteRoute
     }
+=======
+>>>>>>> eac1b7832c56ac39f4ff3201699966a7e5e8a33f
     '/_authenticated/plants/$id/': {
       id: '/_authenticated/plants/$id/'
       path: '/plants/$id'
@@ -429,14 +456,20 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedSeedsRouteRouteChildren {
   AuthenticatedSeedsNewRoute: typeof AuthenticatedSeedsNewRoute
   AuthenticatedSeedsIdEditRoute: typeof AuthenticatedSeedsIdEditRoute
+<<<<<<< HEAD
   AuthenticatedSeedsIdIndexRoute: typeof AuthenticatedSeedsIdIndexRoute
+=======
+>>>>>>> eac1b7832c56ac39f4ff3201699966a7e5e8a33f
 }
 
 const AuthenticatedSeedsRouteRouteChildren: AuthenticatedSeedsRouteRouteChildren =
   {
     AuthenticatedSeedsNewRoute: AuthenticatedSeedsNewRoute,
     AuthenticatedSeedsIdEditRoute: AuthenticatedSeedsIdEditRoute,
+<<<<<<< HEAD
     AuthenticatedSeedsIdIndexRoute: AuthenticatedSeedsIdIndexRoute,
+=======
+>>>>>>> eac1b7832c56ac39f4ff3201699966a7e5e8a33f
   }
 
 const AuthenticatedSeedsRouteRouteWithChildren =
