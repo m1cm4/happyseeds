@@ -12,8 +12,8 @@ export const seedApi = {
 
     if (params.page) searchParams.set("page", String(params.page));
     if (params.limit) searchParams.set("limit", String(params.limit));
-    if (params.plantId) searchParams.set("plant_id", params.plantId);
-    if (params.inStock !== undefined) searchParams.set("in_stock", String(params.inStock));
+    if (params.plantId) searchParams.set("plantId", params.plantId);
+    if (params.inStock !== undefined) searchParams.set("inStock", String(params.inStock));
     if (params.sortBy) searchParams.set("sortBy", params.sortBy);
     if (params.sortOrder) searchParams.set("sortOrder", params.sortOrder);
 

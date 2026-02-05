@@ -17,9 +17,9 @@ export function SeedsSection({ plantId }: { plantId: string }) {
          <h2 className="text-xl font-semibold text-slate-800">
            Mes graines ({seeds.length})
          </h2>
-         <Link to="/seeds/new" params={{ pantId: plantId }}>
-           <Button size="sm">+ Ajouter une graine</Button>
-         </Link>
+          <Link to="/seeds/new" search={{ plantId: plantId }}>
+            <Button size="sm">+ Ajouter une graine</Button>
+          </Link>
        </div>
  
        {seeds.length === 0 ? (

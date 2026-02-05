@@ -1,4 +1,4 @@
-import { Seed } from "@/@types/seed.types";
+import { Seed, CreateSeedInput, UpdateSeedInput } from "@/@types/seed.types";
 import { seedApi } from "@/services/seed.service";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
@@ -12,54 +12,54 @@ export const seedKeys = {
 export function useSeeds(plantId: string) {
   return useQuery({
     queryKey: seedKeys.all(plantId),
-    queryFn: () => seedApi.getAll(plantId),
+    queryFn: () => seedApi.getAll({ plantId }),
     enabled: !!plantId,
   });
 }
 
 // Hook pour récupérer une graine
-export function useSeed(plantId: string, id: string) {
+export function useSeed(id: string) {
   return useQuery({
-    queryKey: seedKeys.detail(plantId, id),
-    queryFn: () => seedApi.getById(plantId, id),
-    enabled: !!plantId && !!id,
+    queryKey: ["seeds", id],
+    queryFn: () => seedApi.getById(id),
+    enabled: !!id,
   });
 }
 
 // Hook pour créer une graine
-export function useCreateSeed(plantId: string) {
+export function useCreateSeed() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (data: Partial<Seed>) => seedApi.create(plantId, data),
+    mutationFn: (data: CreateSeedInput) => seedApi.create(data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: seedKeys.all(plantId) });
+      queryClient.invalidateQueries({ queryKey: ["seeds"] });
     },
   });
 }
 
 // Hook pour mettre à jour une graine
-export function useUpdateSeed(plantId: string) {
+export function useUpdateSeed() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ id, data }: { id: string; data: Partial<Seed> }) =>
-      seedApi.update(plantId, id, data),
+    mutationFn: ({ id, data }: { id: string; data: UpdateSeedInput }) =>
+      seedApi.update(id, data),
     onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({ queryKey: seedKeys.all(plantId) });
-      queryClient.invalidateQueries({ queryKey: seedKeys.detail(plantId, variables.id) });
+      queryClient.invalidateQueries({ queryKey: ["seeds"] });
+      queryClient.invalidateQueries({ queryKey: ["seeds", variables.id] });
     },
   });
 }
 
 // Hook pour supprimer une graine
-export function useDeleteSeed(plantId: string) {
+export function useDeleteSeed() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (id: string) => seedApi.delete(plantId, id),
+    mutationFn: (id: string) => seedApi.delete(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: seedKeys.all(plantId) });
+      queryClient.invalidateQueries({ queryKey: ["seeds"] });
     },
   });
 }

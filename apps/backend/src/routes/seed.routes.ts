@@ -42,10 +42,12 @@ const querySchema = z.object({
 export const seedRoutes = new Hono()
   .use("/*", requireAuth)
 
-  // GET /api/seed - Liste avec filtres optionnels
+  // GET /api/seeds - Liste avec filtres optionnels
   .get("/", zValidator("query", querySchema), async (c) => {
     const userId = c.get("userId");
     const query = c.req.valid("query");
+    console.log("userID", userId);
+    console.log("query", query.plantId);
 
     // Si plantId fourni, vérifier qu'il existe
     if (query.plantId) {
@@ -62,7 +64,8 @@ export const seedRoutes = new Hono()
       {
         userId,
         plantId: query.plantId,
-        inStock: query.inStock,
+        // todo voir ou placer ce filtre
+        // inStock: query.inStock,
       },
       {
         page: query.page,
@@ -112,6 +115,8 @@ export const seedRoutes = new Hono()
     const newSeed = await seedService.create({
       ...body,
       plantId: body.plantId || null,  // Convertir "" en null
+      acquisitionDate: body.acquisitionDate || null,  // Convertir "" en null
+      expiryDate: body.expiryDate || null,  // Convertir "" en null
       userId,
     });
 
@@ -135,7 +140,12 @@ export const seedRoutes = new Hono()
       }
     }
 
-    const updatedSeed = await seedService.update(id, userId, body);
+    const updatedSeed = await seedService.update(id, userId, {
+      ...body,
+      plantId: body.plantId || null,  // Convertir "" en null
+      acquisitionDate: body.acquisitionDate || null,  // Convertir "" en null
+      expiryDate: body.expiryDate || null,  // Convertir "" en null
+    });
 
     if (!updatedSeed) {
       return c.json(
