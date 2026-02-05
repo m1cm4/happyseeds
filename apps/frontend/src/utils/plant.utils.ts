@@ -10,18 +10,18 @@ export function formatLatinName( plant: Pick<Plant, "genus" | "species" | "culti
    const cultivarFormatted = plant.cultivar ? `'${plant.cultivar}'` : null; 
    return plant.genus && [plant.genus, plant.species, cultivarFormatted].filter(Boolean).join(" "); 
 }
-export function formatCommonWithCultivar( plant: Pick<Plant, "common_name" | "cultivar"> ): string  {
-   const cultivarFormatted = plant.cultivar ? `'${plant.cultivar}'` : null; 
-   return [plant.common_name, cultivarFormatted].filter(Boolean).join(" "); 
+export function formatCommonWithCultivar( plant: Pick<Plant, "commonName" | "cultivar"> ): string  {
+   const cultivarFormatted = plant.cultivar ? `'${plant.cultivar}'` : null;
+   return [plant.commonName, cultivarFormatted].filter(Boolean).join(" ");
 }
 
 export function getNames(plant:Plant):(string | null)[]{
    const completeLatinName = formatLatinName(plant);
 
    const completeCommonName = formatCommonWithCultivar(plant);
-   const names = 
+   const names =
          (plant.category === "ornamental" && completeLatinName)
-         ? [completeLatinName, plant.common_name]
+         ? [completeLatinName, plant.commonName]
          : [completeCommonName, completeLatinName];
    return names;
 }

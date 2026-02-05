@@ -1,32 +1,41 @@
-export type Seed = {
-   id: string;
-   plantId: string;
-   userId: string;  // Propriétaire de la graine (pas l'auteur de la plante)
-   brand: string | null;
-   quantity: number;
-   acquisitionType: "harvest" | "purchase" | "gift" | "unknown" | null;
-   acquisitionDate: string | null;
-   expirationDate: string | null;
-   notes: string | null;
-   createdAt: string;
-   updatedAt: string;
- };
- 
- export type SeedsResponse = {
-   success: boolean;
-   data: Seed[];
-   pagination: {
-     page: number;
-     limit: number;
-     total: number;
-     totalPages: number;
-   };
- };
- 
- export type SeedResponse = {
-   success: boolean;
-   data: Seed;
- };
 
-export type CreateSeedInput = Partial<Omit<Seed, "id" | "plantId" | "userId" | "createdAt" | "updatedAt">>;
-export type UpdateSeedInput = CreateSeedInput;
+import type {
+  Seed,
+  CreateSeedInput,
+  AcquisitionType,
+} from "@happyseeds/shared-types";
+
+// Ré-export pour usage local
+export type { Seed, CreateSeedInput, AcquisitionType };
+
+// Types spécifiques au frontend
+export type UpdateSeedInput = Partial<CreateSeedInput>;
+
+export type SeedQueryParams = {
+  page?: number;
+  limit?: number;
+  plantId?: string;      // Filtre optionnel
+  inStock?: boolean;     // Filtre optionnel
+  sortBy?: "brand" | "priority" | "quantity" | "acquisition_date" | "expiry_date" | "created_at";
+  sortOrder?: "asc" | "desc";
+};
+
+
+// voir api.types.tsx > type PaginatedResponse<T>
+
+//  export type SeedResponse = {
+//    success: boolean;
+//    data: Seed[];
+//    pagination: {
+//      page: number;
+//      limit: number;
+//      total: number;
+//      totalPages: number;
+//    };
+//  };
+ 
+//  export type SeedResponse = {
+//    success: boolean;
+//    data: Seed;
+//  };
+

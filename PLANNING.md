@@ -117,20 +117,20 @@ happyseeds/
 │   │   │   ├── db/
 │   │   │   │   ├── index.ts          # Connexion DB
 │   │   │   │   └── schema/           # Schémas Drizzle
-│   │   │   │       ├── index.ts      # Export de tous les schémas
-│   │   │   │       ├── auth-schema.ts
-│   │   │   │       ├── plants.schema.ts
-│   │   │   │       ├── seed.schema.ts
-│   │   │   │       └── ...
-│   │   │   ├── routes/               # Routes Hono (montées dans app.ts)
-│   │   │   │   ├── auth.routes.ts
-│   │   │   │   ├── plants.routes.ts
-│   │   │   │   └── seeds.routes.ts
-│   │   │   ├── middleware/
-│   │   │   │   └── auth.middleware.ts
-│   │   │   └── services/             # Business logic
-│   │   │       ├── plants.service.ts
-│   │   │       └── seeds.service.ts
+│       │   │   │   ├── index.ts          # Export de tous les schémas
+│       │   │   │   ├── auth.schema.ts
+│       │   │   │   ├── plant.schema.ts
+│       │   │   │   ├── seed.schema.ts
+│       │   │   │   └── ...
+│       │   │   ├── routes/               # Routes Hono (montées dans app.ts)
+│       │   │   │   ├── auth.routes.ts
+│       │   │   │   ├── plant.routes.ts
+│       │   │   │   └── seed.routes.ts
+│       │   │   ├── middleware/
+│       │   │   │   └── auth.middleware.ts
+│       │   │   └── services/             # Business logic
+│       │   │       ├── plant.service.ts
+│       │   │       └── seed.service.ts
 │   │   ├── drizzle.config.ts
 │   │   ├── package.json
 │   │   └── tsconfig.json
@@ -149,32 +149,41 @@ happyseeds/
 │       │   │   └── _authenticated/
 │       │   │       ├── route.tsx     # Layout authentifié
 │       │   │       ├── dashboard.tsx
-│       │   │       └── plants/
+│       │   │       ├── plants/      # Collection routes (pluriel)
+│       │   │       │   ├── index.tsx      → /plants
+│       │   │       │   ├── new.tsx       → /plants/new
+│       │   │       │   └── $id/
+│       │   │       │       ├── index.tsx → /plants/:id
+│       │   │       │       └── edit.tsx  → /plants/:id/edit
+│       │   │       └── seeds/       # Collection routes (pluriel)
 │       │   │           ├── index.tsx
 │       │   │           ├── new.tsx
 │       │   │           └── $id/
-│       │   │               ├── index.tsx
-│       │   │               ├── edit.tsx
-│       │   │               └── seeds/
-│       │   │                   ├── new.tsx
-│       │   │                   └── $seedId/
-│       │   │                       └── edit.tsx
+│       │   │               ├── index.tsx → /seeds/:id
+│       │   │               └── edit.tsx  → /seeds/:id/edit
 │       │   ├── components/
 │       │   │   ├── ui/               # shadcn components
-│       │   │   ├── PlantForm.tsx
-│       │   │   └── AppHeader.tsx
+│       │   │   ├── plant/            # Plant components (kebab-case)
+│       │   │   │   ├── plant-form.tsx
+│       │   │   │   ├── plant-list-element.tsx
+│       │   │   │   └── plant-seed-selection.tsx
+│       │   │   ├── seed/            # Seed components (kebab-case)
+│       │   │   │   └── seed-form.tsx
+│       │   │   └── app-header.tsx
 │       │   ├── hooks/
-│       │   │   └── usePlants.ts      # TanStack Query hooks
+│       │   │   ├── usePlant.ts       # TanStack Query hooks (camelCase, singulier)
+│       │   │   └── useSeed.ts
 │       │   ├── services/             # API services (utilisent request helper)
-│       │   │   ├── plants.service.ts
-│       │   │   └── seeds.service.ts
+│       │   │   ├── plant.service.ts  # camelCase, singulier
+│       │   │   └── seed.service.ts
 │       │   ├── lib/
 │       │   │   ├── api-client.ts     # request<T> helper + ApiError
 │       │   │   ├── auth-client.ts    # Better-Auth client
 │       │   │   ├── auth.ts           # Auth utilities
 │       │   │   ├── utils.ts          # cn() et autres utilitaires
 │       │   │   └── schemas/          # Zod schemas pour formulaires
-│       │   │       └── plant.schema.ts
+│       │   │       ├── plant.schema.ts
+│       │   │       └── seed.schema.ts
 │       │   └── router.tsx
 │       ├── package.json
 │       └── tsconfig.json
@@ -187,7 +196,7 @@ happyseeds/
 │       │       ├── user.schema.ts
 │       │       ├── plant.schema.ts
 │       │       ├── seed.schema.ts
-│       │       └── ...
+│       │       └── common.schema.ts
 │       ├── package.json
 │       └── tsconfig.json
 │
@@ -209,97 +218,109 @@ happyseeds/
 |-------|------|-------------|-------------|
 | id | UUID | PK | Identifiant unique |
 | email | VARCHAR(255) | UNIQUE, NOT NULL | Email de connexion |
-| passwordHash | VARCHAR(255) | NOT NULL | Mot de passe hashé |
+| password_hash | VARCHAR(255) | NOT NULL | Mot de passe hashé |
 | name | VARCHAR(100) | NOT NULL | Nom d'affichage |
-| climateZone | VARCHAR(50) | NULL | Zone climatique |
-| createdAt | TIMESTAMP | NOT NULL | Date de création |
-| updatedAt | TIMESTAMP | NOT NULL | Date de modification |
+| climate_zone | VARCHAR(50) | NULL | Zone climatique |
+| created_at | TIMESTAMP | NOT NULL | Date de création |
+| updated_at | TIMESTAMP | NOT NULL | Date de modification |
 
 #### Plant
 
 | Field | Type | Constraints | Description |
 |-------|------|-------------|-------------|
 | id | UUID | PK | Identifiant unique |
-| authorId | UUID | FK → User, NOT NULL | Auteur de la fiche (créateur) |
-| name | VARCHAR(100) | NOT NULL | Nom commun |
-| latinName | VARCHAR(100) | NULL | Nom latin |
-| category | ENUM | NOT NULL | vegetable, fruit, flower, herb, shrub, other |
+| author_id | UUID | FK → User, NOT NULL | Auteur de la fiche (créateur) |
+| commun_name | VARCHAR(100) | NOT NULL | Nom commun |
+| other_commun_names | VARCHAR(255) | NULL | Autres noms communs |
+| family | VARCHAR(50) | NULL | Famille |
+| genus | VARCHAR(50) | NULL | Genre |
+| species | VARCHAR(100) | NULL | Espèce |
+| cultivar | VARCHAR(100) | NULL | Cultivar |
+| category | ENUM | NOT NULL | ornamental, vegetable |
 | description | TEXT | NULL | Description |
-| sowingDepth | INTEGER | NULL | Profondeur de semis (cm) |
-| sowingSpacing | INTEGER | NULL | Espacement (cm) |
-| germinationDaysMin | INTEGER | NULL | Germination min (jours) |
-| germinationDaysMax | INTEGER | NULL | Germination max (jours) |
-| growthDaysMin | INTEGER | NULL | Croissance min (jours) |
-| growthDaysMax | INTEGER | NULL | Croissance max (jours) |
-| sunRequirement | ENUM | NULL | full_sun, partial_shade, shade |
-| waterRequirement | ENUM | NULL | low, medium, high |
-| notes | TEXT | NULL | Notes personnelles |
-| imageUrl | VARCHAR(500) | NULL | URL de l'image |
-| createdAt | TIMESTAMP | NOT NULL | Date de création |
-| updatedAt | TIMESTAMP | NOT NULL | Date de modification |
+| hardiness | ENUM | NULL | perennial, biennial, annual, hardy_annual, semi_hardy_annual, non_hardy_annual |
+| hardiness_degrees | VARCHAR(100) | NULL | Rusticité en degrés |
+| height | VARCHAR(100) | NULL | Hauteur |
+| spread | VARCHAR(100) | NULL | Étalement |
+| position | ENUM[] | NULL | full_sun, partial_shade, shade |
+| flowers | VARCHAR(100) | NULL | Fleurs |
+| stratification | BOOLEAN | NULL | Stratification requise |
+| inside_sowing_period | INTEGER[] | NULL | Période semis intérieur (semaines 1-52) |
+| outside_sowing_period | INTEGER[] | NULL | Période semis extérieur (semaines 1-52) |
+| inside_germinate_time | INTEGER | NULL | Temps germination intérieur (jours) |
+| outside_germinate_time | INTEGER | NULL | Temps germination extérieur (jours) |
+| cover_to_germinate | BOOLEAN | NULL | Couvrir pour germer |
+| sowing_depth | INTEGER | NULL | Profondeur (mm) |
+| best_sowing_temp | VARCHAR(100) | NULL | Température idéale |
+| planting_period | INTEGER[] | NULL | Période plantation (semaines 1-52) |
+| time_first_flower | INTEGER | NULL | Jours avant floraison |
+| sowing_info | TEXT | NULL | Conseils semis |
+| growing_info | TEXT | NULL | Conseils culture |
+| created_at | TIMESTAMP | NOT NULL | Date de création |
+| updated_at | TIMESTAMP | NOT NULL | Date de modification |
 
 #### Seed
 
 | Field | Type | Constraints | Description |
 |-------|------|-------------|-------------|
 | id | UUID | PK | Identifiant unique |
-| userId | UUID | FK → User, NOT NULL | Propriétaire |
-| plantId | UUID | FK → Plant, NOT NULL | Plante parente |
+| user_id | UUID | FK → User, NOT NULL | Propriétaire |
+| plant_id | UUID | FK → Plant, NOT NULL | Plante parente |
 | variety | VARCHAR(100) | NOT NULL | Nom de la variété |
 | brand | VARCHAR(100) | NULL | Marque/fournisseur |
-| purchaseDate | DATE | NULL | Date d'achat |
-| expirationDate | DATE | NULL | Date d'expiration |
+| purchase_date | DATE | NULL | Date d'achat |
+| expiration_date | DATE | NULL | Date d'expiration |
 | quantity | INTEGER | NULL | Quantité |
-| quantityUnit | ENUM | NULL | grams, seeds, packets |
+| quantity_unit | ENUM | NULL | grams, seeds, packets |
 | organic | BOOLEAN | DEFAULT false | Bio |
 | notes | TEXT | NULL | Notes |
-| imageUrl | VARCHAR(500) | NULL | URL de l'image |
-| createdAt | TIMESTAMP | NOT NULL | Date de création |
-| updatedAt | TIMESTAMP | NOT NULL | Date de modification |
+| image_url | VARCHAR(500) | NULL | URL de l'image |
+| created_at | TIMESTAMP | NOT NULL | Date de création |
+| updated_at | TIMESTAMP | NOT NULL | Date de modification |
 
 #### SowingSession
 
 | Field | Type | Constraints | Description |
 |-------|------|-------------|-------------|
 | id | UUID | PK | Identifiant unique |
-| userId | UUID | FK → User, NOT NULL | Propriétaire |
+| user_id | UUID | FK → User, NOT NULL | Propriétaire |
 | name | VARCHAR(100) | NOT NULL | Nom de la session |
 | year | INTEGER | NOT NULL | Année |
-| startDate | DATE | NOT NULL | Date de début |
+| start_date | DATE | NOT NULL | Date de début |
 | status | ENUM | NOT NULL | planned, active, completed, cancelled |
 | notes | TEXT | NULL | Notes |
-| createdAt | TIMESTAMP | NOT NULL | Date de création |
-| updatedAt | TIMESTAMP | NOT NULL | Date de modification |
+| created_at | TIMESTAMP | NOT NULL | Date de création |
+| updated_at | TIMESTAMP | NOT NULL | Date de modification |
 
 #### SowingEntry
 
 | Field | Type | Constraints | Description |
 |-------|------|-------------|-------------|
 | id | UUID | PK | Identifiant unique |
-| sessionId | UUID | FK → SowingSession, NOT NULL | Session parente |
-| seedId | UUID | FK → Seed, NOT NULL | Graine semée |
-| plannedStartDate | DATE | NOT NULL | Date prévue |
-| actualStartDate | DATE | NULL | Date réelle |
-| estimatedEndDate | DATE | NULL | Date estimée de fin (calculée) |
-| actualEndDate | DATE | NULL | Date réelle de fin |
+| session_id | UUID | FK → SowingSession, NOT NULL | Session parente |
+| seed_id | UUID | FK → Seed, NOT NULL | Graine semée |
+| planned_start_date | DATE | NOT NULL | Date prévue |
+| actual_start_date | DATE | NULL | Date réelle |
+| estimated_end_date | DATE | NULL | Date estimée de fin (calculée) |
+| actual_end_date | DATE | NULL | Date réelle de fin |
 | quantity | INTEGER | NOT NULL | Quantité semée |
 | location | VARCHAR(50) | NULL | indoor, greenhouse, outdoor |
 | status | ENUM | NOT NULL | planned, sowing, germinating, growing, transplanted, completed, failed |
 | notes | TEXT | NULL | Notes |
-| createdAt | TIMESTAMP | NOT NULL | Date de création |
-| updatedAt | TIMESTAMP | NOT NULL | Date de modification |
+| created_at | TIMESTAMP | NOT NULL | Date de création |
+| updated_at | TIMESTAMP | NOT NULL | Date de modification |
 
 #### Observation
 
 | Field | Type | Constraints | Description |
 |-------|------|-------------|-------------|
 | id | UUID | PK | Identifiant unique |
-| sowingEntryId | UUID | FK → SowingEntry, NOT NULL | Entrée parente |
+| sowing_entry_id | UUID | FK → SowingEntry, NOT NULL | Entrée parente |
 | date | DATE | NOT NULL | Date d'observation |
 | type | ENUM | NOT NULL | germination, growth, issue, treatment, transplant, harvest, other |
 | description | TEXT | NOT NULL | Description |
-| imageUrl | VARCHAR(500) | NULL | URL de l'image |
-| createdAt | TIMESTAMP | NOT NULL | Date de création |
+| image_url | VARCHAR(500) | NULL | URL de l'image |
+| created_at | TIMESTAMP | NOT NULL | Date de création |
 
 ### Relationships
 
@@ -318,8 +339,8 @@ SowingEntry ──── 1:N ─────▶ Observation
 ```
 
 **Notes sur les permissions :**
-- **Plant** : Lecture publique (tous les utilisateurs authentifiés). Modification/suppression réservée à l'auteur (`authorId`).
-- **Seed** : Collection privée. Chaque graine appartient à un utilisateur (`userId`). CRUD réservé au propriétaire.
+- **Plant** : Lecture publique (tous les utilisateurs authentifiés). Modification/suppression réservée à l'auteur (`author_id`).
+- **Seed** : Collection privée. Chaque graine appartient à un utilisateur (`user_id`). CRUD réservé au propriétaire.
 
 ---
 
@@ -573,7 +594,7 @@ Module 6: Dashboard ◀── Module 5: Calendrier ◀── Module 3: Seeds CRU
 - Typage des réponses API
 
 **Livrables:**
-- Schéma `plants` migré
+- Schéma `plant` migré
 - Routes CRUD complètes
 - Filtrage par catégorie, recherche par nom
 
@@ -597,7 +618,7 @@ Module 6: Dashboard ◀── Module 5: Calendrier ◀── Module 3: Seeds CRU
 
 **Livrables:**
 - Configuration TanStack Query
-- Hook `usePlants()` avec useQuery
+- Hook `usePlant()` avec useQuery
 - Hook `usePlant(id)` pour le détail
 
 **Vérification:**
@@ -620,7 +641,7 @@ Module 6: Dashboard ◀── Module 5: Calendrier ◀── Module 3: Seeds CRU
 
 **Livrables:**
 - Page `/plants` avec liste
-- Composant `PlantCard`
+- Composant `PlantListElement`
 - Loading skeleton
 - Empty state
 
@@ -694,7 +715,7 @@ Module 6: Dashboard ◀── Module 5: Calendrier ◀── Module 3: Seeds CRU
 - Filtrage par `plantId`
 
 **Livrables:**
-- Schéma `seeds` avec relation
+- Schéma `seed` avec relation
 - Routes CRUD avec données Plant incluses
 - Filtrage par plante
 
@@ -716,7 +737,7 @@ Module 6: Dashboard ◀── Module 5: Calendrier ◀── Module 3: Seeds CRU
 - URL state pour les filtres
 
 **Livrables:**
-- Hooks `useSeeds()`, `useSeed()`
+- Hooks `useSeed()`, `useSeed()`
 - Page `/seeds` avec liste
 - `SeedForm` avec sélection de Plant
 - Pages détail et édition
@@ -765,7 +786,7 @@ Module 6: Dashboard ◀── Module 5: Calendrier ◀── Module 3: Seeds CRU
 - Pattern wizard (preview)
 
 **Livrables:**
-- Schéma `sowing_sessions` migré
+- Schéma `sowing_session` migré
 - Routes CRUD Sessions
 - Filtrage année/status
 
@@ -788,7 +809,7 @@ Module 6: Dashboard ◀── Module 5: Calendrier ◀── Module 3: Seeds CRU
 - Enrichissement des données
 
 **Livrables:**
-- Schéma `sowing_entries` migré
+- Schéma `sowing_entry` migré
 - Routes CRUD imbriquées
 - Calcul automatique des dates
 - Données enrichies (seed + plant info)

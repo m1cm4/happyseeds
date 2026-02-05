@@ -20,6 +20,6 @@ export type PlantQueryParams = {
   limit?: number;
   category?: PlantCategory;
   search?: string;
-  sortBy?: "common_name" | "family" | "genus" | "created_at";
+  sortBy?: "commonName" | "family" | "genus" | "createdAt";
   sortOrder?: "asc" | "desc";
 };
