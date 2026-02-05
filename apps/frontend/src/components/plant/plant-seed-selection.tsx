@@ -17,7 +17,7 @@ export function SeedsSection({ plantId }: { plantId: string }) {
          <h2 className="text-xl font-semibold text-slate-800">
            Mes graines ({seeds.length})
          </h2>
-         <Link to="/seeds/new" params={{ id: plantId }}>
+         <Link to="/seeds/new" params={{ pantId: plantId }}>
            <Button size="sm">+ Ajouter une graine</Button>
          </Link>
        </div>
@@ -39,7 +39,7 @@ export function SeedsSection({ plantId }: { plantId: string }) {
                  </p>
                  <p className="text-sm text-slate-500">
                    {seed.acquisitionType === "purchase" && "Achat"}
-                   {seed.acquisitionType === "harvest" && "Récolte"}
+                   {seed.acquisitionType === "self_harvested" && "Récolte"}
                    {seed.acquisitionType === "gift" && "Don/Échange"}
                    {seed.acquisitionType === "unknown" && "Origine non précisée"}
                  </p>
@@ -49,8 +49,8 @@ export function SeedsSection({ plantId }: { plantId: string }) {
                    Stock: {seed.quantity}
                  </span>
                  <Link
-                   to="/seeds/$seedId/edit"
-                   params={{ id: plantId, seedId: seed.id }}
+                   to="/seeds/$id/edit"
+                   params={{ id: seed.id }}
                  >
                    <Button variant="outline" size="sm">
                      Modifier

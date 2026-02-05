@@ -96,6 +96,7 @@ export const seedRoutes = new Hono()
   .post("/", zValidator("json", createSeedSchema), async (c) => {
     const userId = c.get("userId");
     const body = c.req.valid("json");
+    console.log("route post seed/ ", body);
 
     // Si plantId fourni, vérifier qu'il existe
     if (body.plantId) {

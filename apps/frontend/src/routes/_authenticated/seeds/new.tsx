@@ -1,58 +1,50 @@
 import { SeedForm } from "@/components/seed/seed-form";
-import { usePlant } from "@/hooks/usePlant";
-import { useCreateSeed } from "@/hooks/useSeed";
-import { CreateSeedFormData } from "@/schemas/seed.schema";
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { seedApi } from "@/services/seed.service";
+import { CreateSeedInput } from "@happyseeds/shared-types";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { createFileRoute, useNavigate, useSearch } from "@tanstack/react-router";
+import { toast} from "sonner";
 
 export const Route = createFileRoute("/_authenticated/seeds/new")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    plantId: (search.plantId as string) || undefined,
+  }),
   component: NewSeedPage,
 });
 
 function NewSeedPage() {
-  const { id: plantId } = Route.useParams();
   const navigate = useNavigate();
-  const { data: plantData } = usePlant(plantId);
-  const createSeed = useCreateSeed(plantId);
+  const queryClient = useQueryClient();
+  const { plantId } = useSearch({ from: "/_authenticated/seeds/new" });
+  console.log("plante = ", plantId)
 
-  const handleSubmit = (data: CreateSeedFormData) => {
-    const cleanedData = Object.fromEntries(
-      Object.entries(data).filter(([_, v]) => v !== "" && v !== undefined)
-    );
+  const mutation = useMutation({
+    mutationFn: (data: CreateSeedInput) => seedApi.create(data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["seeds"] });
+      toast.success("Graine créée avec succès");
 
-    createSeed.mutate(cleanedData as any, {
-      onSuccess: () => {
-        navigate({ to: "/plant/$id", params: { id: plantId } });
-      },
-    });
-  };
+      // Retour vers la plante si on venait de là, sinon liste des graines
+      if (plantId) {
+        navigate({ to: "/plants/$id", params: { id: plantId } });
+      } else {
+        navigate({ to: "/seeds" });
+      }
+    },
+    onError: () => {
+      toast.error("Erreur lors de la création");
+    },
+  });
 
   return (
-    <div className="max-w-xl mx-auto p-6">
-      <Link
-        to="/plant/$id"
-        params={{ id: plantId }}
-        className="text-sm text-slate-500 hover:text-slate-700"
-      >
-        ← Retour à { plantData?.success ? plantData.data.commonName : "la plante"}
-      </Link>
-
-      <h1 className="text-2xl font-bold text-slate-800 mt-2 mb-6">
-        Nouvelle variété
-      </h1>
-
-      {createSeed.error && (
-        <div className="mb-4 p-4 bg-red-50 text-red-700 rounded-lg">
-          Erreur : {createSeed.error.message}
-        </div>
-      )}
-
-      <div className="bg-white p-6 rounded-lg border">
-        <SeedForm
-          onSubmit={handleSubmit}
-          isSubmitting={createSeed.isPending}
-          submitLabel="Ajouter la variété"
-        />
-      </div>
+    <div className="container max-w-2xl py-8">
+      <h1 className="text-2xl font-bold mb-6">Nouvelle graine</h1>
+      <SeedForm
+        plantId={plantId}
+        onSubmit={(data) => mutation.mutate(data)}
+        isSubmitting={mutation.isPending}
+        submitLabel="Créer la graine"
+      />
     </div>
   );
 }

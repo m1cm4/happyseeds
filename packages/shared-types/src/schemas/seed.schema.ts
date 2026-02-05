@@ -68,12 +68,24 @@ export type CreateSeedInput = z.infer<typeof createSeedSchema>;
 // Schéma complet (lecture depuis API)
 // ============================================
 
-export const SeedSchema = createSeedSchema.extend({
-  id: z.string().uuid(),
-  userId: z.string(),
-  // coverImageId: z.string().uuid().optional(), // Session 2.4.c
-  createdAt: z.coerce.date(),
-  updatedAt: z.coerce.date(),
-});
-
-export type Seed = z.infer<typeof SeedSchema>;
+export const seedSchema = z.object({
+   id: z.string().uuid(),
+   userId: z.string(),
+   plantId: z.string().uuid().nullable(), // Nullable en DB
+ 
+   inStock: z.boolean(),
+   quantity: z.number().int().nullable(),
+   priority: z.number().int().min(0).max(5).nullable(),
+ 
+   brand: z.string().nullable(),
+   acquisitionPlace: z.string().nullable(),
+   acquisitionType: acquisitionTypeEnum.nullable(),
+   acquisitionDate: z.string().nullable(),
+   expiryDate: z.string().nullable(),
+   notes: z.string().nullable(),
+ 
+   createdAt: z.coerce.date(),
+   updatedAt: z.coerce.date(),
+ });
+ 
+ export type Seed = z.infer<typeof seedSchema>;
