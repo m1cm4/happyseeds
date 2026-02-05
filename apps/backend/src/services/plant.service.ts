@@ -1,6 +1,6 @@
 import { eq, and, ilike, desc, asc, SQL } from "drizzle-orm";
 import { db } from "../db";
-import { plant, Plant, NewPlant } from "../db/schema";
+import { plant, Plant, NewPlant } from "../db/schemas";
 
 // ============================================
 // Types pour les paramètres
@@ -13,14 +13,14 @@ export type PlantFilters = {
 
 // Champs triables (tous sauf les champs longs/techniques)
 export type SortableField =
-  "common_name"
+  "commonName"
   | "family"
   | "genus"
   | "species"
   | "cultivar"
   | "category"
-  | "created_at"
-  | "updated_at"
+  | "createdAt"
+  | "updatedAt"
 
 export type PaginationParams = {
   page?: number;
@@ -54,7 +54,7 @@ export const plantService = {
     const {
       page = 1,
       limit = 10,
-      sortBy = "created_at",
+      sortBy = "createdAt",
       sortOrder = "desc",
     } = pagination;
 
@@ -68,7 +68,7 @@ export const plantService = {
 
     if (filters.search) {
       // Recherche insensible à la casse sur le nom
-      conditions.push(ilike(plant.common_name, `%${filters.search}%`));
+      conditions.push(ilike(plant.commonName, `%${filters.search}%`));
     }
 
 
@@ -82,7 +82,7 @@ export const plantService = {
 
     // Requête principale avec pagination ---------------
     const offset = (page - 1) * limit;
-    const orderByColumn = sortBy === "common_name" ? plant.common_name : plant.created_at;
+    const orderByColumn = sortBy === "commonName" ? plant.commonName : plant.createdAt;
     const orderByDirection = sortOrder === "asc" ? asc : desc;
 
     const data = await db
@@ -133,12 +133,12 @@ export const plantService = {
   async update(
     id: string,
     userId: string,
-    data: Partial<Omit<NewPlant, "id" | "author_id">>
+    data: Partial<Omit<NewPlant, "id" | "authorId">>
   ): Promise<Plant | null> {
     const result = await db
       .update(plant)
       .set(data)
-      .where(and(eq(plant.id, id), eq(plant.author_id, userId)))
+      .where(and(eq(plant.id, id), eq(plant.authorId, userId)))
       .returning();
 
     return result[0] ?? null;
@@ -151,7 +151,7 @@ export const plantService = {
   async delete(id: string, userId: string): Promise<boolean> {
     const result = await db
       .delete(plant)
-      .where(and(eq(plant.id, id), eq(plant.author_id, userId)))
+      .where(and(eq(plant.id, id), eq(plant.authorId, userId)))
       .returning({ id: plant.id });
 
     return result.length > 0;

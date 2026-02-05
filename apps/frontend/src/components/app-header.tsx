@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import { useSession, signOut } from '../lib/auth-client';
+import { useSession } from '../lib/auth-client';
 import { Button } from '@/components/ui/button';
 import { logout } from '@/lib/auth';
 
@@ -24,7 +24,7 @@ export function AppHeader() {
       </span>
       <Link to="/dashboard" className="text-emerald-600 hover:text-emerald-700 font-medium"
       >Mon Dashboard</Link>
-      <Link to="/plant" className="text-emerald-600 hover:text-emerald-700        
+      <Link to="/plants" className="text-emerald-600 hover:text-emerald-700        
   font-medium">                                                                  
       Mes Plantes                                                                
       </Link>  

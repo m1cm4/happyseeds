@@ -17,7 +17,7 @@ export const plantApi = {
     if (params.sortOrder) searchParams.set("sortOrder", params.sortOrder);
 
     const query = searchParams.toString();
-    const endpoint = `/api/plant${query ? `?${query}` : ""}`;
+    const endpoint = `/api/plants${query ? `?${query}` : ""}`;
 
     return request<PaginatedResponse<Plant>>(endpoint);
   },
@@ -26,14 +26,14 @@ export const plantApi = {
    * Récupérer une plante par son ID
    */
   async getById(id: string) {
-    return request<ApiResponse<Plant>>(`/api/plant/${id}`);
+    return request<ApiResponse<Plant>>(`/api/plants/${id}`);
   },
 
   /**
    * Créer une nouvelle plante
    */
   async create(data: CreatePlantInput) {
-    return request<ApiResponse<Plant>>("/api/plant", {
+    return request<ApiResponse<Plant>>("/api/plants", {
       method: "POST",
       body: JSON.stringify(data),
     });
@@ -43,7 +43,7 @@ export const plantApi = {
    * Mettre à jour une plante
    */
   async update(id: string, data: UpdatePlantInput) {
-    return request<ApiResponse<Plant>>(`/api/plant/${id}`, {
+    return request<ApiResponse<Plant>>(`/api/plants/${id}`, {
       method: "PATCH",
       body: JSON.stringify(data),
     });
@@ -53,7 +53,7 @@ export const plantApi = {
    * Supprimer une plante
    */
   async delete(id: string) {
-    return request<ApiResponse<{ message: string }>>(`/api/plant/${id}`, {
+    return request<ApiResponse<{ message: string }>>(`/api/plants/${id}`, {
       method: "DELETE",
     });
   },

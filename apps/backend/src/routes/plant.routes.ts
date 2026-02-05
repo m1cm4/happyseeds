@@ -11,14 +11,14 @@ import { requireAuth } from "../middleware/auth.middleware";
 
 // Champs triables (doit correspondre à SortableField du service)
 const sortableFields = [
-  "common_name",
+  "commonName",
   "family",
   "genus",
   "species",
   "cultivar",
   "category",
-  "created_at",
-  "updated_at",
+  "createdAt",
+  "updatedAt",
 ] as const;
 
 // Dérivé du schéma partagé
@@ -29,7 +29,7 @@ const querySchema = z.object({
   limit: z.coerce.number().int().positive().max(100).default(10),
   category: z.string().optional(),
   search: z.string().optional(),
-  sortBy: z.enum(sortableFields).default("created_at"),
+  sortBy: z.enum(sortableFields).default("createdAt"),
   sortOrder: z.enum(["asc", "desc"]).default("desc"),
 });
 
@@ -42,7 +42,7 @@ export const plantRoutes = new Hono()
   .use("/*", requireAuth)
 
   // ==========================================
-  // GET /api/plant - Liste avec filtres et pagination
+  // GET /api/plants - Liste avec filtres et pagination
   // ==========================================
   .get("/", zValidator("query", querySchema), async (c) => {
     const query = c.req.valid("query");
@@ -64,7 +64,7 @@ export const plantRoutes = new Hono()
   })
 
   // ==========================================
-  // GET /api/plant/:id - Détail d'une plante
+  // GET /api/plants/:id - Détail d'une plante
   // ==========================================
   .get("/:id", async (c) => {
     const id = c.req.param("id");
@@ -82,22 +82,22 @@ export const plantRoutes = new Hono()
   })
 
   // ==========================================
-  // POST /api/plant - Créer une plante
+  // POST /api/plants - Créer une plante
   // ==========================================
   .post("/", zValidator("json", createPlantSchema), async (c) => {
-    const author_id = c.get("userId");
+    const authorId = c.get("userId");
     const body = c.req.valid("json");
 
     const newPlant = await plantService.create({
       ...body,
-      author_id,
+      authorId,
     });
 
     return c.json({ success: true, data: newPlant }, 201);
   })
 
   // ==========================================
-  // PATCH /api/plant/:id - Mettre à jour une plante
+  // PATCH /api/plants/:id - Mettre à jour une plante
   // ==========================================
   .patch("/:id", zValidator("json", updatePlantSchema), async (c) => {
     const userId = c.get("userId");
@@ -117,7 +117,7 @@ export const plantRoutes = new Hono()
   })
 
   // ==========================================
-  // DELETE /api/plant/:id - Supprimer une plante
+  // DELETE /api/plants/:id - Supprimer une plante
   // ==========================================
   .delete("/:id", async (c) => {
     const userId = c.get("userId");

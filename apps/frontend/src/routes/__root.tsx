@@ -4,7 +4,7 @@ import { TanStackDevtools } from '@tanstack/react-devtools'
 
 import appCss from '../styles.css?url'
 import { AppHeader } from '@/components/app-header'
-import TSDemoMenu from '@/components/TS-demo-menu'
+import TSDemoMenu from '@/components/ts-demo-menu'
 import { queryClient } from '@/router'
 import { QueryClientProvider } from '@tanstack/react-query'
 

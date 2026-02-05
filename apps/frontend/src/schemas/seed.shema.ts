@@ -1,12 +1,20 @@
-import { z } from "@happyseeds/shared-types";
+// acun schema n'est défini ici
+// tout est partagé entre frontend et backend dans package externe
 
-export const createSeedSchema = z.object({
-  brand: z.string().max(100).optional().or(z.literal("")),
-  quantity: z.coerce.number().int().min(0).default(0),
-  acquisitionType: z.enum(["harvest", "purchase", "gift", "unknown"]).default("unknown"),
-  acquisitionDate: z.string().optional().or(z.literal("")),
-  expirationDate: z.string().optional().or(z.literal("")),
-  notes: z.string().max(2000).optional().or(z.literal("")),
-});
+export {
+  createSeedSchema,
+  type CreateSeedInput,
+} from "@happyseeds/shared-types";
 
-export type CreateSeedFormData = z.infer<typeof createSeedSchema>;
+// Options pour les selects du formulaire
+export {
+  acquisitionTypeOptions,
+
+} from "@happyseeds/shared-types";
+
+// Enums pour les validations TypeScript
+export {
+  plantCategoryEnum,
+  acquisitionTypeEnum,
+  positionEnum,
+} from "@happyseeds/shared-types";

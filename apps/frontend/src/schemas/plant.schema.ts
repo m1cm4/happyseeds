@@ -1,4 +1,4 @@
-// acun shema n'est défini ici
+// acun schema n'est défini ici
 // tout est partagé entre frontend et backend dans package externe
 
 export {

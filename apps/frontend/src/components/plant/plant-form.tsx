@@ -31,8 +31,8 @@ function getFormDefaults(plant?: Partial<Plant>): CreatePlantInput {
   return {
     // Classification
     category: plant?.category ?? "vegetable",
-    common_name: plant?.common_name ?? "",
-    other_common_names: plant?.other_common_names ?? "",
+    commonName: plant?.commonName ?? "",
+    otherCommonNames: plant?.otherCommonNames ?? "",
     family: plant?.family ?? "",
     genus: plant?.genus ?? "",
     species: plant?.species ?? "",
@@ -43,7 +43,7 @@ function getFormDefaults(plant?: Partial<Plant>): CreatePlantInput {
 
     // Caractéristiques
     hardiness: plant?.hardiness ?? undefined,
-    hardiness_degrees: plant?.hardiness_degrees ?? "",
+    hardinessDegrees: plant?.hardinessDegrees ?? "",
     height: plant?.height ?? "",
     spread: plant?.spread ?? "",
     position: plant?.position ?? [],
@@ -51,21 +51,21 @@ function getFormDefaults(plant?: Partial<Plant>): CreatePlantInput {
 
     // Semis
     stratification: plant?.stratification ?? false,
-    inside_sowing_period: plant?.inside_sowing_period ?? [],
-    outside_sowing_period: plant?.outside_sowing_period ?? [],
-    inside_germinate_time: plant?.inside_germinate_time ?? undefined,
-    outside_germinate_time: plant?.outside_germinate_time ?? undefined,
-    cover_to_germinate: plant?.cover_to_germinate ?? false,
-    sowing_depth: plant?.sowing_depth ?? undefined,
-    best_sowing_temp: plant?.best_sowing_temp ?? "",
+    insideSowingPeriod: plant?.insideSowingPeriod ?? [],
+    outsideSowingPeriod: plant?.outsideSowingPeriod ?? [],
+    insideGerminateTime: plant?.insideGerminateTime ?? undefined,
+    outsideGerminateTime: plant?.outsideGerminateTime ?? undefined,
+    coverToGerminate: plant?.coverToGerminate ?? false,
+    sowingDepth: plant?.sowingDepth ?? undefined,
+    bestSowingTemp: plant?.bestSowingTemp ?? "",
 
     // Culture
-    planting_period: plant?.planting_period ?? [],
-    time_first_flower: plant?.time_first_flower ?? undefined,
+    plantingPeriod: plant?.plantingPeriod ?? [],
+    timeFirstFlower: plant?.timeFirstFlower ?? undefined,
 
     // Notes
-    sowing_info: plant?.sowing_info ?? "",
-    growing_info: plant?.growing_info ?? "",
+    sowingInfo: plant?.sowingInfo ?? "",
+    growingInfo: plant?.growingInfo ?? "",
   };
 }
 
@@ -120,24 +120,24 @@ export function PlantForm({
 
           {/* Nom commun */}
           <div className="space-y-2">
-            <Label htmlFor="common_name">Nom commun *</Label>
+            <Label htmlFor="commonName">Nom commun *</Label>
             <Input
-              id="common_name"
-              {...register("common_name")}
+              id="commonName"
+              {...register("commonName")}
               placeholder="Ex: Tomate, Cosmos"
             />
-            {errors.common_name && (
-              <p className="text-sm text-red-500">{errors.common_name.message}</p>
+            {errors.commonName && (
+              <p className="text-sm text-red-500">{errors.commonName.message}</p>
             )}
           </div>
         </div>
 
         {/* Autres noms */}
         <div className="space-y-2">
-          <Label htmlFor="other_common_names">Autres noms commons</Label>
+          <Label htmlFor="otherCommonNames">Autres noms commons</Label>
           <Input
-            id="other_common_names"
-            {...register("other_common_names")}
+            id="otherCommonNames"
+            {...register("otherCommonNames")}
             placeholder="Ex: Tomate cerise, Pomme d'amour"
           />
         </div>
@@ -187,10 +187,10 @@ export function PlantForm({
 
           {/* Rusticité en degrés */}
           <div className="space-y-2">
-            <Label htmlFor="hardiness_degrees">Rusticité (°C)</Label>
+            <Label htmlFor="hardinessDegrees">Rusticité (°C)</Label>
             <Input
-              id="hardiness_degrees"
-              {...register("hardiness_degrees")}
+              id="hardinessDegrees"
+              {...register("hardinessDegrees")}
               placeholder="Ex: -5°C, Zone 8"
             />
           </div>
@@ -271,7 +271,7 @@ export function PlantForm({
             Stratification requise
           </label>
           <label className="flex items-center gap-2">
-            <input type="checkbox" {...register("cover_to_germinate")} />
+            <input type="checkbox" {...register("coverToGerminate")} />
             Couvrir pour germer
           </label>
         </div>
@@ -279,37 +279,37 @@ export function PlantForm({
         {/* Temps de germination */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="space-y-2">
-            <Label htmlFor="inside_germinate_time">Germination intérieur (j)</Label>
+            <Label htmlFor="insideGerminateTime">Germination intérieur (j)</Label>
             <Input
-              id="inside_germinate_time"
+              id="insideGerminateTime"
               type="number"
-              {...register("inside_germinate_time")}
+              {...register("insideGerminateTime")}
               placeholder="Ex: 7"
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="outside_germinate_time">Germination extérieur (j)</Label>
+            <Label htmlFor="outsideGerminateTime">Germination extérieur (j)</Label>
             <Input
-              id="outside_germinate_time"
+              id="outsideGerminateTime"
               type="number"
-              {...register("outside_germinate_time")}
+              {...register("outsideGerminateTime")}
               placeholder="Ex: 14"
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="sowing_depth">Profondeur (mm)</Label>
+            <Label htmlFor="sowingDepth">Profondeur (mm)</Label>
             <Input
-              id="sowing_depth"
+              id="sowingDepth"
               type="number"
-              {...register("sowing_depth")}
+              {...register("sowingDepth")}
               placeholder="Ex: 5"
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="best_sowing_temp">Température idéale</Label>
+            <Label htmlFor="bestSowingTemp">Température idéale</Label>
             <Input
-              id="best_sowing_temp"
-              {...register("best_sowing_temp")}
+              id="bestSowingTemp"
+              {...register("bestSowingTemp")}
               placeholder="Ex: 18-22°C"
             />
           </div>
@@ -328,11 +328,11 @@ export function PlantForm({
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <Label htmlFor="time_first_flower">Jours avant floraison</Label>
+            <Label htmlFor="timeFirstFlower">Jours avant floraison</Label>
             <Input
-              id="time_first_flower"
+              id="timeFirstFlower"
               type="number"
-              {...register("time_first_flower")}
+              {...register("timeFirstFlower")}
               placeholder="Ex: 60"
             />
           </div>
@@ -355,10 +355,10 @@ export function PlantForm({
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="sowing_info">Conseils de semis</Label>
+          <Label htmlFor="sowingInfo">Conseils de semis</Label>
           <textarea
-            id="sowing_info"
-            {...register("sowing_info")}
+            id="sowingInfo"
+            {...register("sowingInfo")}
             className="w-full p-2 border rounded-md"
             rows={3}
             placeholder="Conseils spécifiques pour le semis..."
@@ -366,10 +366,10 @@ export function PlantForm({
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="growing_info">Conseils de culture</Label>
+          <Label htmlFor="growingInfo">Conseils de culture</Label>
           <textarea
-            id="growing_info"
-            {...register("growing_info")}
+            id="growingInfo"
+            {...register("growingInfo")}
             className="w-full p-2 border rounded-md"
             rows={3}
             placeholder="Conseils pour la culture et l'entretien..."

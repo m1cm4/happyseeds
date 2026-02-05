@@ -1,6 +1,6 @@
 import {  Link } from "@tanstack/react-router";
 import { Plant } from "@/@types/plant.types";
-import { formatCommonWithCultivar, formatLatinName, getNames } from "@/utils/plant.utils";
+import { getNames } from "@/utils/plant.utils";
 
 // destructuration identique à PlantListElement(props: { plant: Plant })
 export function PlantListElement({ plant }: { plant: Plant }) {  
@@ -9,7 +9,7 @@ export function PlantListElement({ plant }: { plant: Plant }) {
    
    return (
       <Link
-      to="/plant/$id" 
+      to="/plants/$id" 
       params={{ id: plant.id }}
       className="block"
       >
