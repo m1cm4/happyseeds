@@ -1,0 +1,25 @@
+{
+   "root": true,
+   "env": {
+      "browser": true,
+      "es2021": true,
+      "node": true
+   },
+   "extends": [
+      "eslint:recommended",
+      "plugin:prettier/recommended" // eslint est désactivé pour le style, prettier est activé ici pour cela. les conflits sont désactivés.
+   ],
+   "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+   },
+   "rules": {
+      "no-console": "warn",
+      "no-unused-vars": "error",
+      "prefer-const": "error",
+      "eqeqeq": [ // pour ===
+         "error",
+         "always"
+      ]
+   }
+}

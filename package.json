@@ -10,10 +10,19 @@
     "build": "turbo run build",
     "lint": "turbo run lint",
     "check-types": "turbo run check-types",
-    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\""
+    "format": "prettier --write .",
+    "lint:js": "eslint .",
+    "lint:css": "stylelint '**/*.css'",
+    "fix": "turbo run lint:js lint:css -- --fix && pnpm format"
   },
   "devDependencies": {
+    "@stylistic/stylelint-plugin": "^5.0.1",
+    "eslint": "^10.0.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
     "prettier": "^3.2.5",
+    "stylelint": "^17.2.0",
+    "stylelint-config-standard": "^40.0.0",
     "turbo": "^2.8.0",
     "typescript": "^5.7.3"
   },

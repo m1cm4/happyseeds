@@ -1,0 +1,44 @@
+{
+   "eslint.workingDirectories": [
+      {
+         "mode": "auto"
+      }
+   ],
+   "stylelint.workingDirectories": [
+      {
+         "mode": "auto"
+      }
+   ],
+   "css.validate": false, // desactive le validateur de vscode
+   "less.validate": false,
+   "scss.validate": false,
+   "editor.formatOnSave": true,
+   "stylelint.snippet": [
+      "css",
+      "postcss",
+      "scss"
+   ],
+   "stylelint.validate": [
+      "css",
+      "scss",
+      "postcss"
+   ],
+   "stylelint.enable": true,
+   "stylelint.run": "onSave",
+   "stylelint.nodePath": "./node_module",
+   "stylelint.packageManager": "pnpm",
+   // "stylelint.configFile": ".stylelintrc.json",
+   "editor.defaultFormatter": "esbenp.prettier-vscode",
+   "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit", // ESLint répare le JS
+      "source.fixAll.stylelint": "explicit" // Stylelint répare le CSS
+   },
+   "[css]": {
+      "editor.defaultFormatter": "stylelint.vscode-stylelint",
+      "editor.formatOnSave": true
+   },
+   "[scss]": {
+      "editor.defaultFormatter": "stylelint.vscode-stylelint",
+      "editor.formatOnSave": true
+   }
+}

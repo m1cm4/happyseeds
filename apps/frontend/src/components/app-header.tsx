@@ -1,4 +1,4 @@
-import { Link } from '@tanstack/react-router';
+import { Link, useMatchRoute } from '@tanstack/react-router';
 import { useSession } from '../lib/auth-client';
 import { Button } from '@/components/ui/button';
 import { logout } from '@/lib/auth';
@@ -6,6 +6,7 @@ import { logout } from '@/lib/auth';
 
 export function AppHeader() {
   const { data: session, isPending } = useSession();
+  const useMatch = useMatchRoute
   
   return (
     <header className="p-4 bg-white shadow"> 
@@ -27,6 +28,10 @@ export function AppHeader() {
       <Link to="/plants" className="text-emerald-600 hover:text-emerald-700        
   font-medium">                                                                  
       Mes Plantes                                                                
+      </Link>
+      <Link to="/seeds" className="text-emerald-600 hover:text-emerald-700        
+  font-medium">                                                                  
+      Mes Graines                                                                
       </Link>  
       <Button
       variant="outline"
