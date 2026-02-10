@@ -26,7 +26,5 @@ export const auth = betterAuth({
       maxAge: 60 * 5, // 5 minutes
     },
   },
-  trustedOrigins: [
-    process.env.FRONTEND_URL || "http://localhost:3000",
-  ],
+  trustedOrigins: [process.env.FRONTEND_URL || "http://localhost:3000"],
 });

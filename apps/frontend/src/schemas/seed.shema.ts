@@ -1,20 +1,10 @@
 // acun schema n'est défini ici
 // tout est partagé entre frontend et backend dans package externe
 
-export {
-  createSeedSchema,
-  type CreateSeedInput,
-} from "@happyseeds/shared-types";
+export { createSeedSchema, type CreateSeedInput } from "@happyseeds/shared-types";
 
 // Options pour les selects du formulaire
-export {
-  acquisitionTypeOptions,
-
-} from "@happyseeds/shared-types";
+export { acquisitionTypeOptions } from "@happyseeds/shared-types";
 
 // Enums pour les validations TypeScript
-export {
-  plantCategoryEnum,
-  acquisitionTypeEnum,
-  positionEnum,
-} from "@happyseeds/shared-types";
+export { plantCategoryEnum, acquisitionTypeEnum, positionEnum } from "@happyseeds/shared-types";

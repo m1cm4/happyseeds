@@ -2,7 +2,6 @@ import { CreatePlantInput, PlantQueryParams, UpdatePlantInput } from "@/@types/p
 import { plantApi } from "@/services/plant.service";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
-
 /**
  * useQuery() pour les lecture GET
  *    queryKey: identifiant pour le cache
@@ -23,7 +22,6 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 // Query Keys
 // ============================================
 // Query Keys = Structure hiérarchique pour identifier les requêtes dans le cache
-
 
 export const plantKeys = {
   all: ["plant"] as const,
@@ -80,8 +78,7 @@ export function useUpdatePlant() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ id, data }: { id: string; data: UpdatePlantInput }) =>
-      plantApi.update(id, data),
+    mutationFn: ({ id, data }: { id: string; data: UpdatePlantInput }) => plantApi.update(id, data),
     onSuccess: (_, variables) => {
       // Invalider le cache de la liste et du détail
       queryClient.invalidateQueries({ queryKey: plantKeys.lists() });

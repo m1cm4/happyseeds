@@ -1,7 +1,7 @@
-import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { PlantForm } from "../../../components/plant/plant-form";
-import { usePlant, useUpdatePlant } from '@/hooks/usePlant';
-import { CreatePlantInput } from '@happyseeds/shared-types';
+import { usePlant, useUpdatePlant } from "@/hooks/usePlant";
+import { CreatePlantInput } from "@happyseeds/shared-types";
 
 export const Route = createFileRoute("/_authenticated/plants/$id/edit")({
   component: EditPlantPage,
@@ -38,9 +38,7 @@ function EditPlantPage() {
 
   const handleSubmit = (formData: CreatePlantInput) => {
     // Nettoyer les valeurs vides
-    const cleanedData = Object.fromEntries(
-      Object.entries(formData).filter(([_, v]) => v !== "" && v !== undefined)
-    );
+    const cleanedData = Object.fromEntries(Object.entries(formData).filter(([_, v]) => v !== "" && v !== undefined));
 
     updatePlant.mutate(
       { id, data: cleanedData as any },
@@ -59,14 +57,10 @@ function EditPlantPage() {
         ← Retour au détail
       </Link>
 
-      <h1 className="text-2xl font-bold text-slate-800 mt-2 mb-6">
-        Modifier : {plant.commonName}
-      </h1>
+      <h1 className="text-2xl font-bold text-slate-800 mt-2 mb-6">Modifier : {plant.commonName}</h1>
 
       {updatePlant.error && (
-        <div className="mb-4 p-4 bg-red-50 text-red-700 rounded-lg">
-          Erreur : {updatePlant.error.message}
-        </div>
+        <div className="mb-4 p-4 bg-red-50 text-red-700 rounded-lg">Erreur : {updatePlant.error.message}</div>
       )}
 
       <div className="bg-white p-6 rounded-lg border">

@@ -1,13 +1,7 @@
 // ============================================
 // API Plant
 // ============================================
-import type {
-  Plant,
-  CreatePlantInput,
-  PlantCategory,
-  Hardiness,
-  Position,
-} from "@happyseeds/shared-types";
+import type { Plant, CreatePlantInput, PlantCategory, Hardiness, Position } from "@happyseeds/shared-types";
 
 // Ré-export pour usage local
 export type { Plant, CreatePlantInput, PlantCategory, Hardiness, Position };

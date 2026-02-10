@@ -1,28 +1,12 @@
 import { relations } from "drizzle-orm";
-import {
-  pgTable,
-  text,
-  integer,
-  boolean,
-  timestamp,
-  date,
-  uuid,
-  pgEnum,
-} from "drizzle-orm/pg-core";
+import { pgTable, text, integer, boolean, timestamp, date, uuid, pgEnum } from "drizzle-orm/pg-core";
 import { user } from "./auth.schema";
 import { plant } from "./plant.schema";
-
 
 // ============================================
 // Enums
 // ============================================
-export const acquisitionTypeEnum = pgEnum("acquisition_type", [
-  "self_harvested",
-  "purchase",
-  "gift",
-  "unknown",
-]);
-
+export const acquisitionTypeEnum = pgEnum("acquisition_type", ["self_harvested", "purchase", "gift", "unknown"]);
 
 // ============================================
 // Table Seed
@@ -36,8 +20,7 @@ export const seed = pgTable("seed", {
     .notNull()
     .references(() => user.id, { onDelete: "cascade" }),
 
-  plantId: uuid("plant_id")
-    .references(() => plant.id, { onDelete: "restrict" }), // Optionnel + restrict
+  plantId: uuid("plant_id").references(() => plant.id, { onDelete: "restrict" }), // Optionnel + restrict
 
   // Stock
   inStock: boolean("in_stock").notNull().default(true),
@@ -63,7 +46,6 @@ export const seed = pgTable("seed", {
     .$onUpdate(() => new Date())
     .notNull(),
 });
- 
 
 // ============================================
 // Relations
@@ -90,7 +72,6 @@ export const plantRelationsUpdated = relations(plant, ({ one, many }) => ({
   }),
   seed: many(seed),
 }));
-
 
 // ============================================
 // Types TypeScript inférés

@@ -1,14 +1,10 @@
-
 const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
 
 // ============================================
 // Client HTTP
 // ============================================
 
-export async function request<T>(
-  endpoint: string,
-  options: RequestInit = {}
-): Promise<T> {
+export async function request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const url = `${API_BASE_URL}${endpoint}`;
 
   const response = await fetch(url, {

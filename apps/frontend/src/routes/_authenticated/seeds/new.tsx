@@ -3,7 +3,7 @@ import { seedApi } from "@/services/seed.service";
 import { CreateSeedInput } from "@happyseeds/shared-types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, useNavigate, useSearch } from "@tanstack/react-router";
-import { toast} from "sonner";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/_authenticated/seeds/new")({
   validateSearch: (search: Record<string, unknown>) => ({
@@ -16,7 +16,7 @@ function NewSeedPage() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { plantId } = useSearch({ from: "/_authenticated/seeds/new" });
-  console.log("plante = ", plantId)
+  console.log("plante = ", plantId);
 
   const mutation = useMutation({
     mutationFn: (data: CreateSeedInput) => seedApi.create(data),

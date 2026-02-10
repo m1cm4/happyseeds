@@ -1,23 +1,12 @@
 import { relations } from "drizzle-orm";
-import {
-  pgTable,
-  pgEnum,
-  text,
-  integer,
-  boolean,
-  timestamp,
-  uuid,
-} from "drizzle-orm/pg-core";
+import { pgTable, pgEnum, text, integer, boolean, timestamp, uuid } from "drizzle-orm/pg-core";
 import { user } from "./auth.schema";
 
 // ============================================
 // Enums
 // ============================================
 
-export const plantCategoryEnum = pgEnum("plant_category", [
-  "ornamental",
-  "vegetable",
-]);
+export const plantCategoryEnum = pgEnum("plant_category", ["ornamental", "vegetable"]);
 
 export const hardinessEnum = pgEnum("hardiness", [
   "perennial",
@@ -28,11 +17,7 @@ export const hardinessEnum = pgEnum("hardiness", [
   "non_hardy_annual",
 ]);
 
-export const positionEnum = pgEnum("position", [
-  "full_sun",
-  "partial_shade",
-  "shade",
-]);
+export const positionEnum = pgEnum("position", ["full_sun", "partial_shade", "shade"]);
 
 // ============================================
 // Table Plant

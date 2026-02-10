@@ -72,10 +72,7 @@ export const plantRoutes = new Hono()
     const plant = await plantService.findById(id);
 
     if (!plant) {
-      return c.json(
-        { success: false, error: { code: "NOT_FOUND", message: "Plante non trouvée" } },
-        404
-      );
+      return c.json({ success: false, error: { code: "NOT_FOUND", message: "Plante non trouvée" } }, 404);
     }
 
     return c.json({ success: true, data: plant });
@@ -107,10 +104,7 @@ export const plantRoutes = new Hono()
     const plant = await plantService.update(id, userId, body);
 
     if (!plant) {
-      return c.json(
-        { success: false, error: { code: "NOT_FOUND", message: "Plante non trouvée" } },
-        404
-      );
+      return c.json({ success: false, error: { code: "NOT_FOUND", message: "Plante non trouvée" } }, 404);
     }
 
     return c.json({ success: true, data: plant });
@@ -126,10 +120,7 @@ export const plantRoutes = new Hono()
     const deleted = await plantService.delete(id, userId);
 
     if (!deleted) {
-      return c.json(
-        { success: false, error: { code: "NOT_FOUND", message: "Plante non trouvée" } },
-        404
-      );
+      return c.json({ success: false, error: { code: "NOT_FOUND", message: "Plante non trouvée" } }, 404);
     }
 
     return c.json({ success: true, data: { message: "Plante supprimée" } });

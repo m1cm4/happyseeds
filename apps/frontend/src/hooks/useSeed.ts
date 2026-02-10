@@ -43,8 +43,7 @@ export function useUpdateSeed() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ id, data }: { id: string; data: UpdateSeedInput }) =>
-      seedApi.update(id, data),
+    mutationFn: ({ id, data }: { id: string; data: UpdateSeedInput }) => seedApi.update(id, data),
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({ queryKey: ["seeds"] });
       queryClient.invalidateQueries({ queryKey: ["seeds", variables.id] });

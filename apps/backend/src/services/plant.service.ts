@@ -13,14 +13,14 @@ export type PlantFilters = {
 
 // Champs triables (tous sauf les champs longs/techniques)
 export type SortableField =
-  "commonName"
+  | "commonName"
   | "family"
   | "genus"
   | "species"
   | "cultivar"
   | "category"
   | "createdAt"
-  | "updatedAt"
+  | "updatedAt";
 
 export type PaginationParams = {
   page?: number;
@@ -47,16 +47,8 @@ export const plantService = {
   /**
    * Récupère toutes les plantes d'un utilisateur avec filtres et pagination
    */
-  async findAll(
-    filters: PlantFilters,
-    pagination: PaginationParams = {}
-  ): Promise<PaginatedResult<Plant>> {
-    const {
-      page = 1,
-      limit = 10,
-      sortBy = "createdAt",
-      sortOrder = "desc",
-    } = pagination;
+  async findAll(filters: PlantFilters, pagination: PaginationParams = {}): Promise<PaginatedResult<Plant>> {
+    const { page = 1, limit = 10, sortBy = "createdAt", sortOrder = "desc" } = pagination;
 
     // Construire les conditions WHERE avec filtre sur userId, la categorie et le terme de recherche
     // un tableau de conditions
@@ -70,7 +62,6 @@ export const plantService = {
       // Recherche insensible à la casse sur le nom
       conditions.push(ilike(plant.commonName, `%${filters.search}%`));
     }
-
 
     // Note: Drizzle ne fait pas de COUNT(*) directement, on compte les résultats
     const allForCount = await db
@@ -130,11 +121,7 @@ export const plantService = {
    * Met à jour une plante existante
    * Vérifie que l'utilisateur est bien le propriétaire
    */
-  async update(
-    id: string,
-    userId: string,
-    data: Partial<Omit<NewPlant, "id" | "authorId">>
-  ): Promise<Plant | null> {
+  async update(id: string, userId: string, data: Partial<Omit<NewPlant, "id" | "authorId">>): Promise<Plant | null> {
     const result = await db
       .update(plant)
       .set(data)

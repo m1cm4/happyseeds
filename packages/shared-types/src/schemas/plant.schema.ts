@@ -53,16 +53,13 @@ export const positionOptions = [
 // Entier positif optionnel (pour durées en jours)
 // preprocess gère les chaînes vides des inputs HTML avant coercion
 const optionalPositiveInt = z.preprocess(
-  (val) => (val === "" || val === null || val === undefined) ? undefined : val,
+  (val) => (val === "" || val === null || val === undefined ? undefined : val),
   z.coerce.number().int().positive().optional()
 );
 
 // Enum optionnel (gestion des chaînes vides des selects HTML)
 const optionalEnum = <T extends z.ZodEnum<any>>(enumSchema: T) =>
-  z.preprocess(
-    (val) => (val === "" || val === null || val === undefined) ? undefined : val,
-    enumSchema.optional()
-  );
+  z.preprocess((val) => (val === "" || val === null || val === undefined ? undefined : val), enumSchema.optional());
 
 // Texte court optionnel
 const shortText = (max = 100) => z.string().max(max).optional().or(z.literal(""));

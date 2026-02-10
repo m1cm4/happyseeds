@@ -6,7 +6,6 @@ import { plantService } from "../services/plant.service";
 import { requireAuth } from "../middleware/auth.middleware";
 import { seedService } from "../services/seed.service";
 
-
 // ============================================
 // Schémas de validation
 // ============================================
@@ -14,7 +13,6 @@ import { seedService } from "../services/seed.service";
 // createSeedSchema -> shared-types/
 
 const updateSeedSchema = createSeedSchema.partial();
-
 
 const sortableFields = [
   "brand",
@@ -29,8 +27,11 @@ const sortableFields = [
 const querySchema = z.object({
   page: z.coerce.number().int().positive().default(1),
   limit: z.coerce.number().int().positive().max(100).default(20),
-  plantId: z.string().uuid().optional(),  // Filtre optionnel
-  inStock: z.enum(["true", "false"]).optional().transform(v => v === "true"),
+  plantId: z.string().uuid().optional(), // Filtre optionnel
+  inStock: z
+    .enum(["true", "false"])
+    .optional()
+    .transform((v) => v === "true"),
   sortBy: z.enum(sortableFields).default("created_at"),
   sortOrder: z.enum(["asc", "desc"]).default("desc"),
 });
@@ -53,10 +54,7 @@ export const seedRoutes = new Hono()
     if (query.plantId) {
       const plant = await plantService.findById(query.plantId);
       if (!plant) {
-        return c.json(
-          { success: false, error: { code: "NOT_FOUND", message: "Plante non trouvée" } },
-          404
-        );
+        return c.json({ success: false, error: { code: "NOT_FOUND", message: "Plante non trouvée" } }, 404);
       }
     }
 
@@ -86,10 +84,7 @@ export const seedRoutes = new Hono()
     const foundSeed = await seedService.findById(id, userId);
 
     if (!foundSeed) {
-      return c.json(
-        { success: false, error: { code: "NOT_FOUND", message: "Graine non trouvée" } },
-        404
-      );
+      return c.json({ success: false, error: { code: "NOT_FOUND", message: "Graine non trouvée" } }, 404);
     }
 
     return c.json({ success: true, data: foundSeed });
@@ -105,18 +100,15 @@ export const seedRoutes = new Hono()
     if (body.plantId) {
       const plant = await plantService.findById(body.plantId);
       if (!plant) {
-        return c.json(
-          { success: false, error: { code: "NOT_FOUND", message: "Plante non trouvée" } },
-          404
-        );
+        return c.json({ success: false, error: { code: "NOT_FOUND", message: "Plante non trouvée" } }, 404);
       }
     }
 
     const newSeed = await seedService.create({
       ...body,
-      plantId: body.plantId || null,  // Convertir "" en null
-      acquisitionDate: body.acquisitionDate || null,  // Convertir "" en null
-      expiryDate: body.expiryDate || null,  // Convertir "" en null
+      plantId: body.plantId || null, // Convertir "" en null
+      acquisitionDate: body.acquisitionDate || null, // Convertir "" en null
+      expiryDate: body.expiryDate || null, // Convertir "" en null
       userId,
     });
 
@@ -133,25 +125,19 @@ export const seedRoutes = new Hono()
     if (body.plantId) {
       const plant = await plantService.findById(body.plantId);
       if (!plant) {
-        return c.json(
-          { success: false, error: { code: "NOT_FOUND", message: "Plante non trouvée" } },
-          404
-        );
+        return c.json({ success: false, error: { code: "NOT_FOUND", message: "Plante non trouvée" } }, 404);
       }
     }
 
     const updatedSeed = await seedService.update(id, userId, {
       ...body,
-      plantId: body.plantId || null,  // Convertir "" en null
-      acquisitionDate: body.acquisitionDate || null,  // Convertir "" en null
-      expiryDate: body.expiryDate || null,  // Convertir "" en null
+      plantId: body.plantId || null, // Convertir "" en null
+      acquisitionDate: body.acquisitionDate || null, // Convertir "" en null
+      expiryDate: body.expiryDate || null, // Convertir "" en null
     });
 
     if (!updatedSeed) {
-      return c.json(
-        { success: false, error: { code: "NOT_FOUND", message: "Graine non trouvée" } },
-        404
-      );
+      return c.json({ success: false, error: { code: "NOT_FOUND", message: "Graine non trouvée" } }, 404);
     }
 
     return c.json({ success: true, data: updatedSeed });
@@ -165,10 +151,7 @@ export const seedRoutes = new Hono()
     const deleted = await seedService.delete(id, userId);
 
     if (!deleted) {
-      return c.json(
-        { success: false, error: { code: "NOT_FOUND", message: "Graine non trouvée" } },
-        404
-      );
+      return c.json({ success: false, error: { code: "NOT_FOUND", message: "Graine non trouvée" } }, 404);
     }
 
     return c.json({ success: true, data: { message: "Graine supprimée" } });

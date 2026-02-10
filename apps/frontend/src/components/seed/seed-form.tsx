@@ -4,12 +4,7 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Seed } from "@/@types/seed.types";
-import {
-  createSeedSchema,
-  CreateSeedInput,
-  acquisitionTypeOptions,
-} from "@/schemas/seed.shema";
-
+import { createSeedSchema, CreateSeedInput, acquisitionTypeOptions } from "@/schemas/seed.shema";
 
 // ============================================
 // Helper : valeurs par défaut
@@ -44,7 +39,7 @@ function getFormDefaults(seed?: Partial<Seed>): CreateSeedInput {
 
 type SeedFormProps = {
   defaultValues?: Partial<Seed>;
-  plantId?: string;  // Pré-remplir si on vient d'une page plante
+  plantId?: string; // Pré-remplir si on vient d'une page plante
   onSubmit: (data: CreateSeedInput) => void;
   isSubmitting?: boolean;
   submitLabel?: string;
@@ -69,9 +64,6 @@ export function SeedForm({
     },
   });
 
-
-
-
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       {/* ==================== STOCK ==================== */}
@@ -81,25 +73,14 @@ export function SeedForm({
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* En stock */}
           <div className="flex items-center space-x-2">
-            <input
-              type="checkbox"
-              id="inStock"
-              {...register("inStock")}
-              className="h-4 w-4"
-            />
+            <input type="checkbox" id="inStock" {...register("inStock")} className="h-4 w-4" />
             <Label htmlFor="inStock">En stock</Label>
           </div>
 
           {/* Quantité */}
           <div className="space-y-2">
             <Label htmlFor="quantity">Quantité</Label>
-            <Input
-              id="quantity"
-              type="number"
-              {...register("quantity")}
-              min={0}
-              placeholder="Ex: 50"
-            />
+            <Input id="quantity" type="number" {...register("quantity")} min={0} placeholder="Ex: 50" />
           </div>
 
           {/* Priorité */}
@@ -125,12 +106,7 @@ export function SeedForm({
           {/* Marque */}
           <div className="space-y-2">
             <Label htmlFor="brand">Marque / Fournisseur</Label>
-            <Input
-              id="brand"
-              {...register("brand")}
-              placeholder="Ex: Kokopelli"
-              maxLength={64}
-            />
+            <Input id="brand" {...register("brand")} placeholder="Ex: Kokopelli" maxLength={64} />
           </div>
 
           {/* Lieu */}
@@ -147,11 +123,7 @@ export function SeedForm({
           {/* Type */}
           <div className="space-y-2">
             <Label htmlFor="acquisitionType">Type d'acquisition</Label>
-            <select
-              id="acquisitionType"
-              {...register("acquisitionType")}
-              className="w-full p-2 border rounded-md"
-            >
+            <select id="acquisitionType" {...register("acquisitionType")} className="w-full p-2 border rounded-md">
               {acquisitionTypeOptions.map((opt) => (
                 <option key={opt.value} value={opt.value}>
                   {opt.label}
@@ -163,11 +135,7 @@ export function SeedForm({
           {/* Date acquisition */}
           <div className="space-y-2">
             <Label htmlFor="acquisitionDate">Date d'acquisition</Label>
-            <Input
-              id="acquisitionDate"
-              type="date"
-              {...register("acquisitionDate")}
-            />
+            <Input id="acquisitionDate" type="date" {...register("acquisitionDate")} />
           </div>
         </div>
       </section>
@@ -178,11 +146,7 @@ export function SeedForm({
 
         <div className="space-y-2 max-w-xs">
           <Label htmlFor="expiryDate">Date d'expiration</Label>
-          <Input
-            id="expiryDate"
-            type="date"
-            {...register("expiryDate")}
-          />
+          <Input id="expiryDate" type="date" {...register("expiryDate")} />
         </div>
       </section>
 

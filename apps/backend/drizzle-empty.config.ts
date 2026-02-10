@@ -1,5 +1,4 @@
-
-// pour effacer toutes les tables 
+// pour effacer toutes les tables
 // force à utiliser ce fichier-ci comme config
 // qui utilise un fichier schema vide
 // p drizzle-kit push --config drizzle-empty.config.ts

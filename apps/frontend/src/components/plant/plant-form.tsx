@@ -14,14 +14,12 @@ import {
 
 import { Plant } from "@/@types/plant.types";
 
-
 type PlantFormProps = {
   defaultValues?: Partial<Plant>;
   onSubmit: (data: CreatePlantInput) => void;
   isSubmitting?: boolean;
   submitLabel?: string;
 };
-
 
 // ============================================
 // Helper : valeurs par défaut du formulaire
@@ -75,7 +73,6 @@ export function PlantForm({
   isSubmitting = false,
   submitLabel = "Enregistrer",
 }: PlantFormProps) {
-
   // hook useForm
   const {
     register,
@@ -89,9 +86,7 @@ export function PlantForm({
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit, (errors) =>
-        console.log("Validation errors:", errors)
-      )}
+      onSubmit={handleSubmit(onSubmit, (errors) => console.log("Validation errors:", errors))}
       className="space-y-8"
     >
       {/* ==================== CLASSIFICATION ==================== */}
@@ -102,33 +97,21 @@ export function PlantForm({
           {/* Catégorie */}
           <div className="space-y-2">
             <Label htmlFor="category">Catégorie *</Label>
-            <select
-              id="category"
-              {...register("category")}
-              className="w-full p-2 border rounded-md"
-            >
+            <select id="category" {...register("category")} className="w-full p-2 border rounded-md">
               {plantCategoryOptions.map((opt) => (
                 <option key={opt.value} value={opt.value}>
                   {opt.label}
                 </option>
               ))}
             </select>
-            {errors.category && (
-              <p className="text-sm text-red-500">{errors.category.message}</p>
-            )}
+            {errors.category && <p className="text-sm text-red-500">{errors.category.message}</p>}
           </div>
 
           {/* Nom commun */}
           <div className="space-y-2">
             <Label htmlFor="commonName">Nom commun *</Label>
-            <Input
-              id="commonName"
-              {...register("commonName")}
-              placeholder="Ex: Tomate, Cosmos"
-            />
-            {errors.commonName && (
-              <p className="text-sm text-red-500">{errors.commonName.message}</p>
-            )}
+            <Input id="commonName" {...register("commonName")} placeholder="Ex: Tomate, Cosmos" />
+            {errors.commonName && <p className="text-sm text-red-500">{errors.commonName.message}</p>}
           </div>
         </div>
 
@@ -171,11 +154,7 @@ export function PlantForm({
           {/* Rusticité */}
           <div className="space-y-2">
             <Label htmlFor="hardiness">Rusticité</Label>
-            <select
-              id="hardiness"
-              {...register("hardiness")}
-              className="w-full p-2 border rounded-md"
-            >
+            <select id="hardiness" {...register("hardiness")} className="w-full p-2 border rounded-md">
               <option value="">-- Sélectionner --</option>
               {hardinessOptions.map((opt) => (
                 <option key={opt.value} value={opt.value}>
@@ -188,21 +167,13 @@ export function PlantForm({
           {/* Rusticité en degrés */}
           <div className="space-y-2">
             <Label htmlFor="hardinessDegrees">Rusticité (°C)</Label>
-            <Input
-              id="hardinessDegrees"
-              {...register("hardinessDegrees")}
-              placeholder="Ex: -5°C, Zone 8"
-            />
+            <Input id="hardinessDegrees" {...register("hardinessDegrees")} placeholder="Ex: -5°C, Zone 8" />
           </div>
 
           {/* Fleurs */}
           <div className="space-y-2">
             <Label htmlFor="flowers">Fleurs</Label>
-            <Input
-              id="flowers"
-              {...register("flowers")}
-              placeholder="Ex: Jaunes, juin-sept"
-            />
+            <Input id="flowers" {...register("flowers")} placeholder="Ex: Jaunes, juin-sept" />
           </div>
         </div>
 
@@ -210,21 +181,13 @@ export function PlantForm({
           {/* Hauteur */}
           <div className="space-y-2">
             <Label htmlFor="height">Hauteur</Label>
-            <Input
-              id="height"
-              {...register("height")}
-              placeholder="Ex: 60-90cm"
-            />
+            <Input id="height" {...register("height")} placeholder="Ex: 60-90cm" />
           </div>
 
           {/* Étalement */}
           <div className="space-y-2">
             <Label htmlFor="spread">Étalement</Label>
-            <Input
-              id="spread"
-              {...register("spread")}
-              placeholder="Ex: 40-50cm"
-            />
+            <Input id="spread" {...register("spread")} placeholder="Ex: 40-50cm" />
           </div>
         </div>
 
@@ -280,45 +243,25 @@ export function PlantForm({
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="space-y-2">
             <Label htmlFor="insideGerminateTime">Germination intérieur (j)</Label>
-            <Input
-              id="insideGerminateTime"
-              type="number"
-              {...register("insideGerminateTime")}
-              placeholder="Ex: 7"
-            />
+            <Input id="insideGerminateTime" type="number" {...register("insideGerminateTime")} placeholder="Ex: 7" />
           </div>
           <div className="space-y-2">
             <Label htmlFor="outsideGerminateTime">Germination extérieur (j)</Label>
-            <Input
-              id="outsideGerminateTime"
-              type="number"
-              {...register("outsideGerminateTime")}
-              placeholder="Ex: 14"
-            />
+            <Input id="outsideGerminateTime" type="number" {...register("outsideGerminateTime")} placeholder="Ex: 14" />
           </div>
           <div className="space-y-2">
             <Label htmlFor="sowingDepth">Profondeur (mm)</Label>
-            <Input
-              id="sowingDepth"
-              type="number"
-              {...register("sowingDepth")}
-              placeholder="Ex: 5"
-            />
+            <Input id="sowingDepth" type="number" {...register("sowingDepth")} placeholder="Ex: 5" />
           </div>
           <div className="space-y-2">
             <Label htmlFor="bestSowingTemp">Température idéale</Label>
-            <Input
-              id="bestSowingTemp"
-              {...register("bestSowingTemp")}
-              placeholder="Ex: 18-22°C"
-            />
+            <Input id="bestSowingTemp" {...register("bestSowingTemp")} placeholder="Ex: 18-22°C" />
           </div>
         </div>
 
         {/* Note sur les périodes */}
         <p className="text-sm text-gray-500 italic">
-          Les périodes de semis (semaines 1-52) seront gérées via un composant
-          calendrier dans une prochaine session.
+          Les périodes de semis (semaines 1-52) seront gérées via un composant calendrier dans une prochaine session.
         </p>
       </section>
 
@@ -329,12 +272,7 @@ export function PlantForm({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
             <Label htmlFor="timeFirstFlower">Jours avant floraison</Label>
-            <Input
-              id="timeFirstFlower"
-              type="number"
-              {...register("timeFirstFlower")}
-              placeholder="Ex: 60"
-            />
+            <Input id="timeFirstFlower" type="number" {...register("timeFirstFlower")} placeholder="Ex: 60" />
           </div>
         </div>
       </section>

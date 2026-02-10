@@ -1,4 +1,3 @@
-
 import { pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
 
 // Table de test pour vérifier que tout fonctionne

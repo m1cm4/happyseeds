@@ -4,7 +4,6 @@ import { Button } from "../../../components/ui/button";
 import { Plant } from "@/@types/plant.types";
 import { PlantListElement } from "@/components/plant/plant-list-element";
 
-
 export const Route = createFileRoute("/_authenticated/plants/")({
   component: PlantsListPage,
 });
@@ -53,20 +52,18 @@ function PlantsListPage() {
 
       {/* Liste des plantes */}
       {plants.length > 0 && (
-        <div className="grid gap-4">                                           
-        {plants.map((plant:Plant) => (                                             
-          <PlantListElement key={plant.id} plant={plant} />                  
-        ))}                        
-                                                  
-      </div>      
+        <div className="grid gap-4">
+          {plants.map((plant: Plant) => (
+            <PlantListElement key={plant.id} plant={plant} />
+          ))}
+        </div>
       )}
 
       {/* Pagination */}
       {pagination && pagination.totalPages > 1 && (
         <div className="mt-6 flex justify-center gap-2">
           <p className="text-sm text-slate-500">
-            Page {pagination.page} sur {pagination.totalPages}
-            ({pagination.total} plantes)
+            Page {pagination.page} sur {pagination.totalPages}({pagination.total} plantes)
           </p>
         </div>
       )}

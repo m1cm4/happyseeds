@@ -23,27 +23,25 @@ type AuthVariables = {
  *   });
  * ```
  */
-export const requireAuth = createMiddleware<{ Variables: AuthVariables }>(
-  async (c, next) => {
-    const session = await auth.api.getSession({ headers: c.req.raw.headers });
+export const requireAuth = createMiddleware<{ Variables: AuthVariables }>(async (c, next) => {
+  const session = await auth.api.getSession({ headers: c.req.raw.headers });
 
-    if (!session?.user) {
-      return c.json(
-        {
-          success: false,
-          error: {
-            code: "UNAUTHORIZED",
-            message: "Non authentifié",
-          },
+  if (!session?.user) {
+    return c.json(
+      {
+        success: false,
+        error: {
+          code: "UNAUTHORIZED",
+          message: "Non authentifié",
         },
-        401
-      );
-    }
-
-    // Stocker la session et userId dans le contexte Hono
-    c.set("session", session);
-    c.set("userId", session.user.id);
-
-    await next();
+      },
+      401
+    );
   }
-);
+
+  // Stocker la session et userId dans le contexte Hono
+  c.set("session", session);
+  c.set("userId", session.user.id);
+
+  await next();
+});

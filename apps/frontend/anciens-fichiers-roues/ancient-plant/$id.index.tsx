@@ -1,11 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { usePlant, useDeletePlant } from "../../../hooks/usePlants";
 import { Button } from "../../../components/ui/button";
-import {
-  plantCategoryOptions,
-  hardinessOptions,
-  positionOptions
-} from "../../../schemas/plant.schema";
+import { plantCategoryOptions, hardinessOptions, positionOptions } from "../../../schemas/plant.schema";
 import { SeedsSection } from "@/components/plant/plant-seed-selection";
 import { getNames } from "@/utils/plant.utils";
 
@@ -17,16 +13,12 @@ export const Route = createFileRoute("/_authenticated/plant/$id/")({
 // Helpers pour les labels
 // ============================================
 
-const getCategoryLabel = (value: string) =>
-  plantCategoryOptions.find((o) => o.value === value)?.label ?? value;
+const getCategoryLabel = (value: string) => plantCategoryOptions.find((o) => o.value === value)?.label ?? value;
 
-const getHardinessLabel = (value: string) =>
-  hardinessOptions.find((o) => o.value === value)?.label ?? value;
+const getHardinessLabel = (value: string) => hardinessOptions.find((o) => o.value === value)?.label ?? value;
 
 const getPositionLabels = (values?: string[]) =>
-  values
-    ?.map((v) => positionOptions.find((o) => o.value === v)?.label ?? v)
-    .join(", ") || "-";
+  values?.map((v) => positionOptions.find((o) => o.value === v)?.label ?? v).join(", ") || "-";
 
 // ============================================
 // Composant de la page
@@ -89,7 +81,6 @@ function PlantDetailPage() {
         </span>
       </div>
 
-
       {/* Actions */}
       <div className="flex gap-2 mb-6">
         <Link to="/plant/$id/edit" params={{ id }}>
@@ -115,15 +106,13 @@ function PlantDetailPage() {
           </div>
         )}
 
-{/* Caractéristiques */}
+        {/* Caractéristiques */}
         <div>
           <h3 className="font-medium text-slate-700 mb-2">Caractéristiques</h3>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
             <div>
               <span className="text-slate-500">Rusticité</span>
-              <p className="font-medium">
-                {plant.hardiness ? getHardinessLabel(plant.hardiness) : "-"}
-              </p>
+              <p className="font-medium">{plant.hardiness ? getHardinessLabel(plant.hardiness) : "-"}</p>
             </div>
             <div>
               <span className="text-slate-500">Zone</span>
@@ -154,25 +143,15 @@ function PlantDetailPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
             <div>
               <span className="text-slate-500">Profondeur</span>
-              <p className="font-medium">
-                {plant.sowing_depth ? `${plant.sowing_depth} mm` : "-"}
-              </p>
+              <p className="font-medium">{plant.sowing_depth ? `${plant.sowing_depth} mm` : "-"}</p>
             </div>
             <div>
               <span className="text-slate-500">Germination (int.)</span>
-              <p className="font-medium">
-                {plant.inside_germinate_time
-                  ? `${plant.inside_germinate_time} j`
-                  : "-"}
-              </p>
+              <p className="font-medium">{plant.inside_germinate_time ? `${plant.inside_germinate_time} j` : "-"}</p>
             </div>
             <div>
               <span className="text-slate-500">Germination (ext.)</span>
-              <p className="font-medium">
-                {plant.outside_germinate_time
-                  ? `${plant.outside_germinate_time} j`
-                  : "-"}
-              </p>
+              <p className="font-medium">{plant.outside_germinate_time ? `${plant.outside_germinate_time} j` : "-"}</p>
             </div>
             <div>
               <span className="text-slate-500">Température</span>
@@ -180,12 +159,8 @@ function PlantDetailPage() {
             </div>
           </div>
           <div className="mt-2 flex gap-4 text-sm">
-            {plant.stratification && (
-              <span className="text-amber-600">⚠️ Stratification requise</span>
-            )}
-            {plant.cover_to_germinate && (
-              <span className="text-slate-600">🌑 Couvrir pour germer</span>
-            )}
+            {plant.stratification && <span className="text-amber-600">⚠️ Stratification requise</span>}
+            {plant.cover_to_germinate && <span className="text-slate-600">🌑 Couvrir pour germer</span>}
           </div>
         </div>
 
@@ -207,17 +182,13 @@ function PlantDetailPage() {
             {plant.sowing_info && (
               <div className="mb-2">
                 <p className="text-xs text-slate-400 uppercase">Semis</p>
-                <p className="text-slate-600 whitespace-pre-wrap">
-                  {plant.sowing_info}
-                </p>
+                <p className="text-slate-600 whitespace-pre-wrap">{plant.sowing_info}</p>
               </div>
             )}
             {plant.growing_info && (
               <div>
                 <p className="text-xs text-slate-400 uppercase">Culture</p>
-                <p className="text-slate-600 whitespace-pre-wrap">
-                  {plant.growing_info}
-                </p>
+                <p className="text-slate-600 whitespace-pre-wrap">{plant.growing_info}</p>
               </div>
             )}
           </div>

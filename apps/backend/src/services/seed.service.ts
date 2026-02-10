@@ -8,21 +8,14 @@ import { seed, Seed, NewSeed } from "../db/schemas";
 
 export type SeedFilters = {
   userId: string;
-  plantId?: string;      // Optionnel pour filtrage
-  inStock?: boolean;     // Nouveau filtre
+  plantId?: string; // Optionnel pour filtrage
+  inStock?: boolean; // Nouveau filtre
 };
 
 export type SeedPaginationParams = {
   page?: number;
   limit?: number;
-  sortBy?:
-    | "brand"
-    | "priority"
-    | "quantity"
-    | "acquisition_type"
-    | "acquisition_date"
-    | "expiry_date"
-    | "created_at";
+  sortBy?: "brand" | "priority" | "quantity" | "acquisition_type" | "acquisition_date" | "expiry_date" | "created_at";
   sortOrder?: "asc" | "desc";
 };
 
@@ -58,16 +51,8 @@ export const seedService = {
   /**
    * Récupère toutes les graines avec filtres optionnels
    */
-  async findAll(
-    filters: SeedFilters,
-    pagination: SeedPaginationParams = {}
-  ): Promise<PaginatedSeedResult> {
-    const {
-      page = 1,
-      limit = 20,
-      sortBy = "created_at",
-      sortOrder = "desc",
-    } = pagination;
+  async findAll(filters: SeedFilters, pagination: SeedPaginationParams = {}): Promise<PaginatedSeedResult> {
+    const { page = 1, limit = 20, sortBy = "created_at", sortOrder = "desc" } = pagination;
 
     // Conditions de base : toujours filtrer par user
     const conditions: SQL[] = [eq(seed.userId, filters.userId)];
@@ -137,11 +122,7 @@ export const seedService = {
   /**
    * Met à jour une graine
    */
-  async update(
-    id: string,
-    userId: string,
-    data: Partial<Omit<NewSeed, "id" | "userId">>
-  ): Promise<Seed | null> {
+  async update(id: string, userId: string, data: Partial<Omit<NewSeed, "id" | "userId">>): Promise<Seed | null> {
     const result = await db
       .update(seed)
       .set(data)
@@ -180,11 +161,7 @@ export const seedService = {
    * (utile avant suppression de plante)
    */
   async hasSeeds(plantId: string): Promise<boolean> {
-    const result = await db
-      .select({ id: seed.id })
-      .from(seed)
-      .where(eq(seed.plantId, plantId))
-      .limit(1);
+    const result = await db.select({ id: seed.id }).from(seed).where(eq(seed.plantId, plantId)).limit(1);
 
     return result.length > 0;
   },
