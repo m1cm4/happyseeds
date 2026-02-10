@@ -26,10 +26,10 @@ function EditSeedPage() {
       toast.success("Graine modifiée avec succès");
 
       // Retour vers la plante si elle existe
-      if (data?.data?.plant_id) {
-        navigate({ to: "/plants/$id", params: { id: data.data.plant_id } });
+      if (data?.success && data?.data?.plantId) {
+        navigate({ to: "/plants/$id", params: { id: data.data.plantId } });
       } else {
-        navigate({ to: "/seed" });
+        navigate({ to: "/seeds" });
       }
     },
     onError: () => {
@@ -38,7 +38,7 @@ function EditSeedPage() {
   });
 
   if (isLoading) return <div>Chargement...</div>;
-  if (!data?.data) return <div>Graine non trouvée</div>;
+  if (!data?.success) return <div>Graine non trouvée</div>;
 
   return (
     <div className="container max-w-2xl py-8">

@@ -1,4 +1,4 @@
-import { CreateSeedInput, UpdateSeedInput } from "@/@types/seed.types";
+import { CreateSeedInput, SeedQueryParams, UpdateSeedInput } from "@/@types/seed.types";
 import { seedApi } from "@/services/seed.service";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
@@ -6,6 +6,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 export const seedKeys = {
   all: (plantId: string) => ["seeds", { plantId }] as const,
   detail: (plantId: string, id: string) => ["seeds", plantId, id] as const,
+  list: (params: SeedQueryParams) => ["seeds", "list", params] as const,
 };
 
 // Hook pour récupérer toutes les graines d'une plante
@@ -14,6 +15,14 @@ export function useSeeds(plantId: string) {
     queryKey: seedKeys.all(plantId),
     queryFn: () => seedApi.getAll({ plantId }),
     enabled: !!plantId,
+  });
+}
+
+// Hook pour récupérer toutes les graines
+export function useAllSeeds(params: SeedQueryParams = {}) {
+  return useQuery({
+    queryKey: seedKeys.list(params),
+    queryFn: () => seedApi.getAll(params),
   });
 }
 

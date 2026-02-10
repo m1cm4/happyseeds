@@ -15,6 +15,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedSeedsRouteRouteImport } from './routes/_authenticated/seeds/route'
+import { Route as AuthenticatedSeedsIndexRouteImport } from './routes/_authenticated/seeds/index'
 import { Route as AuthenticatedPlantsIndexRouteImport } from './routes/_authenticated/plants/index'
 import { Route as DemoStartServerFuncsRouteImport } from './routes/demo/start.server-funcs'
 import { Route as DemoStartApiRequestRouteImport } from './routes/demo/start.api-request'
@@ -57,6 +58,11 @@ const AuthenticatedSeedsRouteRoute = AuthenticatedSeedsRouteRouteImport.update({
   id: '/seeds',
   path: '/seeds',
   getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedSeedsIndexRoute = AuthenticatedSeedsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedSeedsRouteRoute,
 } as any)
 const AuthenticatedPlantsIndexRoute =
   AuthenticatedPlantsIndexRouteImport.update({
@@ -140,6 +146,7 @@ export interface FileRoutesByFullPath {
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/plants/': typeof AuthenticatedPlantsIndexRoute
+  '/seeds/': typeof AuthenticatedSeedsIndexRoute
   '/plants/$id/edit': typeof AuthenticatedPlantsIdEditRoute
   '/seeds/$id/edit': typeof AuthenticatedSeedsIdEditRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
@@ -152,7 +159,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
-  '/seeds': typeof AuthenticatedSeedsRouteRouteWithChildren
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/plants/new': typeof AuthenticatedPlantsNewRoute
   '/seeds/new': typeof AuthenticatedSeedsNewRoute
@@ -160,6 +166,7 @@ export interface FileRoutesByTo {
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/plants': typeof AuthenticatedPlantsIndexRoute
+  '/seeds': typeof AuthenticatedSeedsIndexRoute
   '/plants/$id/edit': typeof AuthenticatedPlantsIdEditRoute
   '/seeds/$id/edit': typeof AuthenticatedSeedsIdEditRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
@@ -182,6 +189,7 @@ export interface FileRoutesById {
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/_authenticated/plants/': typeof AuthenticatedPlantsIndexRoute
+  '/_authenticated/seeds/': typeof AuthenticatedSeedsIndexRoute
   '/_authenticated/plants/$id/edit': typeof AuthenticatedPlantsIdEditRoute
   '/_authenticated/seeds/$id/edit': typeof AuthenticatedSeedsIdEditRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
@@ -204,6 +212,7 @@ export interface FileRouteTypes {
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
     | '/plants/'
+    | '/seeds/'
     | '/plants/$id/edit'
     | '/seeds/$id/edit'
     | '/demo/start/ssr/data-only'
@@ -216,7 +225,6 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/signup'
-    | '/seeds'
     | '/dashboard'
     | '/plants/new'
     | '/seeds/new'
@@ -224,6 +232,7 @@ export interface FileRouteTypes {
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
     | '/plants'
+    | '/seeds'
     | '/plants/$id/edit'
     | '/seeds/$id/edit'
     | '/demo/start/ssr/data-only'
@@ -245,6 +254,7 @@ export interface FileRouteTypes {
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
     | '/_authenticated/plants/'
+    | '/_authenticated/seeds/'
     | '/_authenticated/plants/$id/edit'
     | '/_authenticated/seeds/$id/edit'
     | '/demo/start/ssr/data-only'
@@ -311,6 +321,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/seeds'
       preLoaderRoute: typeof AuthenticatedSeedsRouteRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/seeds/': {
+      id: '/_authenticated/seeds/'
+      path: '/'
+      fullPath: '/seeds/'
+      preLoaderRoute: typeof AuthenticatedSeedsIndexRouteImport
+      parentRoute: typeof AuthenticatedSeedsRouteRoute
     }
     '/_authenticated/plants/': {
       id: '/_authenticated/plants/'
@@ -408,12 +425,14 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedSeedsRouteRouteChildren {
   AuthenticatedSeedsNewRoute: typeof AuthenticatedSeedsNewRoute
+  AuthenticatedSeedsIndexRoute: typeof AuthenticatedSeedsIndexRoute
   AuthenticatedSeedsIdEditRoute: typeof AuthenticatedSeedsIdEditRoute
 }
 
 const AuthenticatedSeedsRouteRouteChildren: AuthenticatedSeedsRouteRouteChildren =
   {
     AuthenticatedSeedsNewRoute: AuthenticatedSeedsNewRoute,
+    AuthenticatedSeedsIndexRoute: AuthenticatedSeedsIndexRoute,
     AuthenticatedSeedsIdEditRoute: AuthenticatedSeedsIdEditRoute,
   }
 
