@@ -41,7 +41,7 @@ function EditPlantPage() {
     const cleanedData = Object.fromEntries(Object.entries(formData).filter(([_, v]) => v !== "" && v !== undefined));
 
     updatePlant.mutate(
-      { id, data: cleanedData as any },
+      { id, data: cleanedData as CreatePlantInput },
       {
         onSuccess: () => {
           navigate({ to: "/plants/$id", params: { id } });

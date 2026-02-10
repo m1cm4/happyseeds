@@ -16,8 +16,6 @@ function NewSeedPage() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { plantId } = useSearch({ from: "/_authenticated/seeds/new" });
-  console.log("plante = ", plantId);
-
   const mutation = useMutation({
     mutationFn: (data: CreateSeedInput) => seedApi.create(data),
     onSuccess: () => {

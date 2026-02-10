@@ -47,9 +47,6 @@ export const seedRoutes = new Hono()
   .get("/", zValidator("query", querySchema), async (c) => {
     const userId = c.get("userId");
     const query = c.req.valid("query");
-    console.log("userID", userId);
-    console.log("query", query.plantId);
-
     // Si plantId fourni, vérifier qu'il existe
     if (query.plantId) {
       const plant = await plantService.findById(query.plantId);
@@ -94,8 +91,6 @@ export const seedRoutes = new Hono()
   .post("/", zValidator("json", createSeedSchema), async (c) => {
     const userId = c.get("userId");
     const body = c.req.valid("json");
-    console.log("route post seed/ ", body);
-
     // Si plantId fourni, vérifier qu'il existe
     if (body.plantId) {
       const plant = await plantService.findById(body.plantId);

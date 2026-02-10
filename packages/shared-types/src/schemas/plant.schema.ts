@@ -58,7 +58,7 @@ const optionalPositiveInt = z.preprocess(
 );
 
 // Enum optionnel (gestion des chaînes vides des selects HTML)
-const optionalEnum = <T extends z.ZodEnum<any>>(enumSchema: T) =>
+const optionalEnum = <T extends z.ZodEnum<[string, ...string[]]>>(enumSchema: T) =>
   z.preprocess((val) => (val === "" || val === null || val === undefined ? undefined : val), enumSchema.optional());
 
 // Texte court optionnel

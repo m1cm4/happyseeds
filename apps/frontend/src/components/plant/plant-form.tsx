@@ -85,10 +85,7 @@ export function PlantForm({
   });
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit, (errors) => console.log("Validation errors:", errors))}
-      className="space-y-8"
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
       {/* ==================== CLASSIFICATION ==================== */}
       <section className="space-y-4">
         <h3 className="text-lg font-semibold border-b pb-2">Classification</h3>

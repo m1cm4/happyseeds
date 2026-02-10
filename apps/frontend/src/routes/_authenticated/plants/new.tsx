@@ -12,23 +12,13 @@ function NewPlantPage() {
   const createPlant = useCreatePlant();
 
   const handleSubmit = (data: CreatePlantInput) => {
-    console.log("Form submitted:", data);
-    // Nettoyer les valeurs vides (le préprocesseur Zod gère déjà hardiness)
     const cleanedData = Object.fromEntries(
-      Object.entries(data).filter(([_, v]) => {
-        // Cast pour éviter l'erreur TypeScript avec hardiness
-        const val = v as any;
-        return val !== undefined && val !== "";
-      })
-    );
-    console.log("Cleaned data:", cleanedData);
-    createPlant.mutate(cleanedData as any, {
+      Object.entries(data).filter(([_, v]) => v !== undefined && v !== "")
+    ) as CreatePlantInput;
+
+    createPlant.mutate(cleanedData, {
       onSuccess: () => {
-        console.log("Success!");
         navigate({ to: "/plants" });
-      },
-      onError: (error) => {
-        console.error("Error:", error); // ← Et celle-ci
       },
     });
   };

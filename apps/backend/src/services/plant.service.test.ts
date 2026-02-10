@@ -54,7 +54,7 @@ describe("plantService", () => {
           }),
         }),
       });
-      (db.select as any).mockImplementation(mockSelect);
+      vi.mocked(db.select).mockImplementation(mockSelect);
 
       // Act
       const result = await plantService.findById("plant-123");
@@ -73,7 +73,7 @@ describe("plantService", () => {
           }),
         }),
       });
-      (db.select as any).mockImplementation(mockSelect);
+      vi.mocked(db.select).mockImplementation(mockSelect);
 
       // Act
       const result = await plantService.findById("inexistant");
@@ -103,7 +103,7 @@ describe("plantService", () => {
           returning: vi.fn().mockResolvedValue([createdPlant]),
         }),
       });
-      (db.insert as any).mockImplementation(mockInsert);
+      vi.mocked(db.insert).mockImplementation(mockInsert);
 
       // Act
       const result = await plantService.create(newPlantData);
@@ -129,7 +129,7 @@ describe("plantService", () => {
           }),
         }),
       });
-      (db.update as any).mockImplementation(mockUpdate);
+      vi.mocked(db.update).mockImplementation(mockUpdate);
 
       // Act
       const result = await plantService.update("plant-123", "user-456", {
@@ -150,7 +150,7 @@ describe("plantService", () => {
           }),
         }),
       });
-      (db.update as any).mockImplementation(mockUpdate);
+      vi.mocked(db.update).mockImplementation(mockUpdate);
 
       // Act
       const result = await plantService.update("inexistant", "user-456", {
@@ -173,7 +173,7 @@ describe("plantService", () => {
           returning: vi.fn().mockResolvedValue([{ id: "plant-123" }]),
         }),
       });
-      (db.delete as any).mockImplementation(mockDelete);
+      vi.mocked(db.delete).mockImplementation(mockDelete);
 
       // Act
       const result = await plantService.delete("plant-123", "user-456");
@@ -189,7 +189,7 @@ describe("plantService", () => {
           returning: vi.fn().mockResolvedValue([]),
         }),
       });
-      (db.delete as any).mockImplementation(mockDelete);
+      vi.mocked(db.delete).mockImplementation(mockDelete);
 
       // Act
       const result = await plantService.delete("inexistant", "user-456");

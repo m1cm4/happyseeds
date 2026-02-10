@@ -52,15 +52,17 @@ export const Route = createFileRoute("/demo/start/server-funcs")({
 
 function Home() {
   const router = useRouter();
-  let todos = Route.useLoaderData();
+  const loaderTodos = Route.useLoaderData();
+  const [todos, setTodos] = useState(loaderTodos);
 
   const [todo, setTodo] = useState("");
 
   const submitTodo = useCallback(async () => {
-    todos = await addTodo({ data: todo });
+    const newTodos = await addTodo({ data: todo });
+    setTodos(newTodos);
     setTodo("");
     router.invalidate();
-  }, [addTodo, todo]);
+  }, [todo, router]);
 
   return (
     <div

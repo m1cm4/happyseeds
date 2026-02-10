@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Button } from "../ui/button";
-import { useDeleteSeed, useSeeds } from "@/hooks/useSeed";
+import { useSeeds } from "@/hooks/useSeed";
 
 export function SeedsSection({ plantId }: { plantId: string }) {
   const { data: seedsData, isLoading } = useSeeds(plantId);

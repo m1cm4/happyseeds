@@ -7,7 +7,7 @@ import { plant, Plant, NewPlant } from "../db/schemas";
 // ============================================
 
 export type PlantFilters = {
-  category?: string;
+  category?: "ornamental" | "vegetable";
   search?: string;
 };
 
@@ -55,7 +55,7 @@ export const plantService = {
     const conditions: SQL[] = [];
 
     if (filters.category) {
-      conditions.push(eq(plant.category, filters.category as any));
+      conditions.push(eq(plant.category, filters.category));
     }
 
     if (filters.search) {

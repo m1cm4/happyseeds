@@ -55,7 +55,7 @@ export function SeedForm({
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors: _errors },
   } = useForm<CreateSeedInput>({
     resolver: zodResolver(createSeedSchema),
     defaultValues: {

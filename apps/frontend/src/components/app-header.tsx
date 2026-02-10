@@ -1,11 +1,10 @@
-import { Link, useMatchRoute } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { useSession } from "../lib/auth-client";
 import { Button } from "@/components/ui/button";
 import { logout } from "@/lib/auth";
 
 export function AppHeader() {
   const { data: session, isPending } = useSession();
-  const useMatch = useMatchRoute;
 
   return (
     <header className="p-4 bg-white shadow">

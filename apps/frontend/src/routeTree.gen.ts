@@ -8,421 +8,427 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from "./routes/__root";
-import { Route as SignupRouteImport } from "./routes/signup";
-import { Route as LoginRouteImport } from "./routes/login";
-import { Route as AuthenticatedRouteRouteImport } from "./routes/_authenticated/route";
-import { Route as IndexRouteImport } from "./routes/index";
-import { Route as AuthenticatedDashboardRouteImport } from "./routes/_authenticated/dashboard";
-import { Route as AuthenticatedSeedsRouteRouteImport } from "./routes/_authenticated/seeds/route";
-import { Route as AuthenticatedPlantsIndexRouteImport } from "./routes/_authenticated/plants/index";
-import { Route as DemoStartServerFuncsRouteImport } from "./routes/demo/start.server-funcs";
-import { Route as DemoStartApiRequestRouteImport } from "./routes/demo/start.api-request";
-import { Route as DemoApiNamesRouteImport } from "./routes/demo/api.names";
-import { Route as AuthenticatedSeedsNewRouteImport } from "./routes/_authenticated/seeds/new";
-import { Route as AuthenticatedPlantsNewRouteImport } from "./routes/_authenticated/plants/new";
-import { Route as DemoStartSsrIndexRouteImport } from "./routes/demo/start.ssr.index";
-import { Route as AuthenticatedPlantsIdIndexRouteImport } from "./routes/_authenticated/plants/$id.index";
-import { Route as DemoStartSsrSpaModeRouteImport } from "./routes/demo/start.ssr.spa-mode";
-import { Route as DemoStartSsrFullSsrRouteImport } from "./routes/demo/start.ssr.full-ssr";
-import { Route as DemoStartSsrDataOnlyRouteImport } from "./routes/demo/start.ssr.data-only";
-import { Route as AuthenticatedSeedsIdEditRouteImport } from "./routes/_authenticated/seeds/$id.edit";
-import { Route as AuthenticatedPlantsIdEditRouteImport } from "./routes/_authenticated/plants/$id.edit";
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedSeedsRouteRouteImport } from './routes/_authenticated/seeds/route'
+import { Route as AuthenticatedPlantsIndexRouteImport } from './routes/_authenticated/plants/index'
+import { Route as DemoStartServerFuncsRouteImport } from './routes/demo/start.server-funcs'
+import { Route as DemoStartApiRequestRouteImport } from './routes/demo/start.api-request'
+import { Route as DemoApiNamesRouteImport } from './routes/demo/api.names'
+import { Route as AuthenticatedSeedsNewRouteImport } from './routes/_authenticated/seeds/new'
+import { Route as AuthenticatedPlantsNewRouteImport } from './routes/_authenticated/plants/new'
+import { Route as DemoStartSsrIndexRouteImport } from './routes/demo/start.ssr.index'
+import { Route as AuthenticatedPlantsIdIndexRouteImport } from './routes/_authenticated/plants/$id.index'
+import { Route as DemoStartSsrSpaModeRouteImport } from './routes/demo/start.ssr.spa-mode'
+import { Route as DemoStartSsrFullSsrRouteImport } from './routes/demo/start.ssr.full-ssr'
+import { Route as DemoStartSsrDataOnlyRouteImport } from './routes/demo/start.ssr.data-only'
+import { Route as AuthenticatedSeedsIdEditRouteImport } from './routes/_authenticated/seeds/$id.edit'
+import { Route as AuthenticatedPlantsIdEditRouteImport } from './routes/_authenticated/plants/$id.edit'
 
 const SignupRoute = SignupRouteImport.update({
-  id: "/signup",
-  path: "/signup",
+  id: '/signup',
+  path: '/signup',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const LoginRoute = LoginRouteImport.update({
-  id: "/login",
-  path: "/login",
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
-  id: "/_authenticated",
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const IndexRoute = IndexRouteImport.update({
-  id: "/",
-  path: "/",
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
-  id: "/dashboard",
-  path: "/dashboard",
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
-} as any);
+} as any)
 const AuthenticatedSeedsRouteRoute = AuthenticatedSeedsRouteRouteImport.update({
-  id: "/seeds",
-  path: "/seeds",
+  id: '/seeds',
+  path: '/seeds',
   getParentRoute: () => AuthenticatedRouteRoute,
-} as any);
-const AuthenticatedPlantsIndexRoute = AuthenticatedPlantsIndexRouteImport.update({
-  id: "/plants/",
-  path: "/plants/",
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any);
+} as any)
+const AuthenticatedPlantsIndexRoute =
+  AuthenticatedPlantsIndexRouteImport.update({
+    id: '/plants/',
+    path: '/plants/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const DemoStartServerFuncsRoute = DemoStartServerFuncsRouteImport.update({
-  id: "/demo/start/server-funcs",
-  path: "/demo/start/server-funcs",
+  id: '/demo/start/server-funcs',
+  path: '/demo/start/server-funcs',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const DemoStartApiRequestRoute = DemoStartApiRequestRouteImport.update({
-  id: "/demo/start/api-request",
-  path: "/demo/start/api-request",
+  id: '/demo/start/api-request',
+  path: '/demo/start/api-request',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const DemoApiNamesRoute = DemoApiNamesRouteImport.update({
-  id: "/demo/api/names",
-  path: "/demo/api/names",
+  id: '/demo/api/names',
+  path: '/demo/api/names',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const AuthenticatedSeedsNewRoute = AuthenticatedSeedsNewRouteImport.update({
-  id: "/new",
-  path: "/new",
+  id: '/new',
+  path: '/new',
   getParentRoute: () => AuthenticatedSeedsRouteRoute,
-} as any);
+} as any)
 const AuthenticatedPlantsNewRoute = AuthenticatedPlantsNewRouteImport.update({
-  id: "/plants/new",
-  path: "/plants/new",
+  id: '/plants/new',
+  path: '/plants/new',
   getParentRoute: () => AuthenticatedRouteRoute,
-} as any);
+} as any)
 const DemoStartSsrIndexRoute = DemoStartSsrIndexRouteImport.update({
-  id: "/demo/start/ssr/",
-  path: "/demo/start/ssr/",
+  id: '/demo/start/ssr/',
+  path: '/demo/start/ssr/',
   getParentRoute: () => rootRouteImport,
-} as any);
-const AuthenticatedPlantsIdIndexRoute = AuthenticatedPlantsIdIndexRouteImport.update({
-  id: "/plants/$id/",
-  path: "/plants/$id/",
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any);
+} as any)
+const AuthenticatedPlantsIdIndexRoute =
+  AuthenticatedPlantsIdIndexRouteImport.update({
+    id: '/plants/$id/',
+    path: '/plants/$id/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const DemoStartSsrSpaModeRoute = DemoStartSsrSpaModeRouteImport.update({
-  id: "/demo/start/ssr/spa-mode",
-  path: "/demo/start/ssr/spa-mode",
+  id: '/demo/start/ssr/spa-mode',
+  path: '/demo/start/ssr/spa-mode',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const DemoStartSsrFullSsrRoute = DemoStartSsrFullSsrRouteImport.update({
-  id: "/demo/start/ssr/full-ssr",
-  path: "/demo/start/ssr/full-ssr",
+  id: '/demo/start/ssr/full-ssr',
+  path: '/demo/start/ssr/full-ssr',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const DemoStartSsrDataOnlyRoute = DemoStartSsrDataOnlyRouteImport.update({
-  id: "/demo/start/ssr/data-only",
-  path: "/demo/start/ssr/data-only",
+  id: '/demo/start/ssr/data-only',
+  path: '/demo/start/ssr/data-only',
   getParentRoute: () => rootRouteImport,
-} as any);
-const AuthenticatedSeedsIdEditRoute = AuthenticatedSeedsIdEditRouteImport.update({
-  id: "/$id/edit",
-  path: "/$id/edit",
-  getParentRoute: () => AuthenticatedSeedsRouteRoute,
-} as any);
-const AuthenticatedPlantsIdEditRoute = AuthenticatedPlantsIdEditRouteImport.update({
-  id: "/plants/$id/edit",
-  path: "/plants/$id/edit",
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any);
+} as any)
+const AuthenticatedSeedsIdEditRoute =
+  AuthenticatedSeedsIdEditRouteImport.update({
+    id: '/$id/edit',
+    path: '/$id/edit',
+    getParentRoute: () => AuthenticatedSeedsRouteRoute,
+  } as any)
+const AuthenticatedPlantsIdEditRoute =
+  AuthenticatedPlantsIdEditRouteImport.update({
+    id: '/plants/$id/edit',
+    path: '/plants/$id/edit',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  "/": typeof IndexRoute;
-  "/login": typeof LoginRoute;
-  "/signup": typeof SignupRoute;
-  "/seeds": typeof AuthenticatedSeedsRouteRouteWithChildren;
-  "/dashboard": typeof AuthenticatedDashboardRoute;
-  "/plants/new": typeof AuthenticatedPlantsNewRoute;
-  "/seeds/new": typeof AuthenticatedSeedsNewRoute;
-  "/demo/api/names": typeof DemoApiNamesRoute;
-  "/demo/start/api-request": typeof DemoStartApiRequestRoute;
-  "/demo/start/server-funcs": typeof DemoStartServerFuncsRoute;
-  "/plants/": typeof AuthenticatedPlantsIndexRoute;
-  "/plants/$id/edit": typeof AuthenticatedPlantsIdEditRoute;
-  "/seeds/$id/edit": typeof AuthenticatedSeedsIdEditRoute;
-  "/demo/start/ssr/data-only": typeof DemoStartSsrDataOnlyRoute;
-  "/demo/start/ssr/full-ssr": typeof DemoStartSsrFullSsrRoute;
-  "/demo/start/ssr/spa-mode": typeof DemoStartSsrSpaModeRoute;
-  "/plants/$id/": typeof AuthenticatedPlantsIdIndexRoute;
-  "/demo/start/ssr/": typeof DemoStartSsrIndexRoute;
+  '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/seeds': typeof AuthenticatedSeedsRouteRouteWithChildren
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/plants/new': typeof AuthenticatedPlantsNewRoute
+  '/seeds/new': typeof AuthenticatedSeedsNewRoute
+  '/demo/api/names': typeof DemoApiNamesRoute
+  '/demo/start/api-request': typeof DemoStartApiRequestRoute
+  '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
+  '/plants/': typeof AuthenticatedPlantsIndexRoute
+  '/plants/$id/edit': typeof AuthenticatedPlantsIdEditRoute
+  '/seeds/$id/edit': typeof AuthenticatedSeedsIdEditRoute
+  '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
+  '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
+  '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
+  '/plants/$id/': typeof AuthenticatedPlantsIdIndexRoute
+  '/demo/start/ssr/': typeof DemoStartSsrIndexRoute
 }
 export interface FileRoutesByTo {
-  "/": typeof IndexRoute;
-  "/login": typeof LoginRoute;
-  "/signup": typeof SignupRoute;
-  "/seeds": typeof AuthenticatedSeedsRouteRouteWithChildren;
-  "/dashboard": typeof AuthenticatedDashboardRoute;
-  "/plants/new": typeof AuthenticatedPlantsNewRoute;
-  "/seeds/new": typeof AuthenticatedSeedsNewRoute;
-  "/demo/api/names": typeof DemoApiNamesRoute;
-  "/demo/start/api-request": typeof DemoStartApiRequestRoute;
-  "/demo/start/server-funcs": typeof DemoStartServerFuncsRoute;
-  "/plants": typeof AuthenticatedPlantsIndexRoute;
-  "/plants/$id/edit": typeof AuthenticatedPlantsIdEditRoute;
-  "/seeds/$id/edit": typeof AuthenticatedSeedsIdEditRoute;
-  "/demo/start/ssr/data-only": typeof DemoStartSsrDataOnlyRoute;
-  "/demo/start/ssr/full-ssr": typeof DemoStartSsrFullSsrRoute;
-  "/demo/start/ssr/spa-mode": typeof DemoStartSsrSpaModeRoute;
-  "/plants/$id": typeof AuthenticatedPlantsIdIndexRoute;
-  "/demo/start/ssr": typeof DemoStartSsrIndexRoute;
+  '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/seeds': typeof AuthenticatedSeedsRouteRouteWithChildren
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/plants/new': typeof AuthenticatedPlantsNewRoute
+  '/seeds/new': typeof AuthenticatedSeedsNewRoute
+  '/demo/api/names': typeof DemoApiNamesRoute
+  '/demo/start/api-request': typeof DemoStartApiRequestRoute
+  '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
+  '/plants': typeof AuthenticatedPlantsIndexRoute
+  '/plants/$id/edit': typeof AuthenticatedPlantsIdEditRoute
+  '/seeds/$id/edit': typeof AuthenticatedSeedsIdEditRoute
+  '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
+  '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
+  '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
+  '/plants/$id': typeof AuthenticatedPlantsIdIndexRoute
+  '/demo/start/ssr': typeof DemoStartSsrIndexRoute
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport;
-  "/": typeof IndexRoute;
-  "/_authenticated": typeof AuthenticatedRouteRouteWithChildren;
-  "/login": typeof LoginRoute;
-  "/signup": typeof SignupRoute;
-  "/_authenticated/seeds": typeof AuthenticatedSeedsRouteRouteWithChildren;
-  "/_authenticated/dashboard": typeof AuthenticatedDashboardRoute;
-  "/_authenticated/plants/new": typeof AuthenticatedPlantsNewRoute;
-  "/_authenticated/seeds/new": typeof AuthenticatedSeedsNewRoute;
-  "/demo/api/names": typeof DemoApiNamesRoute;
-  "/demo/start/api-request": typeof DemoStartApiRequestRoute;
-  "/demo/start/server-funcs": typeof DemoStartServerFuncsRoute;
-  "/_authenticated/plants/": typeof AuthenticatedPlantsIndexRoute;
-  "/_authenticated/plants/$id/edit": typeof AuthenticatedPlantsIdEditRoute;
-  "/_authenticated/seeds/$id/edit": typeof AuthenticatedSeedsIdEditRoute;
-  "/demo/start/ssr/data-only": typeof DemoStartSsrDataOnlyRoute;
-  "/demo/start/ssr/full-ssr": typeof DemoStartSsrFullSsrRoute;
-  "/demo/start/ssr/spa-mode": typeof DemoStartSsrSpaModeRoute;
-  "/_authenticated/plants/$id/": typeof AuthenticatedPlantsIdIndexRoute;
-  "/demo/start/ssr/": typeof DemoStartSsrIndexRoute;
+  __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/_authenticated/seeds': typeof AuthenticatedSeedsRouteRouteWithChildren
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/plants/new': typeof AuthenticatedPlantsNewRoute
+  '/_authenticated/seeds/new': typeof AuthenticatedSeedsNewRoute
+  '/demo/api/names': typeof DemoApiNamesRoute
+  '/demo/start/api-request': typeof DemoStartApiRequestRoute
+  '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
+  '/_authenticated/plants/': typeof AuthenticatedPlantsIndexRoute
+  '/_authenticated/plants/$id/edit': typeof AuthenticatedPlantsIdEditRoute
+  '/_authenticated/seeds/$id/edit': typeof AuthenticatedSeedsIdEditRoute
+  '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
+  '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
+  '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
+  '/_authenticated/plants/$id/': typeof AuthenticatedPlantsIdIndexRoute
+  '/demo/start/ssr/': typeof DemoStartSsrIndexRoute
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
+  fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | "/"
-    | "/login"
-    | "/signup"
-    | "/seeds"
-    | "/dashboard"
-    | "/plants/new"
-    | "/seeds/new"
-    | "/demo/api/names"
-    | "/demo/start/api-request"
-    | "/demo/start/server-funcs"
-    | "/plants/"
-    | "/plants/$id/edit"
-    | "/seeds/$id/edit"
-    | "/demo/start/ssr/data-only"
-    | "/demo/start/ssr/full-ssr"
-    | "/demo/start/ssr/spa-mode"
-    | "/plants/$id/"
-    | "/demo/start/ssr/";
-  fileRoutesByTo: FileRoutesByTo;
+    | '/'
+    | '/login'
+    | '/signup'
+    | '/seeds'
+    | '/dashboard'
+    | '/plants/new'
+    | '/seeds/new'
+    | '/demo/api/names'
+    | '/demo/start/api-request'
+    | '/demo/start/server-funcs'
+    | '/plants/'
+    | '/plants/$id/edit'
+    | '/seeds/$id/edit'
+    | '/demo/start/ssr/data-only'
+    | '/demo/start/ssr/full-ssr'
+    | '/demo/start/ssr/spa-mode'
+    | '/plants/$id/'
+    | '/demo/start/ssr/'
+  fileRoutesByTo: FileRoutesByTo
   to:
-    | "/"
-    | "/login"
-    | "/signup"
-    | "/seeds"
-    | "/dashboard"
-    | "/plants/new"
-    | "/seeds/new"
-    | "/demo/api/names"
-    | "/demo/start/api-request"
-    | "/demo/start/server-funcs"
-    | "/plants"
-    | "/plants/$id/edit"
-    | "/seeds/$id/edit"
-    | "/demo/start/ssr/data-only"
-    | "/demo/start/ssr/full-ssr"
-    | "/demo/start/ssr/spa-mode"
-    | "/plants/$id"
-    | "/demo/start/ssr";
+    | '/'
+    | '/login'
+    | '/signup'
+    | '/seeds'
+    | '/dashboard'
+    | '/plants/new'
+    | '/seeds/new'
+    | '/demo/api/names'
+    | '/demo/start/api-request'
+    | '/demo/start/server-funcs'
+    | '/plants'
+    | '/plants/$id/edit'
+    | '/seeds/$id/edit'
+    | '/demo/start/ssr/data-only'
+    | '/demo/start/ssr/full-ssr'
+    | '/demo/start/ssr/spa-mode'
+    | '/plants/$id'
+    | '/demo/start/ssr'
   id:
-    | "__root__"
-    | "/"
-    | "/_authenticated"
-    | "/login"
-    | "/signup"
-    | "/_authenticated/seeds"
-    | "/_authenticated/dashboard"
-    | "/_authenticated/plants/new"
-    | "/_authenticated/seeds/new"
-    | "/demo/api/names"
-    | "/demo/start/api-request"
-    | "/demo/start/server-funcs"
-    | "/_authenticated/plants/"
-    | "/_authenticated/plants/$id/edit"
-    | "/_authenticated/seeds/$id/edit"
-    | "/demo/start/ssr/data-only"
-    | "/demo/start/ssr/full-ssr"
-    | "/demo/start/ssr/spa-mode"
-    | "/_authenticated/plants/$id/"
-    | "/demo/start/ssr/";
-  fileRoutesById: FileRoutesById;
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/login'
+    | '/signup'
+    | '/_authenticated/seeds'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/plants/new'
+    | '/_authenticated/seeds/new'
+    | '/demo/api/names'
+    | '/demo/start/api-request'
+    | '/demo/start/server-funcs'
+    | '/_authenticated/plants/'
+    | '/_authenticated/plants/$id/edit'
+    | '/_authenticated/seeds/$id/edit'
+    | '/demo/start/ssr/data-only'
+    | '/demo/start/ssr/full-ssr'
+    | '/demo/start/ssr/spa-mode'
+    | '/_authenticated/plants/$id/'
+    | '/demo/start/ssr/'
+  fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute;
-  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren;
-  LoginRoute: typeof LoginRoute;
-  SignupRoute: typeof SignupRoute;
-  DemoApiNamesRoute: typeof DemoApiNamesRoute;
-  DemoStartApiRequestRoute: typeof DemoStartApiRequestRoute;
-  DemoStartServerFuncsRoute: typeof DemoStartServerFuncsRoute;
-  DemoStartSsrDataOnlyRoute: typeof DemoStartSsrDataOnlyRoute;
-  DemoStartSsrFullSsrRoute: typeof DemoStartSsrFullSsrRoute;
-  DemoStartSsrSpaModeRoute: typeof DemoStartSsrSpaModeRoute;
-  DemoStartSsrIndexRoute: typeof DemoStartSsrIndexRoute;
+  IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  LoginRoute: typeof LoginRoute
+  SignupRoute: typeof SignupRoute
+  DemoApiNamesRoute: typeof DemoApiNamesRoute
+  DemoStartApiRequestRoute: typeof DemoStartApiRequestRoute
+  DemoStartServerFuncsRoute: typeof DemoStartServerFuncsRoute
+  DemoStartSsrDataOnlyRoute: typeof DemoStartSsrDataOnlyRoute
+  DemoStartSsrFullSsrRoute: typeof DemoStartSsrFullSsrRoute
+  DemoStartSsrSpaModeRoute: typeof DemoStartSsrSpaModeRoute
+  DemoStartSsrIndexRoute: typeof DemoStartSsrIndexRoute
 }
 
-declare module "@tanstack/react-router" {
+declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    "/signup": {
-      id: "/signup";
-      path: "/signup";
-      fullPath: "/signup";
-      preLoaderRoute: typeof SignupRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/login": {
-      id: "/login";
-      path: "/login";
-      fullPath: "/login";
-      preLoaderRoute: typeof LoginRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/_authenticated": {
-      id: "/_authenticated";
-      path: "";
-      fullPath: "/";
-      preLoaderRoute: typeof AuthenticatedRouteRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/": {
-      id: "/";
-      path: "/";
-      fullPath: "/";
-      preLoaderRoute: typeof IndexRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/_authenticated/dashboard": {
-      id: "/_authenticated/dashboard";
-      path: "/dashboard";
-      fullPath: "/dashboard";
-      preLoaderRoute: typeof AuthenticatedDashboardRouteImport;
-      parentRoute: typeof AuthenticatedRouteRoute;
-    };
-    "/_authenticated/seeds": {
-      id: "/_authenticated/seeds";
-      path: "/seeds";
-      fullPath: "/seeds";
-      preLoaderRoute: typeof AuthenticatedSeedsRouteRouteImport;
-      parentRoute: typeof AuthenticatedRouteRoute;
-    };
-    "/_authenticated/plants/": {
-      id: "/_authenticated/plants/";
-      path: "/plants";
-      fullPath: "/plants/";
-      preLoaderRoute: typeof AuthenticatedPlantsIndexRouteImport;
-      parentRoute: typeof AuthenticatedRouteRoute;
-    };
-    "/demo/start/server-funcs": {
-      id: "/demo/start/server-funcs";
-      path: "/demo/start/server-funcs";
-      fullPath: "/demo/start/server-funcs";
-      preLoaderRoute: typeof DemoStartServerFuncsRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/demo/start/api-request": {
-      id: "/demo/start/api-request";
-      path: "/demo/start/api-request";
-      fullPath: "/demo/start/api-request";
-      preLoaderRoute: typeof DemoStartApiRequestRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/demo/api/names": {
-      id: "/demo/api/names";
-      path: "/demo/api/names";
-      fullPath: "/demo/api/names";
-      preLoaderRoute: typeof DemoApiNamesRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/_authenticated/seeds/new": {
-      id: "/_authenticated/seeds/new";
-      path: "/new";
-      fullPath: "/seeds/new";
-      preLoaderRoute: typeof AuthenticatedSeedsNewRouteImport;
-      parentRoute: typeof AuthenticatedSeedsRouteRoute;
-    };
-    "/_authenticated/plants/new": {
-      id: "/_authenticated/plants/new";
-      path: "/plants/new";
-      fullPath: "/plants/new";
-      preLoaderRoute: typeof AuthenticatedPlantsNewRouteImport;
-      parentRoute: typeof AuthenticatedRouteRoute;
-    };
-    "/demo/start/ssr/": {
-      id: "/demo/start/ssr/";
-      path: "/demo/start/ssr";
-      fullPath: "/demo/start/ssr/";
-      preLoaderRoute: typeof DemoStartSsrIndexRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/_authenticated/plants/$id/": {
-      id: "/_authenticated/plants/$id/";
-      path: "/plants/$id";
-      fullPath: "/plants/$id/";
-      preLoaderRoute: typeof AuthenticatedPlantsIdIndexRouteImport;
-      parentRoute: typeof AuthenticatedRouteRoute;
-    };
-    "/demo/start/ssr/spa-mode": {
-      id: "/demo/start/ssr/spa-mode";
-      path: "/demo/start/ssr/spa-mode";
-      fullPath: "/demo/start/ssr/spa-mode";
-      preLoaderRoute: typeof DemoStartSsrSpaModeRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/demo/start/ssr/full-ssr": {
-      id: "/demo/start/ssr/full-ssr";
-      path: "/demo/start/ssr/full-ssr";
-      fullPath: "/demo/start/ssr/full-ssr";
-      preLoaderRoute: typeof DemoStartSsrFullSsrRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/demo/start/ssr/data-only": {
-      id: "/demo/start/ssr/data-only";
-      path: "/demo/start/ssr/data-only";
-      fullPath: "/demo/start/ssr/data-only";
-      preLoaderRoute: typeof DemoStartSsrDataOnlyRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/_authenticated/seeds/$id/edit": {
-      id: "/_authenticated/seeds/$id/edit";
-      path: "/$id/edit";
-      fullPath: "/seeds/$id/edit";
-      preLoaderRoute: typeof AuthenticatedSeedsIdEditRouteImport;
-      parentRoute: typeof AuthenticatedSeedsRouteRoute;
-    };
-    "/_authenticated/plants/$id/edit": {
-      id: "/_authenticated/plants/$id/edit";
-      path: "/plants/$id/edit";
-      fullPath: "/plants/$id/edit";
-      preLoaderRoute: typeof AuthenticatedPlantsIdEditRouteImport;
-      parentRoute: typeof AuthenticatedRouteRoute;
-    };
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/seeds': {
+      id: '/_authenticated/seeds'
+      path: '/seeds'
+      fullPath: '/seeds'
+      preLoaderRoute: typeof AuthenticatedSeedsRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/plants/': {
+      id: '/_authenticated/plants/'
+      path: '/plants'
+      fullPath: '/plants/'
+      preLoaderRoute: typeof AuthenticatedPlantsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/demo/start/server-funcs': {
+      id: '/demo/start/server-funcs'
+      path: '/demo/start/server-funcs'
+      fullPath: '/demo/start/server-funcs'
+      preLoaderRoute: typeof DemoStartServerFuncsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo/start/api-request': {
+      id: '/demo/start/api-request'
+      path: '/demo/start/api-request'
+      fullPath: '/demo/start/api-request'
+      preLoaderRoute: typeof DemoStartApiRequestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo/api/names': {
+      id: '/demo/api/names'
+      path: '/demo/api/names'
+      fullPath: '/demo/api/names'
+      preLoaderRoute: typeof DemoApiNamesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/seeds/new': {
+      id: '/_authenticated/seeds/new'
+      path: '/new'
+      fullPath: '/seeds/new'
+      preLoaderRoute: typeof AuthenticatedSeedsNewRouteImport
+      parentRoute: typeof AuthenticatedSeedsRouteRoute
+    }
+    '/_authenticated/plants/new': {
+      id: '/_authenticated/plants/new'
+      path: '/plants/new'
+      fullPath: '/plants/new'
+      preLoaderRoute: typeof AuthenticatedPlantsNewRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/demo/start/ssr/': {
+      id: '/demo/start/ssr/'
+      path: '/demo/start/ssr'
+      fullPath: '/demo/start/ssr/'
+      preLoaderRoute: typeof DemoStartSsrIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/plants/$id/': {
+      id: '/_authenticated/plants/$id/'
+      path: '/plants/$id'
+      fullPath: '/plants/$id/'
+      preLoaderRoute: typeof AuthenticatedPlantsIdIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/demo/start/ssr/spa-mode': {
+      id: '/demo/start/ssr/spa-mode'
+      path: '/demo/start/ssr/spa-mode'
+      fullPath: '/demo/start/ssr/spa-mode'
+      preLoaderRoute: typeof DemoStartSsrSpaModeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo/start/ssr/full-ssr': {
+      id: '/demo/start/ssr/full-ssr'
+      path: '/demo/start/ssr/full-ssr'
+      fullPath: '/demo/start/ssr/full-ssr'
+      preLoaderRoute: typeof DemoStartSsrFullSsrRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo/start/ssr/data-only': {
+      id: '/demo/start/ssr/data-only'
+      path: '/demo/start/ssr/data-only'
+      fullPath: '/demo/start/ssr/data-only'
+      preLoaderRoute: typeof DemoStartSsrDataOnlyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/seeds/$id/edit': {
+      id: '/_authenticated/seeds/$id/edit'
+      path: '/$id/edit'
+      fullPath: '/seeds/$id/edit'
+      preLoaderRoute: typeof AuthenticatedSeedsIdEditRouteImport
+      parentRoute: typeof AuthenticatedSeedsRouteRoute
+    }
+    '/_authenticated/plants/$id/edit': {
+      id: '/_authenticated/plants/$id/edit'
+      path: '/plants/$id/edit'
+      fullPath: '/plants/$id/edit'
+      preLoaderRoute: typeof AuthenticatedPlantsIdEditRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedSeedsRouteRouteChildren {
-  AuthenticatedSeedsNewRoute: typeof AuthenticatedSeedsNewRoute;
-  AuthenticatedSeedsIdEditRoute: typeof AuthenticatedSeedsIdEditRoute;
+  AuthenticatedSeedsNewRoute: typeof AuthenticatedSeedsNewRoute
+  AuthenticatedSeedsIdEditRoute: typeof AuthenticatedSeedsIdEditRoute
 }
 
-const AuthenticatedSeedsRouteRouteChildren: AuthenticatedSeedsRouteRouteChildren = {
-  AuthenticatedSeedsNewRoute: AuthenticatedSeedsNewRoute,
-  AuthenticatedSeedsIdEditRoute: AuthenticatedSeedsIdEditRoute,
-};
+const AuthenticatedSeedsRouteRouteChildren: AuthenticatedSeedsRouteRouteChildren =
+  {
+    AuthenticatedSeedsNewRoute: AuthenticatedSeedsNewRoute,
+    AuthenticatedSeedsIdEditRoute: AuthenticatedSeedsIdEditRoute,
+  }
 
-const AuthenticatedSeedsRouteRouteWithChildren = AuthenticatedSeedsRouteRoute._addFileChildren(
-  AuthenticatedSeedsRouteRouteChildren
-);
+const AuthenticatedSeedsRouteRouteWithChildren =
+  AuthenticatedSeedsRouteRoute._addFileChildren(
+    AuthenticatedSeedsRouteRouteChildren,
+  )
 
 interface AuthenticatedRouteRouteChildren {
-  AuthenticatedSeedsRouteRoute: typeof AuthenticatedSeedsRouteRouteWithChildren;
-  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute;
-  AuthenticatedPlantsNewRoute: typeof AuthenticatedPlantsNewRoute;
-  AuthenticatedPlantsIndexRoute: typeof AuthenticatedPlantsIndexRoute;
-  AuthenticatedPlantsIdEditRoute: typeof AuthenticatedPlantsIdEditRoute;
-  AuthenticatedPlantsIdIndexRoute: typeof AuthenticatedPlantsIdIndexRoute;
+  AuthenticatedSeedsRouteRoute: typeof AuthenticatedSeedsRouteRouteWithChildren
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedPlantsNewRoute: typeof AuthenticatedPlantsNewRoute
+  AuthenticatedPlantsIndexRoute: typeof AuthenticatedPlantsIndexRoute
+  AuthenticatedPlantsIdEditRoute: typeof AuthenticatedPlantsIdEditRoute
+  AuthenticatedPlantsIdIndexRoute: typeof AuthenticatedPlantsIdIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -432,9 +438,10 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedPlantsIndexRoute: AuthenticatedPlantsIndexRoute,
   AuthenticatedPlantsIdEditRoute: AuthenticatedPlantsIdEditRoute,
   AuthenticatedPlantsIdIndexRoute: AuthenticatedPlantsIdIndexRoute,
-};
+}
 
-const AuthenticatedRouteRouteWithChildren = AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren);
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -448,14 +455,16 @@ const rootRouteChildren: RootRouteChildren = {
   DemoStartSsrFullSsrRoute: DemoStartSsrFullSsrRoute,
   DemoStartSsrSpaModeRoute: DemoStartSsrSpaModeRoute,
   DemoStartSsrIndexRoute: DemoStartSsrIndexRoute,
-};
-export const routeTree = rootRouteImport._addFileChildren(rootRouteChildren)._addFileTypes<FileRouteTypes>();
+}
+export const routeTree = rootRouteImport
+  ._addFileChildren(rootRouteChildren)
+  ._addFileTypes<FileRouteTypes>()
 
-import type { getRouter } from "./router.tsx";
-import type { createStart } from "@tanstack/react-start";
-declare module "@tanstack/react-start" {
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
   interface Register {
-    ssr: true;
-    router: Awaited<ReturnType<typeof getRouter>>;
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
   }
 }

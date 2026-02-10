@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useSearch } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { signIn, useSession } from "../lib/auth-client";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
@@ -26,10 +26,11 @@ function LoginPage() {
   const { data: session } = useSession();
 
   // Si déjà connecté, rediriger vers dashboard
-  if (session) {
-    window.location.href = "/dashboard";
-    return null;
-  }
+  useEffect(() => {
+    if (session) {
+      window.location.href = "/dashboard";
+    }
+  }, [session]);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
