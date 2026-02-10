@@ -8,23 +8,26 @@
   "scripts": {
     "dev": "turbo run dev",
     "build": "turbo run build",
-    "lint": "turbo run lint",
-    "check-types": "turbo run check-types",
-    "format": "prettier --write .",
+    "lint": "pnpm lint:js && pnpm lint:css",
     "lint:js": "eslint .",
     "lint:css": "stylelint '**/*.css'",
-    "fix": "turbo run lint:js lint:css -- --fix && pnpm format"
+    "check-types": "turbo run check-types",
+    "format": "prettier --write .",
+    "fix": "eslint . --fix && stylelint '**/*.css' --fix && prettier --write ."
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.2",
     "@stylistic/stylelint-plugin": "^5.0.1",
-    "eslint": "^10.0.0",
+    "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "globals": "^17.3.0",
     "prettier": "^3.2.5",
     "stylelint": "^17.2.0",
     "stylelint-config-standard": "^40.0.0",
     "turbo": "^2.8.0",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.55.0"
   },
   "packageManager": "pnpm@10.28.2",
   "engines": {

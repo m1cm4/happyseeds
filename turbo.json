@@ -10,12 +10,6 @@
       "cache": false,
       "persistent": true
     },
-    "lint:js": { "cache": true },
-    "lint:css": { "cache": true },
-    "lint": {
-      "dependsOn": ["^build"],
-      "cache": true
-    },
     "check-types": {
       "dependsOn": ["^build"],
       "cache": true
