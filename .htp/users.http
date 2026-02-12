@@ -1,0 +1,102 @@
+
+
+### Variables de fichier
+@baseUrl = http://localhost:3011
+@contentType = application/json
+
+
+
+
+### 1. Lister les utilisateurs
+### ===========================
+# @name getAllUsers
+
+GET {{baseUrl}}/api/users
+Content-Type: {{contentType}}
+
+
+
+###
+
+
+
+### 2. Créer un utilisateur 1
+### ===========================
+# @name createUser
+
+POST {{baseUrl}}/api/users
+Content-Type: {{contentType}}
+
+# fichier json body de la requete
+< ./user1.json
+
+
+
+###
+
+
+### 2. Créer un utilisateur 2
+### ===========================
+# @name createUser
+
+POST {{baseUrl}}/api/users
+Content-Type: {{contentType}}
+
+# fichier json body de la requete
+< ./user2.json
+
+
+
+###
+
+
+
+### 3. Modifier un utilisateur
+### ===========================
+# @name updateUser
+
+PUT {{baseUrl}}/api/users/790a751e-9e0d-4459-924e-ed50f5bf698f
+Content-Type: {{contentType}}
+
+{
+   "name": "testbe"
+}
+
+
+###
+
+
+
+### 4. Effacer un utilisateur
+### ==========================
+# @name updateUser
+
+DELETE {{baseUrl}}/api/users/7961c53c-b733-45c7-802b-51242b874b61
+Content-Type: {{contentType}}
+
+
+
+###
+
+
+# ### 2. Créer un utilisateur
+# # @name createUser
+# POST {{baseUrl}}/users
+# Content-Type: {{contentType}}
+
+# {
+#     "name": "John Doe",
+#     "email": "john@example.com"
+# }
+
+### Login
+# # @name login
+# POST {{baseUrl}}/auth/login
+
+# { "user": "admin", "pass": "123" }
+
+# ### Utiliser le token reçu
+# @authToken = {{login.response.body.token}}
+
+# GET {{baseUrl}}/profile
+# Authorization: Bearer {{authToken}}

@@ -1,0 +1,101 @@
+### Variables de fichier
+@baseUrl = http://localhost:3001
+@contentType = application/json
+
+@authcookie = better-auth.session_token=vHGiryeMkMAkn6E8IFkhbVEtvQ6wFyCP.I8Petp6uigBmpPwDMpBGi9llMClg%2BjTxdPiC8oJFXL0%3D; better-auth.session_data=eyJzZXNzaW9uIjp7InNlc3Npb24iOnsiZXhwaXJlc0F0IjoiMjAyNi0wMi0xOVQyMToyMzowNy45NTNaIiwidG9rZW4iOiJ2SEdpcnllTWtNQWtuNkU4SUZraGJWRXR2UTZ3RnlDUCIsImNyZWF0ZWRBdCI6IjIwMjYtMDItMTJUMjE6MjM6MDcuOTU0WiIsInVwZGF0ZWRBdCI6IjIwMjYtMDItMTJUMjE6MjM6MDcuOTU0WiIsImlwQWRkcmVzcyI6IjEyNy4wLjAuMSIsInVzZXJBZ2VudCI6Ik1vemlsbGEvNS4wIChYMTE7IExpbnV4IHg4Nl82NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzE0NS4wLjAuMCBTYWZhcmkvNTM3LjM2IiwidXNlcklkIjoiT2ZUU0ZRMnprMjVlSXFnVkpOdnpreTFYcFcxdmR1aFEiLCJpZCI6IlNBWkRoQ3lKMnNRTjNJcVBPTVBzTVg5Y0dHV3N0dkpVIn0sInVzZXIiOnsibmFtZSI6Im0iLCJlbWFpbCI6Im1hZXNtaWNoZWxAZ21haWwuY29tIiwiZW1haWxWZXJpZmllZCI6ZmFsc2UsImltYWdlIjpudWxsLCJjcmVhdGVkQXQiOiIyMDI2LTAyLTA1VDExOjI1OjQzLjEzM1oiLCJ1cGRhdGVkQXQiOiIyMDI2LTAyLTA1VDExOjI1OjQzLjEzM1oiLCJpZCI6Ik9mVFNGUTJ6azI1ZUlxZ1ZKTnZ6a3kxWHBXMXZkdWhRIn0sInVwZGF0ZWRBdCI6MTc3MDkzMTM4Nzk2NCwidmVyc2lvbiI6IjEifSwiZXhwaXJlc0F0IjoxNzcwOTMxNjg3OTY0LCJzaWduYXR1cmUiOiIyeFFTSWRYQ0lnUmhBMlBEWFljRzJQNmtkU3BCQzItSWttZkxWRTgxcDFFIn0
+
+
+### 1. Lister les session
+### ==============================================
+# @name getAllSowingSession
+
+GET {{baseUrl}}/api/sowing-sessions?page=1
+Content-Type: {{contentType}}
+Cookie: {{authcookie}}
+
+
+###
+
+
+### get BY id
+### ==============================================
+# @name getAllSowingSession
+
+GET {{baseUrl}}/api/sowing-sessions/7f030c3a-9032-40c6-9b8c-4bd567a30269
+Content-Type: {{contentType}}
+Cookie: {{authcookie}}
+
+
+###
+
+
+### get BY year
+### ==============================================
+# @name getAllSowingSession
+
+GET {{baseUrl}}/api/sowing-sessions?year=2025
+Content-Type: {{contentType}}
+Cookie: {{authcookie}}
+
+
+###
+
+
+### get BY status
+### ==============================================
+# @name getAllSowingSession
+
+GET {{baseUrl}}/api/sowing-sessions?status=planned
+Content-Type: {{contentType}}
+Cookie: {{authcookie}}
+
+
+###
+
+
+### Créer une session 
+### ==============================================
+# @name createSowingSession
+
+POST {{baseUrl}}/api/sowing-sessions
+Content-Type: {{contentType}}
+Cookie: {{authcookie}}
+
+{
+  "name": "Mon calendrier de printemps",
+  "year": "2026",
+  "startDate": "Thu Feb 20 2026 22:26:54 GMT+0100",
+  "status": "cancelled",
+  "notes": "un exemple de calendrier"
+}
+
+
+###
+
+
+### 3. Modifier une session
+### ==============================================
+# @name updateSowingSesssion
+
+PATCH {{baseUrl}}/api/sowing-sessions/bd89de7f-4bf7-4803-a703-c1cda88fa5c0
+Content-Type: {{contentType}}
+Cookie: {{authcookie}}
+
+{
+   "name": "test modifer avec l'api"
+}
+
+
+###
+
+
+### 4. Effacer une session
+### ==============================================
+# @name deleteSowingSession
+
+DELETE {{baseUrl}}/api/sowing-sessions/bd89de7f-4bf7-4803-a703-c1cda88fa5c0
+Content-Type: {{contentType}}
+Cookie: {{authcookie}}
+
+
+###

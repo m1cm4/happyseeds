@@ -4,3 +4,4 @@ export * from "./auth.schema";
 export * from "./test.schema";
 export * from "./plant.schema";
 export * from "./seed.schema";
+export * from "./sowing-session.schema";

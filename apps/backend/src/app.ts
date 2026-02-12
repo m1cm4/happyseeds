@@ -6,10 +6,11 @@ import { testTable } from "./db/schemas";
 import { authRoutes } from "./routes/auth.routes";
 import { plantRoutes } from "./routes/plant.routes";
 import { seedRoutes } from "./routes/seed.routes";
+import { sowingSessionRoutes } from "./routes/sowing-session.routes";
 
 const app = new Hono();
 
-// Middlewares ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+// Middlewares ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 
 // on log sur toutes les requêtes
 app.use("*", logger());
@@ -23,9 +24,22 @@ app.use(
   })
 );
 
-// Routes ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+// Routes ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 
-// Health check - pour vérifier que l'API est en vie
+// Authentification ------------------------------
+// montage des routes définies par le script
+app.route("/api/auth", authRoutes);
+
+// Plant CRUD ------------------------------------
+app.route("/api/plants", plantRoutes);
+
+// Seed CRUD -------------------------------------
+app.route("/api/seeds", seedRoutes); // Route plate !
+
+// SowingSession CCRUD ---------------------------
+app.route("/api/sowing-sessions", sowingSessionRoutes);
+
+// Health check - check that API is alive --------
 app.get("/api/health", (c) => {
   return c.json({
     success: true,
@@ -36,17 +50,7 @@ app.get("/api/health", (c) => {
   });
 });
 
-// Authentification --------------
-// montage des routes définies par le script
-app.route("/api/auth", authRoutes);
-
-// Plant CRUD --------------------
-app.route("/api/plants", plantRoutes); // Ajouter
-
-// Seeds CRUD -Routes  -----
-app.route("/api/seeds", seedRoutes); // Route plate !
-
-// Test de la connexion DB -------
+// Test de la connexion DB -----------------------
 app.get("/api/db-test", async (c) => {
   try {
     // Insérer un enregistrement de test
@@ -76,7 +80,7 @@ app.get("/api/db-test", async (c) => {
   }
 });
 
-// Route racine
+// Route racine --------------------
 app.get("/", (c) => {
   return c.text("🌱 HappySeeds API - Use /api/health to check status");
 });
