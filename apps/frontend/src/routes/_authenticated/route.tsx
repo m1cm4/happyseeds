@@ -34,8 +34,11 @@ function AuthenticatedLayout() {
   // Pendant le chargement, afficher un loader
   if (isPending) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50">
-        <p className="text-slate-500">Chargement...</p>
+      <div className="min-h-screen flex items-center justify-center bg-[#fdfbf7]">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-12 h-12 organic-shape bg-gradient-to-br from-[#3a9133] to-[#53802d] animate-pulse"></div>
+          <p className="text-[#855c45]">Chargement...</p>
+        </div>
       </div>
     );
   }
@@ -45,7 +48,7 @@ function AuthenticatedLayout() {
   }
 
   return (
-    <main className="max-w-6xl mx-auto px-4 py-8">
+    <main className="max-w-6xl mx-auto px-6 py-10">
       <Outlet />
     </main>
   );

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HappySeeds - Direction B: Modern Earth (Final)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            earth: {
+              50: '#faf8f5',
+              100: '#f3efe7',
+              200: '#e6dccf',
+              300: '#d4c3ad',
+              400: '#bfa385',
+              500: '#af8a65',
+              600: '#9f7354',
+              700: '#855c45',
+              800: '#6d4c3b',
+              900: '#5a4032',
+            },
+            olive: {
+              50: '#f7f8f3',
+              100: '#eef0e4',
+              200: '#dce1c7',
+              300: '#c4cca3',
+              400: '#a8b47a',
+              500: '#3a9133',  // Changed from #8b9a5c
+              600: '#53802d',  // Changed from #6f7b48
+              700: '#575f39',
+              800: '#474d30',
+              900: '#3b4029',
+            },
+            coral: {
+              400: '#998100',  // Changed from #e07a5f (rgb(153 129 0))
+              500: '#c96a52',
+              600: '#b05a45',
+            },
+            sand: {
+              100: '#fdfbf7',
+              200: '#f9f5ed',
+              300: '#f2ead8',
+            }
+          },
+          fontFamily: {
+            display: ['Geologica', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .font-display { font-family: 'Geologica', sans-serif; font-weight: 700; }
+    
+    /* Organic blob shapes */
+    .organic-shape {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+    
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #53802d 0%, #855c45 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    /* Subtle noise texture */
+    .noise-bg {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    }
+    
+    /* Animated border gradient */
+    .animated-border {
+      position: relative;
+    }
+    .animated-border::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, #3a9133, #998100);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .animated-border:hover::before {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="bg-sand-100 noise-bg min-h-screen">
+  
+  <!-- Header -->
+  <header class="bg-white/90 backdrop-blur-md border-b border-earth-200 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 organic-shape bg-gradient-to-br from-olive-500 to-olive-600 flex items-center justify-center shadow-lg shadow-olive-500/20">
+          <span class="text-white text-lg">🌱</span>
+        </div>
+        <h1 class="font-display text-2xl gradient-text">HappySeeds</h1>
+      </div>
+      <nav class="flex items-center gap-8">
+        <a href="#" class="text-earth-800 font-medium relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-olive-500 after:scale-x-100 transition-all">Dashboard</a>
+        <a href="#" class="text-earth-600 hover:text-earth-800 transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-olive-500 after:scale-x-0 hover:after:scale-x-100 after:transition-transform">Plantes</a>
+        <a href="#" class="text-earth-600 hover:text-earth-800 transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-olive-500 after:scale-x-0 hover:after:scale-x-100 after:transition-transform">Graines</a>
+        <button class="px-5 py-2.5 bg-gradient-to-r from-olive-500 to-olive-600 text-white rounded-full font-medium hover:shadow-lg hover:shadow-olive-500/25 transition-all hover:-translate-y-0.5">
+          Déconnexion
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-6 py-10">
+    
+    <!-- Page Title -->
+    <div class="mb-12">
+      <h2 class="font-display text-2xl text-earth-900 mb-2">Tableau de bord</h2>
+      <p class="text-earth-600 text-lg">Bienvenue dans votre grainothèque personnelle</p>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-3 gap-8 mb-12">
+      <div class="bg-white rounded-3xl p-7 shadow-sm hover:shadow-xl transition-all duration-300 animated-border group cursor-pointer">
+        <div class="flex items-start justify-between mb-4">
+          <div class="w-12 h-12 rounded-2xl bg-olive-500/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="text-2xl">🌿</span>
+          </div>
+          <span class="text-xs font-medium text-olive-600 bg-olive-500/10 px-3 py-1 rounded-full">+2 ce mois</span>
+        </div>
+        <p class="font-display text-4xl text-earth-900 mb-1">12</p>
+        <p class="text-earth-500 font-medium">Mes Plantes</p>
+        <p class="text-earth-400 text-sm mt-1">variétés cultivées</p>
+      </div>
+      
+      <div class="bg-white rounded-3xl p-7 shadow-sm hover:shadow-xl transition-all duration-300 animated-border group cursor-pointer">
+        <div class="flex items-start justify-between mb-4">
+          <div class="w-12 h-12 rounded-2xl bg-coral-400/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="text-2xl">🌰</span>
+          </div>
+          <span class="text-xs font-medium text-coral-400 bg-coral-400/10 px-3 py-1 rounded-full">Stock OK</span>
+        </div>
+        <p class="font-display text-4xl text-earth-900 mb-1">28</p>
+        <p class="text-earth-500 font-medium">Mes Graines</p>
+        <p class="text-earth-400 text-sm mt-1">sachets en stock</p>
+      </div>
+      
+      <div class="bg-white rounded-3xl p-7 shadow-sm hover:shadow-xl transition-all duration-300 animated-border group cursor-pointer">
+        <div class="flex items-start justify-between mb-4">
+          <div class="w-12 h-12 rounded-2xl bg-earth-100 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="text-2xl">🪴</span>
+          </div>
+          <span class="text-xs font-medium text-earth-600 bg-earth-100 px-3 py-1 rounded-full">Actif</span>
+        </div>
+        <p class="font-display text-4xl text-earth-900 mb-1">5</p>
+        <p class="text-earth-500 font-medium">Semis actifs</p>
+        <p class="text-earth-400 text-sm mt-1">en cours</p>
+      </div>
+    </div>
+
+    <!-- Plant List Section -->
+    <div class="bg-white rounded-3xl shadow-sm overflow-hidden">
+      <div class="px-7 py-5 border-b border-earth-100 flex justify-between items-center">
+        <h3 class="font-display text-[1.4rem] text-earth-900">Mes Plantes</h3>
+        <button class="px-5 py-2.5 bg-gradient-to-r from-olive-500 to-olive-600 text-white rounded-full font-medium hover:shadow-lg hover:shadow-olive-500/25 transition-all hover:-translate-y-0.5 flex items-center gap-2">
+          <span class="text-lg">+</span> Nouvelle plante
+        </button>
+      </div>
+      
+      <!-- Plant Items -->
+      <div class="divide-y divide-earth-100">
+        <a href="#" class="block px-7 py-5 hover:bg-olive-50/50 transition-colors group">
+          <div class="flex justify-between items-center">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-olive-500/10 to-olive-600/20 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <span class="text-2xl">🍅</span>
+              </div>
+              <div>
+                <h4 class="font-semibold text-lg text-earth-900 group-hover:text-olive-600 transition-colors">Tomate Roma</h4>
+                <p class="text-earth-400 text-sm">Solanum lycopersicum</p>
+              </div>
+            </div>
+            <span class="px-4 py-1.5 text-sm rounded-full bg-olive-500/10 text-olive-600 font-medium">Légume</span>
+          </div>
+        </a>
+        
+        <a href="#" class="block px-7 py-5 hover:bg-olive-50/50 transition-colors group">
+          <div class="flex justify-between items-center">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-coral-400/10 to-coral-400/20 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <span class="text-2xl">🌿</span>
+              </div>
+              <div>
+                <h4 class="font-semibold text-lg text-earth-900 group-hover:text-olive-600 transition-colors">Basilic Genovese</h4>
+                <p class="text-earth-400 text-sm">Ocimum basilicum</p>
+              </div>
+            </div>
+            <span class="px-4 py-1.5 text-sm rounded-full bg-coral-400/10 text-coral-400 font-medium">Aromatique</span>
+          </div>
+        </a>
+        
+        <a href="#" class="block px-7 py-5 hover:bg-olive-50/50 transition-colors group">
+          <div class="flex justify-between items-center">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-earth-100 to-earth-200 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <span class="text-2xl">🌻</span>
+              </div>
+              <div>
+                <h4 class="font-semibold text-lg text-earth-900 group-hover:text-olive-600 transition-colors">Tournesol Géant</h4>
+                <p class="text-earth-400 text-sm">Helianthus annuus</p>
+              </div>
+            </div>
+            <span class="px-4 py-1.5 text-sm rounded-full bg-earth-100 text-earth-700 font-medium">Fleur</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Form Example -->
+    <div class="mt-10 bg-white rounded-3xl p-8 shadow-sm">
+      <h3 class="font-display text-[1.4rem] text-earth-900 mb-8">Ajouter une plante</h3>
+      
+      <div class="grid grid-cols-2 gap-8">
+        <div>
+          <label class="block text-earth-700 font-medium mb-3">Nom commun</label>
+          <input type="text" placeholder="Ex: Tomate Roma" 
+                 class="w-full px-5 py-4 rounded-2xl border-2 border-earth-200 bg-sand-200 text-earth-900 placeholder-earth-400 focus:outline-none focus:border-olive-500 focus:bg-white transition-all">
+        </div>
+        
+        <div>
+          <label class="block text-earth-700 font-medium mb-3">Nom scientifique</label>
+          <input type="text" placeholder="Ex: Solanum lycopersicum" 
+                 class="w-full px-5 py-4 rounded-2xl border-2 border-earth-200 bg-sand-200 text-earth-900 placeholder-earth-400 italic focus:outline-none focus:border-olive-500 focus:bg-white transition-all">
+        </div>
+        
+        <div>
+          <label class="block text-earth-700 font-medium mb-3">Catégorie</label>
+          <select class="w-full px-5 py-4 rounded-2xl border-2 border-earth-200 bg-sand-200 text-earth-900 focus:outline-none focus:border-olive-500 focus:bg-white transition-all appearance-none cursor-pointer">
+            <option>Légume</option>
+            <option>Aromatique</option>
+            <option>Fleur</option>
+            <option>Fruit</option>
+          </select>
+        </div>
+        
+        <div>
+          <label class="block text-earth-700 font-medium mb-3">Période de semis</label>
+          <input type="text" placeholder="Ex: Mars - Mai" 
+                 class="w-full px-5 py-4 rounded-2xl border-2 border-earth-200 bg-sand-200 text-earth-900 placeholder-earth-400 focus:outline-none focus:border-olive-500 focus:bg-white transition-all">
+        </div>
+      </div>
+      
+      <div class="mt-8 flex gap-4">
+        <button class="px-8 py-4 bg-gradient-to-r from-olive-500 to-olive-600 text-white rounded-full font-medium hover:shadow-lg hover:shadow-olive-500/25 transition-all hover:-translate-y-0.5">
+          Enregistrer
+        </button>
+        <button class="px-8 py-4 border-2 border-earth-300 text-earth-700 rounded-full font-medium hover:bg-earth-50 transition-colors">
+          Annuler
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-16 border-t border-earth-200 bg-white/70 py-8">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <p class="font-display text-xl gradient-text mb-1">🌱 HappySeeds</p>
+      <p class="text-earth-500">Cultivez votre passion du jardinage</p>
+    </div>
+  </footer>
+
+</body>
+</html>

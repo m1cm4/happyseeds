@@ -9,34 +9,58 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
 function DashboardPage() {
   return (
     <div>
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-slate-800">Tableau de bord</h1>
+      {/* Page Title */}
+      <div className="mb-12">
+        <h1 className="font-display text-2xl text-[#5a4032] mb-2">Tableau de bord</h1>
+        <p className="text-[#855c45] text-lg">Bienvenue dans votre grainothèque personnelle</p>
       </div>
 
-      {/* Contenu du dashboard - à développer plus tard */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border">
-          <h2 className="text-lg font-semibold text-slate-700 mb-2">Mes Plantes</h2>
-          <p className="text-3xl font-bold text-emerald-600">0</p>
-          <p className="text-sm text-slate-500 mt-1">plantes enregistrées</p>
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <div className="bg-white rounded-3xl p-7 shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer relative overflow-hidden">
+          <div className="absolute inset-0 rounded-3xl border border-transparent group-hover:border-[#3a9133] transition-colors"></div>
+          <div className="flex items-start justify-between mb-4 relative z-10">
+            <div className="w-12 h-12 rounded-2xl bg-[#3a9133]/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <span className="text-2xl">🌿</span>
+            </div>
+            <span className="text-xs font-medium text-[#3a9133] bg-[#3a9133]/10 px-3 py-1 rounded-full">+2 ce mois</span>
+          </div>
+          <p className="font-display text-4xl text-[#5a4032] mb-1 relative z-10">0</p>
+          <p className="text-[#6d4c3b] font-medium relative z-10">Mes Plantes</p>
+          <p className="text-[#855c45] text-sm mt-1 relative z-10">variétés cultivées</p>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border">
-          <h2 className="text-lg font-semibold text-slate-700 mb-2">Mes Graines</h2>
-          <p className="text-3xl font-bold text-emerald-600">0</p>
-          <p className="text-sm text-slate-500 mt-1">variétés en stock</p>
+        <div className="bg-white rounded-3xl p-7 shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer relative overflow-hidden">
+          <div className="absolute inset-0 rounded-3xl border border-transparent group-hover:border-[#998100] transition-colors"></div>
+          <div className="flex items-start justify-between mb-4 relative z-10">
+            <div className="w-12 h-12 rounded-2xl bg-[#998100]/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <span className="text-2xl">🌰</span>
+            </div>
+            <span className="text-xs font-medium text-[#998100] bg-[#998100]/10 px-3 py-1 rounded-full">Stock OK</span>
+          </div>
+          <p className="font-display text-4xl text-[#5a4032] mb-1 relative z-10">0</p>
+          <p className="text-[#6d4c3b] font-medium relative z-10">Mes Graines</p>
+          <p className="text-[#855c45] text-sm mt-1 relative z-10">sachets en stock</p>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border">
-          <h2 className="text-lg font-semibold text-slate-700 mb-2">Sessions actives</h2>
-          <p className="text-3xl font-bold text-emerald-600">0</p>
-          <p className="text-sm text-slate-500 mt-1">semis en cours</p>
+        <div className="bg-white rounded-3xl p-7 shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer relative overflow-hidden">
+          <div className="absolute inset-0 rounded-3xl border border-transparent group-hover:border-[#855c45] transition-colors"></div>
+          <div className="flex items-start justify-between mb-4 relative z-10">
+            <div className="w-12 h-12 rounded-2xl bg-[#855c45]/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <span className="text-2xl">🪴</span>
+            </div>
+            <span className="text-xs font-medium text-[#855c45] bg-[#855c45]/10 px-3 py-1 rounded-full">Actif</span>
+          </div>
+          <p className="font-display text-4xl text-[#5a4032] mb-1 relative z-10">0</p>
+          <p className="text-[#6d4c3b] font-medium relative z-10">Semis actifs</p>
+          <p className="text-[#855c45] text-sm mt-1 relative z-10">en cours</p>
         </div>
       </div>
 
-      <div className="mt-8 bg-white p-6 rounded-lg shadow-sm border">
-        <h2 className="text-lg font-semibold text-slate-700 mb-4">Bienvenue sur HappySeeds ! 🌱</h2>
-        <p className="text-slate-600">
+      {/* Welcome Card */}
+      <div className="bg-white rounded-3xl p-8 shadow-sm">
+        <h2 className="font-display text-[1.4rem] text-[#5a4032] mb-4">Bienvenue sur HappySeeds ! 🌱</h2>
+        <p className="text-[#6d4c3b]">
           Cette page affichera bientôt vos statistiques et les prochaines tâches de jardinage. Pour l'instant,
           l'authentification est en place et fonctionne correctement.
         </p>
