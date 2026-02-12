@@ -47,7 +47,7 @@ const sortableColumns = {
 
 export const sowingSessionService = {
   /**
-   * Récupère toutes les graines avec filtres optionnels
+   * Récupère toutes les sessions avec filtres optionnels
    */
   async findAll(
     filters: SowingSessionFilters,
@@ -98,7 +98,7 @@ export const sowingSessionService = {
   },
 
   /**
-   * Récupère une graine par son ID
+   * Récupère une session par son ID
    */
   async findById(id: string, userId: string): Promise<SowingSessionDB | null> {
     const result = await db
@@ -111,7 +111,7 @@ export const sowingSessionService = {
   },
 
   /**
-   * Crée une nouvelle graine
+   * Crée une nouvelle session
    */
   async create(data: NewSowingSession): Promise<SowingSessionDB> {
     const result = await db.insert(sowingSession).values(data).returning();
@@ -119,7 +119,7 @@ export const sowingSessionService = {
   },
 
   /**
-   * Met à jour une graine
+   * Met à jour une session
    */
   async update(
     id: string,
@@ -136,7 +136,7 @@ export const sowingSessionService = {
   },
 
   /**
-   * Supprime une graine
+   * Supprime une session
    */
   async delete(id: string, userId: string): Promise<boolean> {
     const result = await db

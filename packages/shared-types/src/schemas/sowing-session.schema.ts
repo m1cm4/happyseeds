@@ -53,6 +53,12 @@ export type CreateSowingSessionInput = z.infer<typeof createSowingSessionSchema>
 // Schéma complet (lecture depuis API)
 // ============================================
 
+/*
+extension du shémas précédent.
+on redéfinit ici avec moins de contraintes : name, year, startDate, status
+c'est valide parceque à la lecture pas besoin de validation stricte
+mais j'aurais aussi pu laisser les validation de create
+*/
 export const sowingSessionSchema = createSowingSessionSchema.extend({
   id: z.string().uuid(),
   userId: z.string(),

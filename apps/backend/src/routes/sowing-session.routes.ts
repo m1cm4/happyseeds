@@ -9,7 +9,7 @@ import { sowingSessionService } from "../services/sowing-session.service";
 // Schémas de validation
 // ============================================
 
-// createSeedSchema -> shared-types/
+// createSowingSessionSchema -> shared-types/
 
 const updateSowingSessionSchema = createSowingSessionSchema.partial();
 
@@ -25,7 +25,7 @@ const querySchema = z.object({
 });
 
 // ============================================
-// Routes : /api/seed (plates)
+// Routes : /api/sowing-sessions
 // ============================================
 
 export const sowingSessionRoutes = new Hono()
@@ -46,9 +46,10 @@ export const sowingSessionRoutes = new Hono()
       }
     );
 
-    if (!result) {
-      return c.json({ success: false, error: { code: "NOT_FOUND", message: "Session non trouvée" } }, 404);
-    }
+    // test non nécessaire -> retourne toujour un résltat data : []
+    // if (!result) {
+    //   return c.json({ success: false, error: { code: "NOT_FOUND", message: "Session non trouvée" } }, 404);
+    // }
 
     return c.json({ success: true, ...result });
   })
@@ -67,7 +68,7 @@ export const sowingSessionRoutes = new Hono()
     return c.json({ success: true, data: result });
   })
 
-  // POST /api/seed - Créer une graine
+  // POST /api/sowing-session - Créer une session
   .post("/", zValidator("json", createSowingSessionSchema), async (c) => {
     const userId = c.get("userId");
     const body = c.req.valid("json");
@@ -81,7 +82,7 @@ export const sowingSessionRoutes = new Hono()
     return c.json({ success: true, data: newSession }, 201);
   })
 
-  // PATCH /api/seeds/:id - Modifier une graine
+  // PATCH /api/sowing-sessions/:id - Modifier une session
   .patch("/:id", zValidator("json", updateSowingSessionSchema), async (c) => {
     const userId = c.get("userId");
     const id = c.req.param("id");
@@ -98,7 +99,7 @@ export const sowingSessionRoutes = new Hono()
     return c.json({ success: true, data: updated });
   })
 
-  // DELETE /api/seeds/:id - Supprimer une Session
+  // DELETE /api/sowing-sessions/:id - Supprimer une Session
   .delete("/:id", async (c) => {
     const userId = c.get("userId");
     const id = c.req.param("id");

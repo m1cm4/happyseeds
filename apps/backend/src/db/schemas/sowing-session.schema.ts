@@ -8,7 +8,7 @@ import { user } from "./auth.schema";
 export const sowingSessionStatusEnum = pgEnum("sowing_session_status", ["planned", "active", "completed", "cancelled"]);
 
 // ============================================
-// Table Seed
+// Table SowingSession
 // ============================================
 export const sowingSession = pgTable("sowing_session", {
   // Identifiant
