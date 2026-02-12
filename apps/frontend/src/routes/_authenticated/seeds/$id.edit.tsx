@@ -41,14 +41,16 @@ function EditSeedPage() {
   if (!data?.success) return <div>Graine non trouvée</div>;
 
   return (
-    <div className="container max-w-2xl py-8">
+    <div className="max-w-2xl mx-auto p-6">
       <h1 className="text-2xl font-bold mb-6">Modifier la graine</h1>
-      <SeedForm
-        defaultValues={data.data}
-        onSubmit={(formData) => mutation.mutate(formData)}
-        isSubmitting={mutation.isPending}
-        submitLabel="Enregistrer"
-      />
+      <div className="bg-white p-6 rounded-lg border">
+        <SeedForm
+          defaultValues={data.data}
+          onSubmit={(formData) => mutation.mutate(formData)}
+          isSubmitting={mutation.isPending}
+          submitLabel="Enregistrer"
+        />
+      </div>
     </div>
   );
 }

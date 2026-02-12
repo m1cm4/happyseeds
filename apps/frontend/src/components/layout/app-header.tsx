@@ -11,49 +11,49 @@ export function AppHeader() {
   const isDashboardRoute = matchRoute({ to: "/dashboard", fuzzy: true });
 
   return (
-    <header className="bg-white/90 backdrop-blur-md border-b border-[#e6dccf] sticky top-0 z-50">
+    <header className="bg-card border-b border-border sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
         <div className="flex items-center gap-3">
-          <div className="w-11 h-11 organic-shape bg-gradient-to-br from-[#3a9133] to-[#53802d] flex items-center justify-center shadow-lg shadow-[#3a9133]/20">
-            <span className="text-white text-lg">🌱</span>
+          <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center">
+            <span className="grayscale-icon text-lg">🌱</span>
           </div>
-          <Link to="/" className="font-display text-2xl gradient-text hover:opacity-80 transition-opacity">
+          <Link to="/" className="text-xl font-semibold text-foreground hover:opacity-80 transition-fast">
             HappySeeds
           </Link>
         </div>
         <div>
           {isPending ? (
-            <span className="text-[#855c45]">Chargement...</span>
+            <span className="text-wire-text-muted">Chargement...</span>
           ) : session ? (
             <div className="flex items-center gap-6">
-              <span className="text-[#6d4c3b]">Bonjour, {session.user.name}</span>
+              <span className="text-wire-text-muted">Bonjour, {session.user.name}</span>
               <nav className="flex items-center gap-6">
                 <Link 
                   to="/dashboard" 
-                  className={`font-medium transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-[#3a9133] after:transition-transform ${
+                  className={`font-medium transition-fast relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-foreground after:transition-fast ${
                     isDashboardRoute 
-                      ? "text-[#5a4032] after:scale-x-100" 
-                      : "text-[#855c45] hover:text-[#5a4032] after:scale-x-0 hover:after:scale-x-100"
+                      ? "text-foreground after:scale-x-100" 
+                      : "text-wire-text-muted hover:text-foreground after:scale-x-0 hover:after:scale-x-100"
                   }`}
                 >
                   Dashboard
                 </Link>
                 <Link 
                   to="/plants" 
-                  className={`font-medium transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-[#3a9133] after:transition-transform ${
+                  className={`font-medium transition-fast relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-foreground after:transition-fast ${
                     isPlantRoute 
-                      ? "text-[#5a4032] after:scale-x-100" 
-                      : "text-[#855c45] hover:text-[#5a4032] after:scale-x-0 hover:after:scale-x-100"
+                      ? "text-foreground after:scale-x-100" 
+                      : "text-wire-text-muted hover:text-foreground after:scale-x-0 hover:after:scale-x-100"
                   }`}
                 >
                   Plantes
                 </Link>
                 <Link 
                   to="/seeds" 
-                  className={`font-medium transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-[#3a9133] after:transition-transform ${
+                  className={`font-medium transition-fast relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-foreground after:transition-fast ${
                     isSeedRoute 
-                      ? "text-[#5a4032] after:scale-x-100" 
-                      : "text-[#855c45] hover:text-[#5a4032] after:scale-x-0 hover:after:scale-x-100"
+                      ? "text-foreground after:scale-x-100" 
+                      : "text-wire-text-muted hover:text-foreground after:scale-x-0 hover:after:scale-x-100"
                   }`}
                 >
                   Graines
@@ -61,20 +61,17 @@ export function AppHeader() {
               </nav>
               <Button 
                 onClick={() => logout("/")} 
-                className="px-5 py-2.5 bg-gradient-to-r from-[#3a9133] to-[#53802d] text-white rounded-full font-medium hover:shadow-lg hover:shadow-[#3a9133]/25 transition-all hover:-translate-y-0.5 border-0"
+                variant="secondary"
               >
                 Déconnexion
               </Button>
             </div>
           ) : (
             <div className="flex items-center gap-4">
-              <Link to="/login" className="text-[#5a4032] hover:text-[#3a9133] font-medium transition-colors">
+              <Link to="/login" className="text-foreground hover:opacity-70 font-medium transition-fast">
                 Se connecter
               </Link>
-              <Button 
-                asChild
-                className="px-5 py-2.5 bg-gradient-to-r from-[#3a9133] to-[#53802d] text-white rounded-full font-medium hover:shadow-lg hover:shadow-[#3a9133]/25 transition-all hover:-translate-y-0.5 border-0"
-              >
+              <Button asChild>
                 <Link to="/signup">S'inscrire</Link>
               </Button>
             </div>

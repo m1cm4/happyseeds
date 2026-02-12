@@ -15,8 +15,8 @@ function PlantsListPage() {
     return (
       <div className="flex justify-center py-8">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 organic-shape bg-gradient-to-br from-[#3a9133] to-[#53802d] animate-pulse"></div>
-          <p className="text-[#855c45]">Chargement des plantes...</p>
+          <div className="w-10 h-10 rounded-lg bg-muted animate-pulse"></div>
+          <p className="text-wire-text-muted">Chargement des plantes...</p>
         </div>
       </div>
     );
@@ -24,7 +24,7 @@ function PlantsListPage() {
 
   if (error) {
     return (
-      <div className="bg-red-50 text-red-700 p-6 rounded-3xl border border-red-200">
+      <div className="bg-destructive/10 text-destructive p-6 rounded-lg border border-destructive/20">
         <p>Erreur : {error.message}</p>
       </div>
     );
@@ -36,34 +36,32 @@ function PlantsListPage() {
   return (
     <div>
       {/* En-tête */}
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="font-display text-2xl text-[#5a4032]">Mes Plantes</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-semibold text-foreground">Mes Plantes</h1>
         <Link to="/plants/new">
-          <Button className="px-5 py-2.5 bg-gradient-to-r from-[#3a9133] to-[#53802d] text-white rounded-full font-medium hover:shadow-lg hover:shadow-[#3a9133]/25 transition-all hover:-translate-y-0.5 border-0 flex items-center gap-2">
-            <span className="text-lg">+</span> Nouvelle plante
+          <Button>
+            <span>+</span> Nouvelle plante
           </Button>
         </Link>
       </div>
 
       {/* Liste vide */}
       {plants.length === 0 && (
-        <div className="text-center py-16 bg-white rounded-3xl border border-[#e6dccf]">
-          <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-[#3a9133]/10 flex items-center justify-center">
-            <span className="text-3xl">🌱</span>
+        <div className="text-center py-16 bg-card rounded-xl border border-border">
+          <div className="w-12 h-12 mx-auto mb-4 rounded-lg bg-muted flex items-center justify-center">
+            <span className="grayscale-icon text-2xl">🌱</span>
           </div>
-          <p className="text-[#6d4c3b] mb-6">Aucune plante enregistrée</p>
+          <p className="text-wire-text-muted mb-6">Aucune plante enregistrée</p>
           <Link to="/plants/new">
-            <Button className="px-5 py-2.5 bg-gradient-to-r from-[#3a9133] to-[#53802d] text-white rounded-full font-medium hover:shadow-lg hover:shadow-[#3a9133]/25 transition-all hover:-translate-y-0.5 border-0">
-              Ajouter ma première plante
-            </Button>
+            <Button>Ajouter ma première plante</Button>
           </Link>
         </div>
       )}
 
       {/* Liste des plantes */}
       {plants.length > 0 && (
-        <div className="bg-white rounded-3xl shadow-sm overflow-hidden border border-[#e6dccf]">
-          <div className="divide-y divide-[#f3efe7]">
+        <div className="bg-card rounded-xl overflow-hidden border border-border">
+          <div className="divide-y divide-border">
             {plants.map((plant: Plant) => (
               <PlantListElement key={plant.id} plant={plant} />
             ))}
@@ -73,8 +71,8 @@ function PlantsListPage() {
 
       {/* Pagination */}
       {pagination && pagination.totalPages > 1 && (
-        <div className="mt-8 flex justify-center gap-2">
-          <p className="text-sm text-[#855c45]">
+        <div className="mt-6 flex justify-center gap-2">
+          <p className="text-sm text-wire-text-muted">
             Page {pagination.page} sur {pagination.totalPages} ({pagination.total} plantes)
           </p>
         </div>

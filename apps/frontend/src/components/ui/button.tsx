@@ -5,28 +5,30 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:ring-2 focus-visible:ring-[#3a9133]/50",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-fast disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:ring-2 focus-visible:ring-ring/50",
   {
     variants: {
       variant: {
-        default: "bg-gradient-to-r from-[#3a9133] to-[#53802d] text-white hover:shadow-lg hover:shadow-[#3a9133]/25 hover:-translate-y-0.5",
+        default:
+          "bg-primary text-primary-foreground border border-primary hover:bg-card hover:text-primary active:bg-wire-hover",
         destructive:
-          "bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-500/50",
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border-2 border-[#3a9133] text-[#3a9133] bg-transparent hover:bg-[#3a9133]/5",
-        secondary: "bg-[#f3efe7] text-[#5a4032] hover:bg-[#e6dccf]",
-        ghost: "hover:bg-[#f3efe7] hover:text-[#5a4032]",
-        link: "text-[#3a9133] underline-offset-4 hover:underline",
+          "border border-border bg-transparent text-foreground hover:bg-wire-hover hover:border-wire-focus active:bg-wire-active",
+        secondary:
+          "bg-secondary text-secondary-foreground border border-border hover:bg-wire-hover hover:border-wire-focus active:bg-wire-active",
+        ghost: "hover:bg-wire-hover hover:text-foreground",
+        link: "text-foreground underline-offset-4 hover:underline",
       },
       size: {
-        default: "h-10 px-5 py-2 rounded-full",
-        xs: "h-6 gap-1 rounded-full px-2 text-xs",
-        sm: "h-8 rounded-full gap-1.5 px-4",
-        lg: "h-12 rounded-full px-8 text-base",
-        icon: "size-10 rounded-full",
-        "icon-xs": "size-6 rounded-full",
-        "icon-sm": "size-8 rounded-full",
-        "icon-lg": "size-12 rounded-full",
+        default: "h-10 px-4 py-2 rounded-lg",
+        xs: "h-6 gap-1 rounded-lg px-2 text-xs",
+        sm: "h-8 rounded-lg gap-1.5 px-3",
+        lg: "h-12 rounded-lg px-6 text-base",
+        icon: "size-10 rounded-lg",
+        "icon-xs": "size-6 rounded-lg",
+        "icon-sm": "size-8 rounded-lg",
+        "icon-lg": "size-12 rounded-lg",
       },
     },
     defaultVariants: {

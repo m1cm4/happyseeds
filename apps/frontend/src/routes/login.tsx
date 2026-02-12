@@ -60,29 +60,29 @@ function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#fdfbf7]">
-      <div className="w-full max-w-md p-8 bg-white rounded-3xl shadow-sm border border-[#e6dccf]">
+    <div className="min-h-screen flex items-center justify-center bg-background">
+      <div className="w-full max-w-md p-8 bg-card rounded-xl border border-border">
         {/* Logo */}
         <div className="flex justify-center mb-6">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 organic-shape bg-gradient-to-br from-[#3a9133] to-[#53802d] flex items-center justify-center shadow-lg shadow-[#3a9133]/20">
-              <span className="text-white text-xl">🌱</span>
+            <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center">
+              <span className="grayscale-icon text-lg">🌱</span>
             </div>
-            <span className="font-display text-2xl gradient-text">HappySeeds</span>
+            <span className="text-xl font-semibold text-foreground">HappySeeds</span>
           </div>
         </div>
 
-        <h1 className="font-display text-2xl text-[#5a4032] text-center mb-6">Se connecter</h1>
+        <h1 className="text-2xl font-semibold text-foreground text-center mb-6">Se connecter</h1>
 
         {errorMessage && (
-          <div className="mb-4 p-4 bg-red-50 text-red-700 rounded-2xl border border-red-200">
+          <div className="mb-4 p-4 bg-destructive/10 text-destructive rounded-lg border border-destructive/20">
             {errorMessage}
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <Label htmlFor="email" className="text-[#5a4032] font-medium mb-2 block">Email</Label>
+            <Label htmlFor="email" className="text-foreground font-medium mb-2 block">Email</Label>
             <Input
               id="email"
               name="email"
@@ -90,12 +90,12 @@ function LoginPage() {
               required
               placeholder="vous@exemple.com"
               value="maesmichel@gmail.com"
-              className="w-full px-5 py-4 rounded-2xl border-2 border-[#e6dccf] bg-[#f9f5ed] text-[#5a4032] placeholder-[#bfa385] focus:outline-none focus:border-[#3a9133] focus:bg-white transition-all"
+              className="w-full"
             />
           </div>
 
           <div>
-            <Label htmlFor="password" className="text-[#5a4032] font-medium mb-2 block">Mot de passe</Label>
+            <Label htmlFor="password" className="text-foreground font-medium mb-2 block">Mot de passe</Label>
             <Input
               id="password"
               name="password"
@@ -103,22 +103,22 @@ function LoginPage() {
               required
               placeholder="Votre mot de passe"
               value="$$$$$$$$"
-              className="w-full px-5 py-4 rounded-2xl border-2 border-[#e6dccf] bg-[#f9f5ed] text-[#5a4032] placeholder-[#bfa385] focus:outline-none focus:border-[#3a9133] focus:bg-white transition-all"
+              className="w-full"
             />
           </div>
 
           <Button 
             type="submit" 
-            className="w-full px-8 py-4 bg-gradient-to-r from-[#3a9133] to-[#53802d] text-white rounded-full font-medium hover:shadow-lg hover:shadow-[#3a9133]/25 transition-all hover:-translate-y-0.5 border-0"
+            className="w-full"
             disabled={loading}
           >
             {loading ? "Connexion..." : "Se connecter"}
           </Button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-[#6d4c3b]">
+        <p className="mt-6 text-center text-sm text-wire-text-muted">
           Pas encore de compte ?{" "}
-          <Link to="/signup" className="text-[#3a9133] hover:text-[#53802d] font-medium transition-colors">
+          <Link to="/signup" className="text-foreground hover:opacity-70 font-medium transition-fast">
             S'inscrire
           </Link>
         </p>

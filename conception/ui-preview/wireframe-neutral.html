@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HappySeeds - Wireframe Neutre</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            wire: {
+              bg: '#eaeaea',
+              card: '#fcfcfc',
+              border: '#d4d4d4',
+              borderHover: '#a3a3a3',
+              text: '#171717',
+              textMuted: '#525252',
+              textLight: '#a3a3a3',
+              hover: '#f0f0f0',
+              active: '#d4d4d4',
+              focus: '#404040',
+            }
+          },
+          fontFamily: {
+            body: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Interactive states */
+    .interactive {
+      transition: all 0.08s ease;
+    }
+
+    .interactive:hover {
+      background-color: #f0f0f0;
+      border-color: #a3a3a3;
+    }
+
+    .interactive:active {
+      background-color: #d4d4d4;
+      transform: scale(0.98);
+    }
+
+    /* Focus ring for keyboard navigation */
+    .focusable:focus {
+      outline: 2px solid #404040;
+      outline-offset: 2px;
+    }
+
+    /* Button states */
+    .btn-primary {
+      background-color: #171717;
+      color: #fff;
+      border: 1px solid #171717;
+      transition: all 0.08s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #fcfcfc;
+      color: #171717;
+      border-color: #171717;
+    }
+
+    .btn-primary:active {
+      background-color: #eaeaea;
+      color: #171717;
+      transform: scale(0.98);
+    }
+
+    .btn-secondary {
+      background-color: #fcfcfc;
+      color: #171717;
+      border: 1px solid #d4d4d4;
+      transition: all 0.08s ease;
+    }
+
+    .btn-secondary:hover {
+      background-color: #f0f0f0;
+      border-color: #a3a3a3;
+    }
+
+    .btn-secondary:active {
+      background-color: #d4d4d4;
+      transform: scale(0.98);
+    }
+
+    /* Link states */
+    .nav-link {
+      position: relative;
+      transition: color 0.08s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #171717;
+      transform: scaleX(0);
+      transition: transform 0.08s ease;
+    }
+
+    .nav-link:hover {
+      color: #171717;
+    }
+
+    .nav-link:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-link.active {
+      color: #171717;
+      font-weight: 600;
+    }
+
+    .nav-link.active::after {
+      transform: scaleX(1);
+    }
+
+    /* Card hover */
+    .card {
+      transition: all 0.1s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border-color: #a3a3a3;
+    }
+
+    /* List item hover */
+    .list-item {
+      transition: background-color 0.08s ease;
+    }
+
+    .list-item:hover {
+      background-color: #f0f0f0;
+    }
+
+    .list-item:active {
+      background-color: #d4d4d4;
+    }
+
+    /* Input states */
+    .input-field {
+      transition: all 0.08s ease;
+    }
+
+    .input-field:hover {
+      border-color: #a3a3a3;
+    }
+
+    .input-field:focus {
+      outline: none;
+      border-color: #404040;
+      box-shadow: 0 0 0 3px rgba(64, 64, 64, 0.15);
+    }
+
+    /* Badge */
+    .badge {
+      background-color: #e5e5e5;
+      color: #404040;
+    }
+
+    /* Icon container */
+    .icon-container {
+      background-color: #e5e5e5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Grayscale filter for emojis/icons */
+    .grayscale-icon {
+      filter: grayscale(100%);
+      font-size: 1.25rem;
+    }
+
+    .grayscale-icon-lg {
+      filter: grayscale(100%);
+      font-size: 1.5rem;
+    }
+  </style>
+</head>
+
+<body class="bg-wire-bg min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-wire-card border-b border-wire-border sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <!-- Logo -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg icon-container">
+          <span class="grayscale-icon">🌱</span>
+        </div>
+        <h1 class="text-xl font-semibold text-wire-text">HappySeeds</h1>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="flex items-center gap-8">
+        <a href="#" class="nav-link active text-wire-textMuted">Dashboard</a>
+        <a href="#" class="nav-link text-wire-textMuted">Plantes</a>
+        <a href="#" class="nav-link text-wire-textMuted">Graines</a>
+        <button class="btn-secondary px-4 py-2 rounded-lg font-medium focusable">
+          Déconnexion
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-6 py-8">
+
+    <!-- Page Title -->
+    <div class="mb-8">
+      <h2 class="text-2xl font-semibold text-wire-text mb-1">Tableau de bord</h2>
+      <p class="text-wire-textMuted">Bienvenue dans votre grainothèque personnelle</p>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-3 gap-6 mb-8">
+      <!-- Card 1 -->
+      <div class="card bg-wire-card border border-wire-border rounded-xl p-6 cursor-pointer interactive">
+        <div class="flex items-start justify-between mb-4">
+          <div class="w-10 h-10 rounded-lg icon-container">
+            <span class="grayscale-icon">🌿</span>
+          </div>
+          <span class="text-xs font-medium badge px-2 py-1 rounded">+2 ce mois</span>
+        </div>
+        <p class="text-3xl font-semibold text-wire-text mb-1">12</p>
+        <p class="text-wire-text font-medium">Mes Plantes</p>
+        <p class="text-wire-textLight text-sm">variétés cultivées</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card bg-wire-card border border-wire-border rounded-xl p-6 cursor-pointer interactive">
+        <div class="flex items-start justify-between mb-4">
+          <div class="w-10 h-10 rounded-lg icon-container">
+            <span class="grayscale-icon">🌰</span>
+          </div>
+          <span class="text-xs font-medium badge px-2 py-1 rounded">Stock OK</span>
+        </div>
+        <p class="text-3xl font-semibold text-wire-text mb-1">28</p>
+        <p class="text-wire-text font-medium">Mes Graines</p>
+        <p class="text-wire-textLight text-sm">sachets en stock</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card bg-wire-card border border-wire-border rounded-xl p-6 cursor-pointer interactive">
+        <div class="flex items-start justify-between mb-4">
+          <div class="w-10 h-10 rounded-lg icon-container">
+            <span class="grayscale-icon">🪴</span>
+          </div>
+          <span class="text-xs font-medium badge px-2 py-1 rounded">Actif</span>
+        </div>
+        <p class="text-3xl font-semibold text-wire-text mb-1">5</p>
+        <p class="text-wire-text font-medium">Semis actifs</p>
+        <p class="text-wire-textLight text-sm">en cours</p>
+      </div>
+    </div>
+
+    <!-- Plant List Section -->
+    <div class="bg-wire-card border border-wire-border rounded-xl overflow-hidden">
+      <!-- Section Header -->
+      <div class="px-6 py-4 border-b border-wire-border flex justify-between items-center">
+        <h3 class="text-lg font-semibold text-wire-text">Mes Plantes</h3>
+        <button class="btn-primary px-4 py-2 rounded-lg font-medium focusable flex items-center gap-2">
+          <span>+</span> Nouvelle plante
+        </button>
+      </div>
+
+      <!-- List Items -->
+      <div class="divide-y divide-wire-border">
+        <!-- Item 1 -->
+        <a href="#" class="list-item block px-6 py-4 cursor-pointer">
+          <div class="flex justify-between items-center">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-lg icon-container">
+                <span class="grayscale-icon-lg">🍅</span>
+              </div>
+              <div>
+                <h4 class="font-semibold text-wire-text">Tomate Roma</h4>
+                <p class="text-wire-textLight text-sm">Solanum lycopersicum</p>
+              </div>
+            </div>
+            <span class="px-3 py-1 text-sm rounded badge font-medium">Légume</span>
+          </div>
+        </a>
+
+        <!-- Item 2 -->
+        <a href="#" class="list-item block px-6 py-4 cursor-pointer">
+          <div class="flex justify-between items-center">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-lg icon-container">
+                <span class="grayscale-icon-lg">🌿</span>
+              </div>
+              <div>
+                <h4 class="font-semibold text-wire-text">Basilic Genovese</h4>
+                <p class="text-wire-textLight text-sm">Ocimum basilicum</p>
+              </div>
+            </div>
+            <span class="px-3 py-1 text-sm rounded badge font-medium">Aromatique</span>
+          </div>
+        </a>
+
+        <!-- Item 3 -->
+        <a href="#" class="list-item block px-6 py-4 cursor-pointer">
+          <div class="flex justify-between items-center">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-lg icon-container">
+                <span class="grayscale-icon-lg">🌻</span>
+              </div>
+              <div>
+                <h4 class="font-semibold text-wire-text">Tournesol Géant</h4>
+                <p class="text-wire-textLight text-sm">Helianthus annuus</p>
+              </div>
+            </div>
+            <span class="px-3 py-1 text-sm rounded badge font-medium">Fleur</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Form Example -->
+    <div class="mt-8 bg-wire-card border border-wire-border rounded-xl p-6">
+      <h3 class="text-lg font-semibold text-wire-text mb-6">Ajouter une plante</h3>
+
+      <div class="grid grid-cols-2 gap-6">
+        <div>
+          <label class="block text-wire-text font-medium mb-2">Nom commun</label>
+          <input type="text" placeholder="Ex: Tomate Roma"
+                 class="input-field w-full px-4 py-3 rounded-lg border border-wire-border bg-wire-bg text-wire-text placeholder-wire-textLight">
+        </div>
+
+        <div>
+          <label class="block text-wire-text font-medium mb-2">Nom scientifique</label>
+          <input type="text" placeholder="Ex: Solanum lycopersicum"
+                 class="input-field w-full px-4 py-3 rounded-lg border border-wire-border bg-wire-bg text-wire-text placeholder-wire-textLight italic">
+        </div>
+
+        <div>
+          <label class="block text-wire-text font-medium mb-2">Catégorie</label>
+          <select
+                  class="input-field w-full px-4 py-3 rounded-lg border border-wire-border bg-wire-bg text-wire-text cursor-pointer">
+            <option>Légume</option>
+            <option>Aromatique</option>
+            <option>Fleur</option>
+            <option>Fruit</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-wire-text font-medium mb-2">Période de semis</label>
+          <input type="text" placeholder="Ex: Mars - Mai"
+                 class="input-field w-full px-4 py-3 rounded-lg border border-wire-border bg-wire-bg text-wire-text placeholder-wire-textLight">
+        </div>
+      </div>
+
+      <div class="mt-6 flex gap-3">
+        <button class="btn-primary px-6 py-3 rounded-lg font-medium focusable">
+          Enregistrer
+        </button>
+        <button class="btn-secondary px-6 py-3 rounded-lg font-medium focusable">
+          Annuler
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-12 border-t border-wire-border bg-wire-card py-6">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <p class="font-semibold text-wire-text mb-1">HappySeeds</p>
+      <p class="text-wire-textMuted text-sm">Cultivez votre passion du jardinage</p>
+    </div>
+  </footer>
+
+  <!-- Interactive States Legend -->
+  <div class="fixed bottom-4 right-4 bg-wire-card border border-wire-border rounded-lg p-4 text-xs shadow-lg">
+    <p class="font-semibold text-wire-text mb-2">États interactifs:</p>
+    <div class="space-y-1 text-wire-textMuted">
+      <p><span class="inline-block w-3 h-3 bg-wire-hover border border-wire-border mr-2"></span>Hover</p>
+      <p><span class="inline-block w-3 h-3 bg-wire-active border border-wire-border mr-2"></span>Active/Click</p>
+      <p><span class="inline-block w-3 h-3 border-2 border-wire-focus mr-2"></span>Focus</p>
+    </div>
+  </div>
+
+</body>
+
+</html>

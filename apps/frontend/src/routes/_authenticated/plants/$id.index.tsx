@@ -70,10 +70,9 @@ function PlantDetailPage() {
       {/* Header */}
       <div className="flex justify-between items-start mb-6">
         <div>
-          <Link to="/plants" className="text-sm text-slate-500 hover:text-slate-700">
+          <Link to="/plants" className="text-sm hover:text-slate-700 text-wire-text-muted">
             ← Retour à la liste
           </Link>
-          // Après
           <h1 className="text-2xl font-bold text-slate-800 mt-2">{names[0]}</h1>
           <p className="text-slate-500 italic">{names[1]}</p>
         </div>
@@ -83,11 +82,12 @@ function PlantDetailPage() {
       </div>
 
       {/* Actions */}
-      <div className="flex gap-2 mb-6">
-        <Link to="/seeds/new" search={{ plantId: plant.id }}>
-          Ajouter une graine
-        </Link>
-        <Link to="/plants/$id/edit" params={{ id: plant.id }}>
+      <div className="flex gap-2 mb-6 ">
+        <Link
+          className="flex content-center flex-wrap text-wire-text-muted"
+          to="/plants/$id/edit"
+          params={{ id: plant.id }}
+        >
           Modifier
         </Link>
         <Button

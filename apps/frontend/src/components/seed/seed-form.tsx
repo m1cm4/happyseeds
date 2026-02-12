@@ -68,12 +68,17 @@ export function SeedForm({
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       {/* ==================== STOCK ==================== */}
       <section className="space-y-4">
-        <h3 className="text-lg font-semibold border-b pb-2">Stock</h3>
+        <h3 className="text-lg font-semibold text-foreground border-b border-border pb-2">Stock</h3>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* En stock */}
           <div className="flex items-center space-x-2">
-            <input type="checkbox" id="inStock" {...register("inStock")} className="h-4 w-4" />
+            <input
+              type="checkbox"
+              id="inStock"
+              {...register("inStock")}
+              className="w-4 h-4 rounded border-border accent-foreground"
+            />
             <Label htmlFor="inStock">En stock</Label>
           </div>
 
@@ -100,7 +105,7 @@ export function SeedForm({
 
       {/* ==================== ACQUISITION ==================== */}
       <section className="space-y-4">
-        <h3 className="text-lg font-semibold border-b pb-2">Acquisition</h3>
+        <h3 className="text-lg font-semibold text-foreground border-b border-border pb-2">Acquisition</h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Marque */}
@@ -123,7 +128,11 @@ export function SeedForm({
           {/* Type */}
           <div className="space-y-2">
             <Label htmlFor="acquisitionType">Type d'acquisition</Label>
-            <select id="acquisitionType" {...register("acquisitionType")} className="w-full p-2 border rounded-md">
+            <select
+              id="acquisitionType"
+              {...register("acquisitionType")}
+              className="w-full px-4 py-3 rounded-lg border border-border bg-input text-foreground transition-fast hover:border-wire-focus focus:border-ring focus:ring-2 focus:ring-ring/15 outline-none cursor-pointer"
+            >
               {acquisitionTypeOptions.map((opt) => (
                 <option key={opt.value} value={opt.value}>
                   {opt.label}
@@ -142,7 +151,7 @@ export function SeedForm({
 
       {/* ==================== EXPIRATION ==================== */}
       <section className="space-y-4">
-        <h3 className="text-lg font-semibold border-b pb-2">Expiration</h3>
+        <h3 className="text-lg font-semibold text-foreground border-b border-border pb-2">Expiration</h3>
 
         <div className="space-y-2 max-w-xs">
           <Label htmlFor="expiryDate">Date d'expiration</Label>
@@ -152,14 +161,14 @@ export function SeedForm({
 
       {/* ==================== NOTES ==================== */}
       <section className="space-y-4">
-        <h3 className="text-lg font-semibold border-b pb-2">Notes</h3>
+        <h3 className="text-lg font-semibold text-foreground border-b border-border pb-2">Notes</h3>
 
         <div className="space-y-2">
           <Label htmlFor="notes">Notes personnelles</Label>
           <textarea
             id="notes"
             {...register("notes")}
-            className="w-full p-2 border rounded-md"
+            className="w-full px-4 py-3 rounded-lg border border-border bg-input text-foreground transition-fast hover:border-wire-focus focus:border-ring focus:ring-2 focus:ring-ring/15 outline-none placeholder:text-wire-text-light"
             rows={4}
             placeholder="Informations sur la récolte, le plant mère, conseils..."
           />

@@ -88,27 +88,31 @@ export function PlantForm({
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
       {/* ==================== CLASSIFICATION ==================== */}
       <section className="space-y-4">
-        <h3 className="text-lg font-semibold border-b pb-2">Classification</h3>
+        <h3 className="text-lg font-semibold text-foreground border-b border-border pb-2">Classification</h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Catégorie */}
           <div className="space-y-2">
             <Label htmlFor="category">Catégorie *</Label>
-            <select id="category" {...register("category")} className="w-full p-2 border rounded-md">
+            <select
+              id="category"
+              {...register("category")}
+              className="w-full px-4 py-3 rounded-lg border border-border bg-input text-foreground transition-fast hover:border-wire-focus focus:border-ring focus:ring-2 focus:ring-ring/15 outline-none cursor-pointer"
+            >
               {plantCategoryOptions.map((opt) => (
                 <option key={opt.value} value={opt.value}>
                   {opt.label}
                 </option>
               ))}
             </select>
-            {errors.category && <p className="text-sm text-red-500">{errors.category.message}</p>}
+            {errors.category && <p className="text-sm text-destructive">{errors.category.message}</p>}
           </div>
 
           {/* Nom commun */}
           <div className="space-y-2">
             <Label htmlFor="commonName">Nom commun *</Label>
             <Input id="commonName" {...register("commonName")} placeholder="Ex: Tomate, Cosmos" />
-            {errors.commonName && <p className="text-sm text-red-500">{errors.commonName.message}</p>}
+            {errors.commonName && <p className="text-sm text-destructive">{errors.commonName.message}</p>}
           </div>
         </div>
 
@@ -145,13 +149,17 @@ export function PlantForm({
 
       {/* ==================== CARACTÉRISTIQUES ==================== */}
       <section className="space-y-4">
-        <h3 className="text-lg font-semibold border-b pb-2">Caractéristiques</h3>
+        <h3 className="text-lg font-semibold text-foreground border-b border-border pb-2">Caractéristiques</h3>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* Rusticité */}
           <div className="space-y-2">
             <Label htmlFor="hardiness">Rusticité</Label>
-            <select id="hardiness" {...register("hardiness")} className="w-full p-2 border rounded-md">
+            <select
+              id="hardiness"
+              {...register("hardiness")}
+              className="w-full px-4 py-3 rounded-lg border border-border bg-input text-foreground transition-fast hover:border-wire-focus focus:border-ring focus:ring-2 focus:ring-ring/15 outline-none cursor-pointer"
+            >
               <option value="">-- Sélectionner --</option>
               {hardinessOptions.map((opt) => (
                 <option key={opt.value} value={opt.value}>
@@ -193,7 +201,7 @@ export function PlantForm({
           <Label>Exposition</Label>
           <div className="flex gap-4">
             {positionOptions.map((opt) => (
-              <label key={opt.value} className="flex items-center gap-2">
+              <label key={opt.value} className="flex items-center gap-2 cursor-pointer">
                 <Controller
                   name="position"
                   control={control}
@@ -210,10 +218,11 @@ export function PlantForm({
                           field.onChange(current.filter((v) => v !== opt.value));
                         }
                       }}
+                      className="w-4 h-4 rounded border-border accent-foreground"
                     />
                   )}
                 />
-                {opt.label}
+                <span className="text-foreground">{opt.label}</span>
               </label>
             ))}
           </div>
@@ -222,17 +231,25 @@ export function PlantForm({
 
       {/* ==================== SEMIS ==================== */}
       <section className="space-y-4">
-        <h3 className="text-lg font-semibold border-b pb-2">Semis</h3>
+        <h3 className="text-lg font-semibold text-foreground border-b border-border pb-2">Semis</h3>
 
         {/* Checkboxes */}
         <div className="flex gap-6">
-          <label className="flex items-center gap-2">
-            <input type="checkbox" {...register("stratification")} />
-            Stratification requise
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              {...register("stratification")}
+              className="w-4 h-4 rounded border-border accent-foreground"
+            />
+            <span className="text-foreground">Stratification requise</span>
           </label>
-          <label className="flex items-center gap-2">
-            <input type="checkbox" {...register("coverToGerminate")} />
-            Couvrir pour germer
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              {...register("coverToGerminate")}
+              className="w-4 h-4 rounded border-border accent-foreground"
+            />
+            <span className="text-foreground">Couvrir pour germer</span>
           </label>
         </div>
 
@@ -257,14 +274,14 @@ export function PlantForm({
         </div>
 
         {/* Note sur les périodes */}
-        <p className="text-sm text-gray-500 italic">
+        <p className="text-sm text-wire-text-light italic">
           Les périodes de semis (semaines 1-52) seront gérées via un composant calendrier dans une prochaine session.
         </p>
       </section>
 
       {/* ==================== CULTURE ==================== */}
       <section className="space-y-4">
-        <h3 className="text-lg font-semibold border-b pb-2">Culture</h3>
+        <h3 className="text-lg font-semibold text-foreground border-b border-border pb-2">Culture</h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
@@ -276,14 +293,14 @@ export function PlantForm({
 
       {/* ==================== NOTES ==================== */}
       <section className="space-y-4">
-        <h3 className="text-lg font-semibold border-b pb-2">Notes & Conseils</h3>
+        <h3 className="text-lg font-semibold text-foreground border-b border-border pb-2">Notes & Conseils</h3>
 
         <div className="space-y-2">
           <Label htmlFor="description">Description générale</Label>
           <textarea
             id="description"
             {...register("description")}
-            className="w-full p-2 border rounded-md"
+            className="w-full px-4 py-3 rounded-lg border border-border bg-input text-foreground transition-fast hover:border-wire-focus focus:border-ring focus:ring-2 focus:ring-ring/15 outline-none placeholder:text-wire-text-light"
             rows={3}
             placeholder="Description de la plante..."
           />
@@ -294,7 +311,7 @@ export function PlantForm({
           <textarea
             id="sowingInfo"
             {...register("sowingInfo")}
-            className="w-full p-2 border rounded-md"
+            className="w-full px-4 py-3 rounded-lg border border-border bg-input text-foreground transition-fast hover:border-wire-focus focus:border-ring focus:ring-2 focus:ring-ring/15 outline-none placeholder:text-wire-text-light"
             rows={3}
             placeholder="Conseils spécifiques pour le semis..."
           />
@@ -305,7 +322,7 @@ export function PlantForm({
           <textarea
             id="growingInfo"
             {...register("growingInfo")}
-            className="w-full p-2 border rounded-md"
+            className="w-full px-4 py-3 rounded-lg border border-border bg-input text-foreground transition-fast hover:border-wire-focus focus:border-ring focus:ring-2 focus:ring-ring/15 outline-none placeholder:text-wire-text-light"
             rows={3}
             placeholder="Conseils pour la culture et l'entretien..."
           />
