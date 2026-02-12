@@ -1,5 +1,5 @@
 {
-  "extends": ["stylelint-config-standard"],
+  "extends": ["stylelint-config-standard", "stylelint-config-tailwindcss"],
   "plugins": ["@stylistic/stylelint-plugin"],
   "rules": {
     "@stylistic/indentation": 2,
@@ -9,6 +9,7 @@
     "@stylistic/block-opening-brace-space-after": "always-single-line",
     "@stylistic/block-closing-brace-space-before": "always-single-line",
     "declaration-block-single-line-max-declarations": 1,
+    "at-rule-empty-line-before": null,
     "at-rule-no-unknown": [
       true,
       {

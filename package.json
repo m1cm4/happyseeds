@@ -23,8 +23,10 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "globals": "^17.3.0",
     "prettier": "^3.2.5",
+    "root": "^3.2.0",
     "stylelint": "^17.2.0",
     "stylelint-config-standard": "^40.0.0",
+    "stylelint-config-tailwindcss": "^1.0.1",
     "turbo": "^2.8.0",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.55.0"

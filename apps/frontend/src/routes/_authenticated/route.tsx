@@ -36,7 +36,7 @@ function AuthenticatedLayout() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#fdfbf7]">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 organic-shape bg-gradient-to-br from-[#3a9133] to-[#53802d] animate-pulse"></div>
+          <div className="w-12 h-12 organic-shape bg-linear-to-br from-[#3a9133] to-[#53802d] animate-pulse"></div>
           <p className="text-[#855c45]">Chargement...</p>
         </div>
       </div>
