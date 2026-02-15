@@ -7,6 +7,7 @@ import { plant } from "./plant.schema";
 // Enums
 // ============================================
 export const acquisitionTypeEnum = pgEnum("acquisition_type", ["self_harvested", "purchase", "gift", "unknown"]);
+export const acquisitionDatePrecisionEnum = pgEnum("acquisition_date_precision", ["month", "year", "unknown"]);
 
 // ============================================
 // Table Seed
@@ -32,9 +33,13 @@ export const seed = pgTable("seed", {
   acquisitionPlace: text("acquisition_place"),
   acquisitionType: acquisitionTypeEnum("acquisition_type").default("unknown"),
   acquisitionDate: date("acquisition_date"),
+  acquisitionDatePrecision: acquisitionDatePrecisionEnum("acquisition_date_precision").default("unknown"),
 
   // Expiration
   expiryDate: date("expiry_date"),
+
+  // Label personnel
+  userLabel: text("user_label"),
 
   // Notes
   notes: text("notes"),
