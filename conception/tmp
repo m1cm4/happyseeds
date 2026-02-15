@@ -1,4 +1,0 @@
-2ieme phase le backend:
-noms de fichier dans @apps/backend/src/services/ au singulier
-export / import de constantes au singulier
-table seed : snake_case et non camelCase
