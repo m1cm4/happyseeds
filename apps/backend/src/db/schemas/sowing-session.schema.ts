@@ -1,6 +1,7 @@
 import { relations } from "drizzle-orm";
 import { pgTable, text, integer, timestamp, date, uuid, pgEnum } from "drizzle-orm/pg-core";
 import { user } from "./auth.schema";
+import { sowingEntry } from "./sowing-entry.schema";
 
 // ============================================
 // Enums
@@ -35,12 +36,13 @@ export const sowingSession = pgTable("sowing_session", {
 // Relations
 // ============================================
 
-export const sowingSessionRelations = relations(sowingSession, ({ one }) => ({
-  // Une graine appartient à un utilisateur
+export const sowingSessionRelations = relations(sowingSession, ({ one, many }) => ({
+  // Une session appartient à un utilisateur
   owner: one(user, {
     fields: [sowingSession.userId],
     references: [user.id],
   }),
+  entries: many(sowingEntry),
 }));
 
 // ============================================

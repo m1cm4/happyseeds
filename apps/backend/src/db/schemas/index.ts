@@ -5,3 +5,4 @@ export * from "./test.schema";
 export * from "./plant.schema";
 export * from "./seed.schema";
 export * from "./sowing-session.schema";
+export * from "./sowing-entry.schema";
