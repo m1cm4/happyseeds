@@ -44,6 +44,13 @@ export default tseslint.config(
       "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }],
     },
   },
+  // désactive l'avertissement pour les scripts utilisé par node
+  {
+    files: ["scripts/**/*.{js,mjs,ts}"],
+    rules: {
+      "no-console": "off"
+    }
+  },
 
   // React Hooks (frontend uniquement)
   {

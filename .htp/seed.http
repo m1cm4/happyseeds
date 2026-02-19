@@ -1,0 +1,36 @@
+### global variables
+@baseUrl = {{$dotenv BACKEND_URL}}
+@contentType = application/json
+
+@authcookie = better-auth.session_token={{$dotenv REST-CLIENT_BETTER-AUTH_TOKEN}}
+
+
+@oneSeedId = 106788b8-4fc0-464f-8a26-9ab07829c813
+
+### 1. Lister des graines
+### ==============================================
+# @name getAllSowingEntries
+GET {{baseUrl}}/api/seeds
+Content-Type: {{contentType}}
+Cookie: {{authcookie}}
+
+
+###
+
+
+### get BY id
+### ==============================================
+# @name getSowingEntryById
+GET {{baseUrl}}/api/seeds/{{oneSeedId}}
+Content-Type: {{contentType}}
+Cookie: {{authcookie}}
+
+
+
+
+
+
+
+
+
+

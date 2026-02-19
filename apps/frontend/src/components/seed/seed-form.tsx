@@ -5,6 +5,7 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Seed } from "@/@types/seed.types";
 import { createSeedSchema, CreateSeedInput, acquisitionTypeOptions } from "@/schemas/seed.shema";
+import { parseAcquisitionDate, formatAcquisitionDate } from "@/lib/acquisition-date";
 
 // ============================================
 // Helper : valeurs par défaut
@@ -23,10 +24,14 @@ function getFormDefaults(seed?: Partial<Seed>): CreateSeedInput {
     brand: seed?.brand ?? "",
     acquisitionPlace: seed?.acquisitionPlace ?? "",
     acquisitionType: seed?.acquisitionType ?? "unknown",
-    acquisitionDate: seed?.acquisitionDate ?? "",
+    acquisitionDate: formatAcquisitionDate(seed?.acquisitionDate ?? null, seed?.acquisitionDatePrecision ?? null),
+    acquisitionDatePrecision: seed?.acquisitionDatePrecision ?? "unknown",
 
     // Expiration
     expiryDate: seed?.expiryDate ?? "",
+
+    // Label personnel
+    userLabel: seed?.userLabel ?? "",
 
     // Notes
     notes: seed?.notes ?? "",
@@ -55,6 +60,7 @@ export function SeedForm({
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors: _errors },
   } = useForm<CreateSeedInput>({
     resolver: zodResolver(createSeedSchema),
@@ -64,8 +70,32 @@ export function SeedForm({
     },
   });
 
+  const handleFormSubmit = (data: CreateSeedInput) => {
+    const parsed = parseAcquisitionDate(data.acquisitionDate ?? "");
+    onSubmit({
+      ...data,
+      acquisitionDate: parsed.date,
+      acquisitionDatePrecision: parsed.precision,
+    });
+  };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-6">
+      {/* ==================== IDENTIFICATION ==================== */}
+      <section className="space-y-4">
+        <h3 className="text-lg font-semibold text-foreground border-b border-border pb-2">Identification</h3>
+
+        <div className="space-y-2 max-w-md">
+          <Label htmlFor="userLabel">Mon label</Label>
+          <Input
+            id="userLabel"
+            {...register("userLabel")}
+            placeholder="Ex: ref 136, Lot printemps 2024..."
+            maxLength={100}
+          />
+        </div>
+      </section>
+
       {/* ==================== STOCK ==================== */}
       <section className="space-y-4">
         <h3 className="text-lg font-semibold text-foreground border-b border-border pb-2">Stock</h3>
@@ -141,10 +171,20 @@ export function SeedForm({
             </select>
           </div>
 
-          {/* Date acquisition */}
+          {/* Date acquisition (texte libre avec parsing auto + normalisation au blur) */}
           <div className="space-y-2">
             <Label htmlFor="acquisitionDate">Date d'acquisition</Label>
-            <Input id="acquisitionDate" type="date" {...register("acquisitionDate")} />
+            <Input
+              id="acquisitionDate"
+              type="text"
+              {...register("acquisitionDate", {
+                onBlur: (e) => {
+                  const parsed = parseAcquisitionDate(e.target.value);
+                  setValue("acquisitionDate", formatAcquisitionDate(parsed.date, parsed.precision));
+                },
+              })}
+              placeholder="Ex: 2024, 2024-08, 03/2024"
+            />
           </div>
         </div>
       </section>

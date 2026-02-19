@@ -1,5 +1,6 @@
 import { Seed } from "@happyseeds/shared-types";
 import { Link } from "@tanstack/react-router";
+import { formatAcquisitionDate } from "@/lib/acquisition-date";
 
 export function SeedListElement({ seed }: { seed: Seed }) {
   const acquisitionLabels: Record<string, string> = {
@@ -24,11 +25,12 @@ export function SeedListElement({ seed }: { seed: Seed }) {
             </div>
             <div>
               <h2 className="font-semibold text-foreground group-hover:opacity-70 transition-fast">
-                {seed.brand ?? "Sans marque"}
+                {seed.userLabel ?? seed.brand ?? "Sans marque"}
               </h2>
               <p className="text-wire-text-light text-sm">
                 {acquisitionLabel}
                 {seed.acquisitionPlace && ` — ${seed.acquisitionPlace}`}
+                {seed.acquisitionDate && ` — ${formatAcquisitionDate(seed.acquisitionDate, seed.acquisitionDatePrecision)}`}
               </p>
             </div>
           </div>

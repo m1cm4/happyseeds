@@ -1,7 +1,7 @@
-import type { Seed, CreateSeedInput, AcquisitionType } from "@happyseeds/shared-types";
+import type { Seed, CreateSeedInput, AcquisitionType, AcquisitionDatePrecision } from "@happyseeds/shared-types";
 
 // Ré-export pour usage local
-export type { Seed, CreateSeedInput, AcquisitionType };
+export type { Seed, CreateSeedInput, AcquisitionType, AcquisitionDatePrecision };
 
 // Types spécifiques au frontend
 export type UpdateSeedInput = Partial<CreateSeedInput>;
@@ -11,7 +11,7 @@ export type SeedQueryParams = {
   limit?: number;
   plantId?: string; // Filtre optionnel
   inStock?: boolean; // Filtre optionnel
-  sortBy?: "brand" | "priority" | "quantity" | "acquisition_date" | "expiry_date" | "created_at";
+  sortBy?: "brand" | "priority" | "quantity" | "acquisition_date" | "expiry_date" | "user_label" | "created_at";
   sortOrder?: "asc" | "desc";
 };
 

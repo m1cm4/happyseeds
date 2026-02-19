@@ -13,6 +13,14 @@ export const acquisitionTypeEnum = z.enum([
 
 export type AcquisitionType = z.infer<typeof acquisitionTypeEnum>;
 
+export const acquisitionDatePrecisionEnum = z.enum([
+  "month", // YYYY-MM
+  "year", // YYYY
+  "unknown", // Date inconnue
+]);
+
+export type AcquisitionDatePrecision = z.infer<typeof acquisitionDatePrecisionEnum>;
+
 // ============================================
 // Options pour les formulaires (labels FR)
 // ============================================
@@ -22,6 +30,12 @@ export const acquisitionTypeOptions = [
   { value: "purchase", label: "Achat" },
   { value: "self_harvested", label: "Récolte personnelle" },
   { value: "gift", label: "Don / Échange" },
+] as const;
+
+export const acquisitionDatePrecisionOptions = [
+  { value: "unknown", label: "Inconnue" },
+  { value: "year", label: "Année" },
+  { value: "month", label: "Mois" },
 ] as const;
 
 // ============================================
@@ -58,6 +72,11 @@ export const createSeedSchema = z.object({
   acquisitionPlace: z.string().max(64).optional().or(z.literal("")),
   acquisitionType: acquisitionTypeEnum.default("unknown"),
   acquisitionDate: z.string().optional().or(z.literal("")), // Format: YYYY-MM-DD
+  acquisitionDatePrecision: acquisitionDatePrecisionEnum.default("unknown"),
+
+  // Label personnel
+  userLabel: z.string().max(100).optional().or(z.literal("")),
+
   // Notes
   notes: z.string().max(5000).optional().or(z.literal("")),
 });
@@ -81,7 +100,9 @@ export const seedSchema = z.object({
   acquisitionPlace: z.string().nullable(),
   acquisitionType: acquisitionTypeEnum.nullable(),
   acquisitionDate: z.string().nullable(),
+  acquisitionDatePrecision: acquisitionDatePrecisionEnum.nullable(),
   expiryDate: z.string().nullable(),
+  userLabel: z.string().nullable(),
   notes: z.string().nullable(),
 
   createdAt: z.coerce.date(),

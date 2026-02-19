@@ -15,7 +15,7 @@ export type SeedFilters = {
 export type SeedPaginationParams = {
   page?: number;
   limit?: number;
-  sortBy?: "brand" | "priority" | "quantity" | "acquisition_type" | "acquisition_date" | "expiry_date" | "created_at";
+  sortBy?: "brand" | "priority" | "quantity" | "acquisition_type" | "acquisition_date" | "expiry_date" | "user_label" | "created_at";
   sortOrder?: "asc" | "desc";
 };
 
@@ -40,6 +40,7 @@ const sortableColumns = {
   acquisition_type: seed.acquisitionType,
   acquisition_date: seed.acquisitionDate,
   expiry_date: seed.expiryDate,
+  user_label: seed.userLabel,
   created_at: seed.createdAt,
 } as const;
 

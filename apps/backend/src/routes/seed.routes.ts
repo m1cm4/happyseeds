@@ -21,6 +21,7 @@ const sortableFields = [
   "acquisition_type",
   "acquisition_date",
   "expiry_date",
+  "user_label",
   "created_at",
 ] as const;
 
@@ -104,6 +105,7 @@ export const seedRoutes = new Hono()
       plantId: body.plantId || null, // Convertir "" en null
       acquisitionDate: body.acquisitionDate || null, // Convertir "" en null
       expiryDate: body.expiryDate || null, // Convertir "" en null
+      userLabel: body.userLabel || null, // Convertir "" en null
       userId,
     });
 
@@ -129,6 +131,7 @@ export const seedRoutes = new Hono()
       plantId: body.plantId || null, // Convertir "" en null
       acquisitionDate: body.acquisitionDate || null, // Convertir "" en null
       expiryDate: body.expiryDate || null, // Convertir "" en null
+      userLabel: body.userLabel || null, // Convertir "" en null
     });
 
     if (!updatedSeed) {

@@ -1,0 +1,97 @@
+### global variables
+@baseUrl = {{$dotenv BACKEND_URL}}
+@contentType = application/json
+
+@authcookie = better-auth.session_token={{$dotenv REST-CLIENT_BETTER-AUTH_TOKEN}}
+
+### contextual variables
+@sowingSessionId = 7f030c3a-9032-40c6-9b8c-4bd567a30269
+@oneSeedId = 106788b8-4fc0-464f-8a26-9ab07829c813
+
+
+### 1. Lister les entrées
+### ==============================================
+# @name getAllSowingEntries
+GET {{baseUrl}}/api/sowing-sessions/{{sowingSessionId}}/entries
+Content-Type: {{contentType}}
+Cookie: {{authcookie}}
+
+
+###
+
+
+### get BY Date
+### ==============================================
+# @name getAllSowingEntries
+GET {{baseUrl}}/api/sowing-sessions/{{sowingSessionId}}/entries?actualStartDate=01-03-2026
+Content-Type: {{contentType}}
+Cookie: {{authcookie}}
+
+
+###
+
+
+### get BY id
+### ==============================================
+# @name getSowingEntryById
+
+@entryId = 6bbf99fc-e119-47d1-89da-ec241cecf6f9
+
+GET {{baseUrl}}/api/sowing-sessions/{{sowingSessionId}}/entries/{{entryId}}
+Content-Type: {{contentType}}
+Cookie: {{authcookie}}
+
+
+###
+
+
+### Créer un entrée semis
+### ==============================================
+# @name createSowingEntry
+POST {{baseUrl}}/api/sowing-sessions/{{sowingSessionId}}/entries
+Content-Type: {{contentType}}
+Cookie: {{authcookie}}
+
+{
+  "seedId": "{{oneSeedId}}",
+  "plannedStartDate": "28-2-2026",
+  "actualStartDate": "1-3-2026",
+  "estimatedEndDate": "1-4-2026",
+  "actualEndDate": "1-4-2026",
+  "quantity": 30,
+  "notes": "ma 5 ieme avec date autre format",
+  "status": "completed"
+}
+
+
+###
+
+
+### 3. Modifier une entrée semis
+### ==============================================
+# @name updateentrySesssion
+
+@entryId = 6bbf99fc-e119-47d1-89da-ec241cecf6f9
+
+PATCH {{baseUrl}}/api/sowing-sessions/{{sowingSessionId}}/entries/{{entryId}}
+Content-Type: {{contentType}}
+Cookie: {{authcookie}}
+
+{
+   "status": "growing"
+}
+
+
+###
+
+
+### 4. Effacer une entrée semis
+### ==============================================
+# @name deleteSowingEntry
+DELETE {{baseUrl}}/api/sowing-sessions/{{sowingSessionId}}/entries/{{entryId}}
+Content-Type: {{contentType}}
+Cookie: {{authcookie}}
+
+
+###
+Variable Resolution ProcessSystem Variable Architecture

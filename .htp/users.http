@@ -1,7 +1,7 @@
 
 
 ### Variables de fichier
-@baseUrl = http://localhost:3011
+@baseUrl = http://localhost:3001
 @contentType = application/json
 
 
