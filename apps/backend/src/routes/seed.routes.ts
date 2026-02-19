@@ -60,8 +60,7 @@ export const seedRoutes = new Hono()
       {
         userId,
         plantId: query.plantId,
-        // todo voir ou placer ce filtre
-        // inStock: query.inStock,
+        inStock: query.inStock,
       },
       {
         page: query.page,

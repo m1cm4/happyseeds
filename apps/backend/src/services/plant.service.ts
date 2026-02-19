@@ -1,4 +1,4 @@
-import { eq, and, ilike, desc, asc, SQL } from "drizzle-orm";
+import { eq, and, ilike, desc, asc, SQL, Column } from "drizzle-orm";
 import { db } from "../db";
 import { plant, Plant, NewPlant } from "../db/schemas";
 
@@ -40,6 +40,21 @@ export type PaginatedResult<T> = {
 };
 
 // ============================================
+// Mapping colonnes triables
+// ============================================
+
+const sortableColumns: Record<SortableField, Column> = {
+   commonName: plant.commonName,
+   family: plant.family,
+   genus: plant.genus,
+   species: plant.species,
+   cultivar: plant.cultivar,
+   category: plant.category,
+   createdAt: plant.createdAt,
+   updatedAt: plant.updatedAt,
+};
+
+// ============================================
 // Service
 // ============================================
 
@@ -73,8 +88,7 @@ export const plantService = {
 
       // Requête principale avec pagination ---------------
       const offset = (page - 1) * limit;
-      //TODO
-      const orderByColumn = sortBy === "commonName" ? plant.commonName : plant.createdAt;
+      const orderByColumn = sortableColumns[sortBy] ?? plant.createdAt;
       const orderByDirection = sortOrder === "asc" ? asc : desc;
 
       const data = await db

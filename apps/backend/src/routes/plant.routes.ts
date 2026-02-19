@@ -27,7 +27,7 @@ const updatePlantSchema = createPlantSchema.partial();
 const querySchema = z.object({
   page: z.coerce.number().int().positive().default(1),
   limit: z.coerce.number().int().positive().max(100).default(10),
-  category: z.string().optional(),
+  category: z.enum(["ornamental", "vegetable"]).optional(),
   search: z.string().optional(),
   sortBy: z.enum(sortableFields).default("createdAt"),
   sortOrder: z.enum(["asc", "desc"]).default("desc"),
