@@ -1,4 +1,4 @@
-// sowing - entry.routes.ts;
+// sowing-entry.routes.ts
 
 import { Hono } from "hono";
 import { createSowingEntrySchema } from "@happyseeds/shared-types";
@@ -11,7 +11,7 @@ import { zValidator } from "@hono/zod-validator";
 // Schémas de validation
 // ============================================
 
-// createSowingSessionSchema -> shared-types/
+// createSowingEntrySchema -> shared-types/
 
 const updateSowingEntrySchema = createSowingEntrySchema.partial();
 
