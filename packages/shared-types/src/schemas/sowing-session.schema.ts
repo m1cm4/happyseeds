@@ -11,10 +11,13 @@ export const sowingSessionStatusEnum = z.enum([
   "cancelled", // annulé
 ]);
 
+// Type inféré de l'enum — utilisé par : frontend (formulaires, filtres) + backend (typage service)
 export type sowingSessionStatusType = z.infer<typeof sowingSessionStatusEnum>;
+
 // ============================================
 // Options pour les formulaires (labels FR)
 // ============================================
+
 export const sowingSessionTypeOptions = [
   { value: "planned", label: "Planifiée" },
   { value: "active", label: "En cours" },
@@ -23,17 +26,11 @@ export const sowingSessionTypeOptions = [
 ] as const;
 
 // ============================================
-// Helpers pour Zod
-// ============================================
-// Entier positif optionnel (pour durées en jours)
-// preprocess gère les chaînes vides des inputs HTML avant coercion
-
-// ============================================
-// Schéma de création (formulaire)
+// Schéma de création
+// Utilisé par : route backend POST /api/sowing-sessions (zValidator) + formulaire frontend (création)
 // ============================================
 
 export const createSowingSessionSchema = z.object({
-  // Relations (plant_id optionnel - peut être ajouté via URL ou body)
   name: z.string().max(128).min(1, "Le nom est requis"),
   year: z.coerce
     .number()
@@ -47,17 +44,27 @@ export const createSowingSessionSchema = z.object({
   notes: z.string().max(5000).optional().or(z.literal("")),
 });
 
+// Utilisé par : route backend POST (typage body) + formulaire frontend (typage form)
 export type CreateSowingSessionInput = z.infer<typeof createSowingSessionSchema>;
 
 // ============================================
+// Schéma de mise à jour (tous les champs optionnels)
+// Utilisé par : route backend PATCH /api/sowing-sessions/:id (zValidator) + formulaire frontend (édition)
+// ============================================
+
+export const updateSowingSessionSchema = createSowingSessionSchema.partial();
+
+// Utilisé par : route backend PATCH (typage body) + service frontend (typage paramètre)
+export type UpdateSowingSessionInput = z.infer<typeof updateSowingSessionSchema>;
+
+// ============================================
 // Schéma complet (lecture depuis API)
+// Utilisé par : désérialisation des réponses API côté frontend
 // ============================================
 
 /*
-extension du shémas précédent.
-on redéfinit ici avec moins de contraintes : name, year, startDate, status
-c'est valide parceque à la lecture pas besoin de validation stricte
-mais j'aurais aussi pu laisser les validation de create
+Extension du schéma de création avec moins de contraintes : name, year, startDate, status
+sont redéfinis ici pour la lecture (pas besoin de validation stricte à la désérialisation).
 */
 export const sowingSessionSchema = createSowingSessionSchema.extend({
   id: z.string().uuid(),
@@ -71,4 +78,5 @@ export const sowingSessionSchema = createSowingSessionSchema.extend({
   updatedAt: z.coerce.date(),
 });
 
+// Utilisé par : hooks TanStack Query + composants frontend (affichage)
 export type SowingSession = z.infer<typeof sowingSessionSchema>;

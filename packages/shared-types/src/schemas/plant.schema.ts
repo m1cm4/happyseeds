@@ -17,7 +17,7 @@ export const hardinessEnum = z.enum([
 
 export const positionEnum = z.enum(["full_sun", "partial_shade", "shade"]);
 
-// Types inférés des enums
+// Types inférés des enums — utilisés par : frontend (formulaires, filtres) + backend (typage service)
 export type PlantCategory = z.infer<typeof plantCategoryEnum>;
 export type Hardiness = z.infer<typeof hardinessEnum>;
 export type Position = z.infer<typeof positionEnum>;
@@ -68,7 +68,8 @@ const shortText = (max = 100) => z.string().max(max).optional().or(z.literal("")
 const weekArraySchema = z.array(z.number().int().min(1).max(52)).optional();
 
 // ============================================
-// Schéma de création (formulaire)
+// Schéma de création
+// Utilisé par : route backend POST /api/plants (zValidator) + formulaire frontend (création)
 // ============================================
 
 export const createPlantSchema = z.object({
@@ -111,10 +112,22 @@ export const createPlantSchema = z.object({
   growingInfo: z.string().optional().or(z.literal("")),
 });
 
+// Utilisé par : route backend POST (typage body) + formulaire frontend (typage form)
 export type CreatePlantInput = z.infer<typeof createPlantSchema>;
 
 // ============================================
+// Schéma de mise à jour (tous les champs optionnels)
+// Utilisé par : route backend PATCH /api/plants/:id (zValidator) + formulaire frontend (édition)
+// ============================================
+
+export const updatePlantSchema = createPlantSchema.partial();
+
+// Utilisé par : route backend PATCH (typage body) + service frontend (typage paramètre)
+export type UpdatePlantInput = z.infer<typeof updatePlantSchema>;
+
+// ============================================
 // Schéma complet (lecture depuis API)
+// Utilisé par : désérialisation des réponses API côté frontend
 // ============================================
 
 export const plantSchema = createPlantSchema.extend({
@@ -125,4 +138,5 @@ export const plantSchema = createPlantSchema.extend({
   updatedAt: z.coerce.date(),
 });
 
+// Utilisé par : hooks TanStack Query + composants frontend (affichage)
 export type Plant = z.infer<typeof plantSchema>;

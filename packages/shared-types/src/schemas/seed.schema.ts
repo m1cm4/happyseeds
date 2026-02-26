@@ -11,14 +11,14 @@ export const acquisitionTypeEnum = z.enum([
   "unknown", // Non précisé
 ]);
 
-export type AcquisitionType = z.infer<typeof acquisitionTypeEnum>;
-
 export const acquisitionDatePrecisionEnum = z.enum([
   "month", // YYYY-MM
   "year", // YYYY
   "unknown", // Date inconnue
 ]);
 
+// Types inférés des enums — utilisés par : frontend (formulaires, filtres) + backend (typage service)
+export type AcquisitionType = z.infer<typeof acquisitionTypeEnum>;
 export type AcquisitionDatePrecision = z.infer<typeof acquisitionDatePrecisionEnum>;
 
 // ============================================
@@ -55,14 +55,15 @@ const prioritySchema = z.preprocess(
 );
 
 // ============================================
-// Schéma de création (formulaire)
+// Schéma de création
+// Utilisé par : route backend POST /api/seeds (zValidator) + formulaire frontend (création)
 // ============================================
 
 export const createSeedSchema = z.object({
   // Relations (plant_id optionnel - peut être ajouté via URL ou body)
   plantId: z.string().uuid().optional().or(z.literal("")),
   priority: prioritySchema,
-  // etat du stock
+  // État du stock
   inStock: z.boolean().default(true),
   quantity: optionalInt,
   expiryDate: z.string().optional().or(z.literal("")),
@@ -81,10 +82,22 @@ export const createSeedSchema = z.object({
   notes: z.string().max(5000).optional().or(z.literal("")),
 });
 
+// Utilisé par : route backend POST (typage body) + formulaire frontend (typage form)
 export type CreateSeedInput = z.infer<typeof createSeedSchema>;
 
 // ============================================
+// Schéma de mise à jour (tous les champs optionnels)
+// Utilisé par : route backend PATCH /api/seeds/:id (zValidator) + formulaire frontend (édition)
+// ============================================
+
+export const updateSeedSchema = createSeedSchema.partial();
+
+// Utilisé par : route backend PATCH (typage body) + service frontend (typage paramètre)
+export type UpdateSeedInput = z.infer<typeof updateSeedSchema>;
+
+// ============================================
 // Schéma complet (lecture depuis API)
+// Utilisé par : désérialisation des réponses API côté frontend
 // ============================================
 
 export const seedSchema = z.object({
@@ -109,4 +122,5 @@ export const seedSchema = z.object({
   updatedAt: z.coerce.date(),
 });
 
+// Utilisé par : hooks TanStack Query + composants frontend (affichage)
 export type Seed = z.infer<typeof seedSchema>;

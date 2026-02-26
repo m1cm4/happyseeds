@@ -1,7 +1,7 @@
 // sowing-entry.routes.ts
 
 import { Hono } from "hono";
-import { createSowingEntrySchema } from "@happyseeds/shared-types";
+import { createSowingEntrySchema, updateSowingEntrySchema } from "@happyseeds/shared-types";
 import { requireAuth } from "../middleware/auth.middleware";
 import { createMiddleware } from "hono/factory";
 import { sowingEntryService } from "../services/sowing-entry.service";
@@ -10,10 +10,6 @@ import { zValidator } from "@hono/zod-validator";
 // ============================================
 // Schémas de validation
 // ============================================
-
-// createSowingEntrySchema -> shared-types/
-
-const updateSowingEntrySchema = createSowingEntrySchema.partial();
 
 // définir les variables qui serontlue et écrite , puis passée entre middleware via next()
 type SessionOwnershipVariables = {
