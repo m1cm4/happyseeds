@@ -15,11 +15,13 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedSeedsRouteRouteImport } from './routes/_authenticated/seeds/route'
+import { Route as AuthenticatedSowingSessionsIndexRouteImport } from './routes/_authenticated/sowing-sessions/index'
 import { Route as AuthenticatedSeedsIndexRouteImport } from './routes/_authenticated/seeds/index'
 import { Route as AuthenticatedPlantsIndexRouteImport } from './routes/_authenticated/plants/index'
 import { Route as DemoStartServerFuncsRouteImport } from './routes/demo/start.server-funcs'
 import { Route as DemoStartApiRequestRouteImport } from './routes/demo/start.api-request'
 import { Route as DemoApiNamesRouteImport } from './routes/demo/api.names'
+import { Route as AuthenticatedSowingSessionsNewRouteImport } from './routes/_authenticated/sowing-sessions/new'
 import { Route as AuthenticatedSeedsNewRouteImport } from './routes/_authenticated/seeds/new'
 import { Route as AuthenticatedPlantsNewRouteImport } from './routes/_authenticated/plants/new'
 import { Route as DemoStartSsrIndexRouteImport } from './routes/demo/start.ssr.index'
@@ -59,6 +61,12 @@ const AuthenticatedSeedsRouteRoute = AuthenticatedSeedsRouteRouteImport.update({
   path: '/seeds',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedSowingSessionsIndexRoute =
+  AuthenticatedSowingSessionsIndexRouteImport.update({
+    id: '/sowing-sessions/',
+    path: '/sowing-sessions/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedSeedsIndexRoute = AuthenticatedSeedsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -85,6 +93,12 @@ const DemoApiNamesRoute = DemoApiNamesRouteImport.update({
   path: '/demo/api/names',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedSowingSessionsNewRoute =
+  AuthenticatedSowingSessionsNewRouteImport.update({
+    id: '/sowing-sessions/new',
+    path: '/sowing-sessions/new',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedSeedsNewRoute = AuthenticatedSeedsNewRouteImport.update({
   id: '/new',
   path: '/new',
@@ -142,11 +156,13 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/plants/new': typeof AuthenticatedPlantsNewRoute
   '/seeds/new': typeof AuthenticatedSeedsNewRoute
+  '/sowing-sessions/new': typeof AuthenticatedSowingSessionsNewRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/plants/': typeof AuthenticatedPlantsIndexRoute
   '/seeds/': typeof AuthenticatedSeedsIndexRoute
+  '/sowing-sessions/': typeof AuthenticatedSowingSessionsIndexRoute
   '/plants/$id/edit': typeof AuthenticatedPlantsIdEditRoute
   '/seeds/$id/edit': typeof AuthenticatedSeedsIdEditRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
@@ -162,11 +178,13 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/plants/new': typeof AuthenticatedPlantsNewRoute
   '/seeds/new': typeof AuthenticatedSeedsNewRoute
+  '/sowing-sessions/new': typeof AuthenticatedSowingSessionsNewRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/plants': typeof AuthenticatedPlantsIndexRoute
   '/seeds': typeof AuthenticatedSeedsIndexRoute
+  '/sowing-sessions': typeof AuthenticatedSowingSessionsIndexRoute
   '/plants/$id/edit': typeof AuthenticatedPlantsIdEditRoute
   '/seeds/$id/edit': typeof AuthenticatedSeedsIdEditRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
@@ -185,11 +203,13 @@ export interface FileRoutesById {
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/plants/new': typeof AuthenticatedPlantsNewRoute
   '/_authenticated/seeds/new': typeof AuthenticatedSeedsNewRoute
+  '/_authenticated/sowing-sessions/new': typeof AuthenticatedSowingSessionsNewRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/_authenticated/plants/': typeof AuthenticatedPlantsIndexRoute
   '/_authenticated/seeds/': typeof AuthenticatedSeedsIndexRoute
+  '/_authenticated/sowing-sessions/': typeof AuthenticatedSowingSessionsIndexRoute
   '/_authenticated/plants/$id/edit': typeof AuthenticatedPlantsIdEditRoute
   '/_authenticated/seeds/$id/edit': typeof AuthenticatedSeedsIdEditRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
@@ -208,11 +228,13 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/plants/new'
     | '/seeds/new'
+    | '/sowing-sessions/new'
     | '/demo/api/names'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
     | '/plants/'
     | '/seeds/'
+    | '/sowing-sessions/'
     | '/plants/$id/edit'
     | '/seeds/$id/edit'
     | '/demo/start/ssr/data-only'
@@ -228,11 +250,13 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/plants/new'
     | '/seeds/new'
+    | '/sowing-sessions/new'
     | '/demo/api/names'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
     | '/plants'
     | '/seeds'
+    | '/sowing-sessions'
     | '/plants/$id/edit'
     | '/seeds/$id/edit'
     | '/demo/start/ssr/data-only'
@@ -250,11 +274,13 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard'
     | '/_authenticated/plants/new'
     | '/_authenticated/seeds/new'
+    | '/_authenticated/sowing-sessions/new'
     | '/demo/api/names'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
     | '/_authenticated/plants/'
     | '/_authenticated/seeds/'
+    | '/_authenticated/sowing-sessions/'
     | '/_authenticated/plants/$id/edit'
     | '/_authenticated/seeds/$id/edit'
     | '/demo/start/ssr/data-only'
@@ -322,6 +348,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSeedsRouteRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/sowing-sessions/': {
+      id: '/_authenticated/sowing-sessions/'
+      path: '/sowing-sessions'
+      fullPath: '/sowing-sessions/'
+      preLoaderRoute: typeof AuthenticatedSowingSessionsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/seeds/': {
       id: '/_authenticated/seeds/'
       path: '/'
@@ -356,6 +389,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/demo/api/names'
       preLoaderRoute: typeof DemoApiNamesRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/sowing-sessions/new': {
+      id: '/_authenticated/sowing-sessions/new'
+      path: '/sowing-sessions/new'
+      fullPath: '/sowing-sessions/new'
+      preLoaderRoute: typeof AuthenticatedSowingSessionsNewRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/seeds/new': {
       id: '/_authenticated/seeds/new'
@@ -445,7 +485,9 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedSeedsRouteRoute: typeof AuthenticatedSeedsRouteRouteWithChildren
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedPlantsNewRoute: typeof AuthenticatedPlantsNewRoute
+  AuthenticatedSowingSessionsNewRoute: typeof AuthenticatedSowingSessionsNewRoute
   AuthenticatedPlantsIndexRoute: typeof AuthenticatedPlantsIndexRoute
+  AuthenticatedSowingSessionsIndexRoute: typeof AuthenticatedSowingSessionsIndexRoute
   AuthenticatedPlantsIdEditRoute: typeof AuthenticatedPlantsIdEditRoute
   AuthenticatedPlantsIdIndexRoute: typeof AuthenticatedPlantsIdIndexRoute
 }
@@ -454,7 +496,9 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedSeedsRouteRoute: AuthenticatedSeedsRouteRouteWithChildren,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedPlantsNewRoute: AuthenticatedPlantsNewRoute,
+  AuthenticatedSowingSessionsNewRoute: AuthenticatedSowingSessionsNewRoute,
   AuthenticatedPlantsIndexRoute: AuthenticatedPlantsIndexRoute,
+  AuthenticatedSowingSessionsIndexRoute: AuthenticatedSowingSessionsIndexRoute,
   AuthenticatedPlantsIdEditRoute: AuthenticatedPlantsIdEditRoute,
   AuthenticatedPlantsIdIndexRoute: AuthenticatedPlantsIdIndexRoute,
 }
