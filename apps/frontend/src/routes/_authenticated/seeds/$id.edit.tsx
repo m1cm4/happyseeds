@@ -2,7 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { SeedForm } from "@/components/seed/seed-form";
 import { seedApi } from "@/services/seed.service";
-import { UpdateSeedInput } from "@/@types/seed.types";
+import type { UpdateSeedInput } from "@happyseeds/shared-types";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/_authenticated/seeds/$id/edit")({

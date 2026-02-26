@@ -1,19 +1,11 @@
-import type {
-  SowingSession,
-  CreateSowingSessionInput,
-  UpdateSowingSessionInput,
-  sowingSessionStatusType,
-} from "@happyseeds/shared-types";
-
-// Ré-exports depuis shared-types
-export type { SowingSession, CreateSowingSessionInput, UpdateSowingSessionInput, sowingSessionStatusType };
+import { sowingSessionStatusType } from "@happyseeds/shared-types";
 
 // Types spécifiques au frontend — utilisés par : hooks TanStack Query, composants liste/filtre
 export type SowingSessionQueryParams = {
-  page?: number;
-  limit?: number;
-  year?: number;
-  status?: string;
-  sortBy?: "name" | "year" | "start_date" | "status" | "created_at";
-  sortOrder?: "asc" | "desc";
+   page?: number;
+   limit?: number;
+   year?: number;
+   status?: sowingSessionStatusType;
+   sortBy?: "name" | "year" | "start_date" | "status" | "created_at";
+   sortOrder?: "asc" | "desc";
 };

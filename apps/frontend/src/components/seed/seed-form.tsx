@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-import { Seed } from "@/@types/seed.types";
+import type { Seed } from "@happyseeds/shared-types";
 import { createSeedSchema, CreateSeedInput, acquisitionTypeOptions } from "@happyseeds/shared-types";
 import { parseAcquisitionDate, formatAcquisitionDate } from "@/lib/acquisition-date";
 

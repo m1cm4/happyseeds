@@ -1,4 +1,4 @@
-import type { AcquisitionDatePrecision } from "@/@types/seed.types";
+import type { AcquisitionDatePrecision } from "@happyseeds/shared-types";
 
 type ParsedAcquisitionDate = {
   date: string; // YYYY-MM-DD ou ""

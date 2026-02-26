@@ -12,7 +12,7 @@ import {
    positionOptions,
 } from "@happyseeds/shared-types";
 
-import { Plant } from "@/@types/plant.types";
+import { Plant } from "@happyseeds/shared-types";
 
 type PlantFormProps = {
    defaultValues?: Partial<Plant>;
