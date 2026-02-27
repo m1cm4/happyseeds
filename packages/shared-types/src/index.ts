@@ -5,6 +5,7 @@ export * from "./schemas/plant.schema";
 export * from "./schemas/seed.schema";
 export * from "./schemas/sowing-session.schema";
 export * from "./schemas/sowing-entry.schema";
+export * from "./schemas/calendar.schema";
 
 export { z } from "zod";
 export type { ZodSchema } from "zod";

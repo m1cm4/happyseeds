@@ -8,6 +8,7 @@ import { plantRoutes } from "./routes/plant.routes";
 import { seedRoutes } from "./routes/seed.routes";
 import { sowingSessionRoutes } from "./routes/sowing-session.routes";
 import { sowingEntryRoutes } from "./routes/sowing-entry.routes";
+import { calendarRoutes } from "./routes/calendar.routes";
 
 const app = new Hono();
 
@@ -42,6 +43,9 @@ app.route("/api/sowing-sessions/:sessionId/entries", sowingEntryRoutes);
 
 // SowingSession CCRUD ---------------------------
 app.route("/api/sowing-sessions", sowingSessionRoutes);
+
+// Calendar ---------------------------
+app.route("/api/calendar", calendarRoutes);
 
 // Health check - check that API is alive --------
 app.get("/api/health", (c) => {
