@@ -1,0 +1,25 @@
+### global variables
+@baseUrl = {{$dotenv BACKEND_URL}}
+@contentType = application/json
+
+@authcookie = better-auth.session_token={{$dotenv REST-CLIENT_BETTER-AUTH_TOKEN}}
+
+
+@oneSeedId = 106788b8-4fc0-464f-8a26-9ab07829c813
+
+### 1. liste d'entrée selon le mois
+### ==============================================
+# @name getCalendar
+GET {{baseUrl}}/api/calendar?year=2000&month=-12
+Content-Type: {{contentType}}
+Cookie: {{authcookie}}
+
+
+###
+
+
+
+
+
+
+
