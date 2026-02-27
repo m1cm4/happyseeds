@@ -1,19 +1,11 @@
-// ============================================
-// API Plant
-// ============================================
-import type { Plant, CreatePlantInput, PlantCategory, Hardiness, Position } from "@happyseeds/shared-types";
+import type { PlantCategory } from "@happyseeds/shared-types";
 
-// Ré-export pour usage local
-export type { Plant, CreatePlantInput, PlantCategory, Hardiness, Position };
-
-// Types spécifiques au frontend
-export type UpdatePlantInput = Partial<CreatePlantInput>;
-
+// Types spécifiques au frontend — utilisés par : hooks TanStack Query, composants liste/filtre
 export type PlantQueryParams = {
-  page?: number;
-  limit?: number;
-  category?: PlantCategory;
-  search?: string;
-  sortBy?: "commonName" | "family" | "genus" | "createdAt";
-  sortOrder?: "asc" | "desc";
+   page?: number;
+   limit?: number;
+   category?: PlantCategory;
+   search?: string;
+   sortBy?: "commonName" | "family" | "genus" | "createdAt";
+   sortOrder?: "asc" | "desc";
 };

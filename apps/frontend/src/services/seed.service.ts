@@ -1,5 +1,6 @@
 import { ApiResponse, PaginatedResponse } from "@/@types/api.types";
-import { Seed, CreateSeedInput, UpdateSeedInput, SeedQueryParams } from "@/@types/seed.types";
+import type { Seed, CreateSeedInput, UpdateSeedInput } from "@happyseeds/shared-types";
+import type { SeedQueryParams } from "@/@types/seed.types";
 import { request } from "@/lib/api-client";
 
 export const seedApi = {

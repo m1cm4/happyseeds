@@ -1,4 +1,5 @@
-import { CreateSeedInput, SeedQueryParams, UpdateSeedInput } from "@/@types/seed.types";
+import type { CreateSeedInput, UpdateSeedInput } from "@happyseeds/shared-types";
+import type { SeedQueryParams } from "@/@types/seed.types";
 import { seedApi } from "@/services/seed.service";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 

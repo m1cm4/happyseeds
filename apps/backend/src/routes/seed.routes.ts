@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { z } from "zod";
 import { zValidator } from "@hono/zod-validator";
-import { createSeedSchema } from "@happyseeds/shared-types";
+import { createSeedSchema, updateSeedSchema } from "@happyseeds/shared-types";
 import { plantService } from "../services/plant.service";
 import { requireAuth } from "../middleware/auth.middleware";
 import { seedService } from "../services/seed.service";
@@ -9,10 +9,6 @@ import { seedService } from "../services/seed.service";
 // ============================================
 // Schémas de validation
 // ============================================
-
-// createSeedSchema -> shared-types/
-
-const updateSeedSchema = createSeedSchema.partial();
 
 const sortableFields = [
   "brand",
@@ -60,8 +56,7 @@ export const seedRoutes = new Hono()
       {
         userId,
         plantId: query.plantId,
-        // todo voir ou placer ce filtre
-        // inStock: query.inStock,
+        inStock: query.inStock,
       },
       {
         page: query.page,

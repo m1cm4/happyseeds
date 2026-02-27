@@ -1,17 +1,13 @@
 import { Hono } from "hono";
 import { z } from "zod";
 import { zValidator } from "@hono/zod-validator";
-import { createSowingSessionSchema, sowingSessionStatusEnum } from "@happyseeds/shared-types";
+import { createSowingSessionSchema, updateSowingSessionSchema, sowingSessionStatusEnum } from "@happyseeds/shared-types";
 import { requireAuth } from "../middleware/auth.middleware";
 import { sowingSessionService } from "../services/sowing-session.service";
 
 // ============================================
 // Schémas de validation
 // ============================================
-
-// createSowingSessionSchema -> shared-types/
-
-const updateSowingSessionSchema = createSowingSessionSchema.partial();
 
 const sortableFields = ["name", "year", "start_date", "status", "created_at"] as const;
 

@@ -1,5 +1,6 @@
 import { ApiResponse, PaginatedResponse } from "@/@types/api.types";
-import { CreatePlantInput, Plant, PlantQueryParams, UpdatePlantInput } from "@/@types/plant.types";
+import type { CreatePlantInput, Plant, UpdatePlantInput } from "@happyseeds/shared-types";
+import type { PlantQueryParams } from "@/@types/plant.types";
 import { request } from "@/lib/api-client";
 
 export const plantApi = {

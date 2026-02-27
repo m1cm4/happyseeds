@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { z } from "zod";
 import { zValidator } from "@hono/zod-validator";
-import { createPlantSchema } from "@happyseeds/shared-types";
+import { createPlantSchema, updatePlantSchema } from "@happyseeds/shared-types";
 import { plantService } from "../services/plant.service";
 import { requireAuth } from "../middleware/auth.middleware";
 
@@ -21,13 +21,10 @@ const sortableFields = [
   "updatedAt",
 ] as const;
 
-// Dérivé du schéma partagé
-const updatePlantSchema = createPlantSchema.partial();
-
 const querySchema = z.object({
   page: z.coerce.number().int().positive().default(1),
   limit: z.coerce.number().int().positive().max(100).default(10),
-  category: z.string().optional(),
+  category: z.enum(["ornamental", "vegetable"]).optional(),
   search: z.string().optional(),
   sortBy: z.enum(sortableFields).default("createdAt"),
   sortOrder: z.enum(["asc", "desc"]).default("desc"),

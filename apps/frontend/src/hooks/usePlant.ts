@@ -1,4 +1,5 @@
-import { CreatePlantInput, PlantQueryParams, UpdatePlantInput } from "@/@types/plant.types";
+import type { CreatePlantInput, UpdatePlantInput } from "@happyseeds/shared-types";
+import type { PlantQueryParams } from "@/@types/plant.types";
 import { plantApi } from "@/services/plant.service";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 

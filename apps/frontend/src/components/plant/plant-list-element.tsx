@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Plant } from "@/@types/plant.types";
+import type { Plant } from "@happyseeds/shared-types";
 import { getNames } from "@/utils/plant.utils";
 
 // destructuration identique à PlantListElement(props: { plant: Plant })

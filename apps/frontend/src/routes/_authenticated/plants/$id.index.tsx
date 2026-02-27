@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { usePlant, useDeletePlant } from "../../../hooks/usePlant";
 import { Button } from "../../../components/ui/button";
-import { plantCategoryOptions, hardinessOptions, positionOptions } from "../../../schemas/plant.schema";
+import { plantCategoryOptions, hardinessOptions, positionOptions } from "@happyseeds/shared-types";
 import { SeedsSection } from "@/components/plant/plant-seed-selection";
 import { getNames } from "@/utils/plant.utils";
 

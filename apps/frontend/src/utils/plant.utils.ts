@@ -1,4 +1,4 @@
-import { Plant } from "@/@types/plant.types";
+import type { Plant } from "@happyseeds/shared-types";
 
 /**
  * Construit le nom latin formaté : "Genus species 'Cultivar'"
