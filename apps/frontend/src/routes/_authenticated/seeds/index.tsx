@@ -3,6 +3,7 @@ import { Button } from "../../../components/ui/button";
 import { Seed } from "@happyseeds/shared-types";
 import { useAllSeeds } from "@/hooks/useSeed";
 import { SeedListElement } from "@/components/seed/seed-list-element";
+import { SimpleLoadingText } from "@/components/common/loadings";
 
 export const Route = createFileRoute("/_authenticated/seeds/")({
    component: SeedsIndexPage,
@@ -12,14 +13,7 @@ function SeedsIndexPage() {
    const { data, isLoading, error } = useAllSeeds({ page: 1, limit: 10 });
 
    if (isLoading) {
-      return (
-         <div className="flex justify-center py-8">
-            <div className="flex flex-col items-center gap-4">
-               <div className="w-10 h-10 rounded-lg bg-muted animate-pulse"></div>
-               <p className="text-wire-text-muted">Chargement des graines...</p>
-            </div>
-         </div>
-      );
+      return <SimpleLoadingText text="Chargement des graines..." />;
    }
 
    if (error) {
