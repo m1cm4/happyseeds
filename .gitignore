@@ -7,6 +7,7 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 conception/
+cours/
 docs/
 todo*
 TODO*
@@ -145,3 +146,4 @@ vite.config.ts.timestamp-*
 .vite/
 .turbo/
 .opencode/
+cours/CHECKPOINT.md
