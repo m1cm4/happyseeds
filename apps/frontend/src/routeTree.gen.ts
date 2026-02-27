@@ -18,17 +18,10 @@ import { Route as AuthenticatedSeedsRouteRouteImport } from './routes/_authentic
 import { Route as AuthenticatedSowingSessionsIndexRouteImport } from './routes/_authenticated/sowing-sessions/index'
 import { Route as AuthenticatedSeedsIndexRouteImport } from './routes/_authenticated/seeds/index'
 import { Route as AuthenticatedPlantsIndexRouteImport } from './routes/_authenticated/plants/index'
-import { Route as DemoStartServerFuncsRouteImport } from './routes/demo/start.server-funcs'
-import { Route as DemoStartApiRequestRouteImport } from './routes/demo/start.api-request'
-import { Route as DemoApiNamesRouteImport } from './routes/demo/api.names'
 import { Route as AuthenticatedSowingSessionsNewRouteImport } from './routes/_authenticated/sowing-sessions/new'
 import { Route as AuthenticatedSeedsNewRouteImport } from './routes/_authenticated/seeds/new'
 import { Route as AuthenticatedPlantsNewRouteImport } from './routes/_authenticated/plants/new'
-import { Route as DemoStartSsrIndexRouteImport } from './routes/demo/start.ssr.index'
 import { Route as AuthenticatedPlantsIdIndexRouteImport } from './routes/_authenticated/plants/$id.index'
-import { Route as DemoStartSsrSpaModeRouteImport } from './routes/demo/start.ssr.spa-mode'
-import { Route as DemoStartSsrFullSsrRouteImport } from './routes/demo/start.ssr.full-ssr'
-import { Route as DemoStartSsrDataOnlyRouteImport } from './routes/demo/start.ssr.data-only'
 import { Route as AuthenticatedSeedsIdEditRouteImport } from './routes/_authenticated/seeds/$id.edit'
 import { Route as AuthenticatedPlantsIdEditRouteImport } from './routes/_authenticated/plants/$id.edit'
 
@@ -78,21 +71,6 @@ const AuthenticatedPlantsIndexRoute =
     path: '/plants/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const DemoStartServerFuncsRoute = DemoStartServerFuncsRouteImport.update({
-  id: '/demo/start/server-funcs',
-  path: '/demo/start/server-funcs',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DemoStartApiRequestRoute = DemoStartApiRequestRouteImport.update({
-  id: '/demo/start/api-request',
-  path: '/demo/start/api-request',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DemoApiNamesRoute = DemoApiNamesRouteImport.update({
-  id: '/demo/api/names',
-  path: '/demo/api/names',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AuthenticatedSowingSessionsNewRoute =
   AuthenticatedSowingSessionsNewRouteImport.update({
     id: '/sowing-sessions/new',
@@ -109,32 +87,12 @@ const AuthenticatedPlantsNewRoute = AuthenticatedPlantsNewRouteImport.update({
   path: '/plants/new',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const DemoStartSsrIndexRoute = DemoStartSsrIndexRouteImport.update({
-  id: '/demo/start/ssr/',
-  path: '/demo/start/ssr/',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AuthenticatedPlantsIdIndexRoute =
   AuthenticatedPlantsIdIndexRouteImport.update({
     id: '/plants/$id/',
     path: '/plants/$id/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const DemoStartSsrSpaModeRoute = DemoStartSsrSpaModeRouteImport.update({
-  id: '/demo/start/ssr/spa-mode',
-  path: '/demo/start/ssr/spa-mode',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DemoStartSsrFullSsrRoute = DemoStartSsrFullSsrRouteImport.update({
-  id: '/demo/start/ssr/full-ssr',
-  path: '/demo/start/ssr/full-ssr',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DemoStartSsrDataOnlyRoute = DemoStartSsrDataOnlyRouteImport.update({
-  id: '/demo/start/ssr/data-only',
-  path: '/demo/start/ssr/data-only',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AuthenticatedSeedsIdEditRoute =
   AuthenticatedSeedsIdEditRouteImport.update({
     id: '/$id/edit',
@@ -157,19 +115,12 @@ export interface FileRoutesByFullPath {
   '/plants/new': typeof AuthenticatedPlantsNewRoute
   '/seeds/new': typeof AuthenticatedSeedsNewRoute
   '/sowing-sessions/new': typeof AuthenticatedSowingSessionsNewRoute
-  '/demo/api/names': typeof DemoApiNamesRoute
-  '/demo/start/api-request': typeof DemoStartApiRequestRoute
-  '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/plants/': typeof AuthenticatedPlantsIndexRoute
   '/seeds/': typeof AuthenticatedSeedsIndexRoute
   '/sowing-sessions/': typeof AuthenticatedSowingSessionsIndexRoute
   '/plants/$id/edit': typeof AuthenticatedPlantsIdEditRoute
   '/seeds/$id/edit': typeof AuthenticatedSeedsIdEditRoute
-  '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
-  '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
-  '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
   '/plants/$id/': typeof AuthenticatedPlantsIdIndexRoute
-  '/demo/start/ssr/': typeof DemoStartSsrIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -179,19 +130,12 @@ export interface FileRoutesByTo {
   '/plants/new': typeof AuthenticatedPlantsNewRoute
   '/seeds/new': typeof AuthenticatedSeedsNewRoute
   '/sowing-sessions/new': typeof AuthenticatedSowingSessionsNewRoute
-  '/demo/api/names': typeof DemoApiNamesRoute
-  '/demo/start/api-request': typeof DemoStartApiRequestRoute
-  '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/plants': typeof AuthenticatedPlantsIndexRoute
   '/seeds': typeof AuthenticatedSeedsIndexRoute
   '/sowing-sessions': typeof AuthenticatedSowingSessionsIndexRoute
   '/plants/$id/edit': typeof AuthenticatedPlantsIdEditRoute
   '/seeds/$id/edit': typeof AuthenticatedSeedsIdEditRoute
-  '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
-  '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
-  '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
   '/plants/$id': typeof AuthenticatedPlantsIdIndexRoute
-  '/demo/start/ssr': typeof DemoStartSsrIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -204,19 +148,12 @@ export interface FileRoutesById {
   '/_authenticated/plants/new': typeof AuthenticatedPlantsNewRoute
   '/_authenticated/seeds/new': typeof AuthenticatedSeedsNewRoute
   '/_authenticated/sowing-sessions/new': typeof AuthenticatedSowingSessionsNewRoute
-  '/demo/api/names': typeof DemoApiNamesRoute
-  '/demo/start/api-request': typeof DemoStartApiRequestRoute
-  '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/_authenticated/plants/': typeof AuthenticatedPlantsIndexRoute
   '/_authenticated/seeds/': typeof AuthenticatedSeedsIndexRoute
   '/_authenticated/sowing-sessions/': typeof AuthenticatedSowingSessionsIndexRoute
   '/_authenticated/plants/$id/edit': typeof AuthenticatedPlantsIdEditRoute
   '/_authenticated/seeds/$id/edit': typeof AuthenticatedSeedsIdEditRoute
-  '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
-  '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
-  '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
   '/_authenticated/plants/$id/': typeof AuthenticatedPlantsIdIndexRoute
-  '/demo/start/ssr/': typeof DemoStartSsrIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -229,19 +166,12 @@ export interface FileRouteTypes {
     | '/plants/new'
     | '/seeds/new'
     | '/sowing-sessions/new'
-    | '/demo/api/names'
-    | '/demo/start/api-request'
-    | '/demo/start/server-funcs'
     | '/plants/'
     | '/seeds/'
     | '/sowing-sessions/'
     | '/plants/$id/edit'
     | '/seeds/$id/edit'
-    | '/demo/start/ssr/data-only'
-    | '/demo/start/ssr/full-ssr'
-    | '/demo/start/ssr/spa-mode'
     | '/plants/$id/'
-    | '/demo/start/ssr/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -251,19 +181,12 @@ export interface FileRouteTypes {
     | '/plants/new'
     | '/seeds/new'
     | '/sowing-sessions/new'
-    | '/demo/api/names'
-    | '/demo/start/api-request'
-    | '/demo/start/server-funcs'
     | '/plants'
     | '/seeds'
     | '/sowing-sessions'
     | '/plants/$id/edit'
     | '/seeds/$id/edit'
-    | '/demo/start/ssr/data-only'
-    | '/demo/start/ssr/full-ssr'
-    | '/demo/start/ssr/spa-mode'
     | '/plants/$id'
-    | '/demo/start/ssr'
   id:
     | '__root__'
     | '/'
@@ -275,19 +198,12 @@ export interface FileRouteTypes {
     | '/_authenticated/plants/new'
     | '/_authenticated/seeds/new'
     | '/_authenticated/sowing-sessions/new'
-    | '/demo/api/names'
-    | '/demo/start/api-request'
-    | '/demo/start/server-funcs'
     | '/_authenticated/plants/'
     | '/_authenticated/seeds/'
     | '/_authenticated/sowing-sessions/'
     | '/_authenticated/plants/$id/edit'
     | '/_authenticated/seeds/$id/edit'
-    | '/demo/start/ssr/data-only'
-    | '/demo/start/ssr/full-ssr'
-    | '/demo/start/ssr/spa-mode'
     | '/_authenticated/plants/$id/'
-    | '/demo/start/ssr/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -295,13 +211,6 @@ export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   LoginRoute: typeof LoginRoute
   SignupRoute: typeof SignupRoute
-  DemoApiNamesRoute: typeof DemoApiNamesRoute
-  DemoStartApiRequestRoute: typeof DemoStartApiRequestRoute
-  DemoStartServerFuncsRoute: typeof DemoStartServerFuncsRoute
-  DemoStartSsrDataOnlyRoute: typeof DemoStartSsrDataOnlyRoute
-  DemoStartSsrFullSsrRoute: typeof DemoStartSsrFullSsrRoute
-  DemoStartSsrSpaModeRoute: typeof DemoStartSsrSpaModeRoute
-  DemoStartSsrIndexRoute: typeof DemoStartSsrIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -369,27 +278,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPlantsIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/demo/start/server-funcs': {
-      id: '/demo/start/server-funcs'
-      path: '/demo/start/server-funcs'
-      fullPath: '/demo/start/server-funcs'
-      preLoaderRoute: typeof DemoStartServerFuncsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/demo/start/api-request': {
-      id: '/demo/start/api-request'
-      path: '/demo/start/api-request'
-      fullPath: '/demo/start/api-request'
-      preLoaderRoute: typeof DemoStartApiRequestRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/demo/api/names': {
-      id: '/demo/api/names'
-      path: '/demo/api/names'
-      fullPath: '/demo/api/names'
-      preLoaderRoute: typeof DemoApiNamesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/_authenticated/sowing-sessions/new': {
       id: '/_authenticated/sowing-sessions/new'
       path: '/sowing-sessions/new'
@@ -411,40 +299,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPlantsNewRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/demo/start/ssr/': {
-      id: '/demo/start/ssr/'
-      path: '/demo/start/ssr'
-      fullPath: '/demo/start/ssr/'
-      preLoaderRoute: typeof DemoStartSsrIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/_authenticated/plants/$id/': {
       id: '/_authenticated/plants/$id/'
       path: '/plants/$id'
       fullPath: '/plants/$id/'
       preLoaderRoute: typeof AuthenticatedPlantsIdIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/demo/start/ssr/spa-mode': {
-      id: '/demo/start/ssr/spa-mode'
-      path: '/demo/start/ssr/spa-mode'
-      fullPath: '/demo/start/ssr/spa-mode'
-      preLoaderRoute: typeof DemoStartSsrSpaModeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/demo/start/ssr/full-ssr': {
-      id: '/demo/start/ssr/full-ssr'
-      path: '/demo/start/ssr/full-ssr'
-      fullPath: '/demo/start/ssr/full-ssr'
-      preLoaderRoute: typeof DemoStartSsrFullSsrRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/demo/start/ssr/data-only': {
-      id: '/demo/start/ssr/data-only'
-      path: '/demo/start/ssr/data-only'
-      fullPath: '/demo/start/ssr/data-only'
-      preLoaderRoute: typeof DemoStartSsrDataOnlyRouteImport
-      parentRoute: typeof rootRouteImport
     }
     '/_authenticated/seeds/$id/edit': {
       id: '/_authenticated/seeds/$id/edit'
@@ -511,13 +371,6 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   LoginRoute: LoginRoute,
   SignupRoute: SignupRoute,
-  DemoApiNamesRoute: DemoApiNamesRoute,
-  DemoStartApiRequestRoute: DemoStartApiRequestRoute,
-  DemoStartServerFuncsRoute: DemoStartServerFuncsRoute,
-  DemoStartSsrDataOnlyRoute: DemoStartSsrDataOnlyRoute,
-  DemoStartSsrFullSsrRoute: DemoStartSsrFullSsrRoute,
-  DemoStartSsrSpaModeRoute: DemoStartSsrSpaModeRoute,
-  DemoStartSsrIndexRoute: DemoStartSsrIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
