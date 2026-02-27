@@ -10,6 +10,7 @@ export function AppHeader() {
    const isSeedRoute = matchRoute({ to: "/seeds", fuzzy: true });
    const isSessionRoute = matchRoute({ to: "/sowing-sessions", fuzzy: true });
    const isDashboardRoute = matchRoute({ to: "/dashboard", fuzzy: true });
+   const isCalendarRoute = matchRoute({ to: "/calendar", fuzzy: true });
 
    return (
       <header className="bg-card border-b border-border sticky top-0 z-50">
@@ -18,7 +19,10 @@ export function AppHeader() {
                <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center">
                   <span className="grayscale-icon text-lg">🌱</span>
                </div>
-               <Link to="/" className="text-xl font-semibold text-foreground hover:opacity-80 transition-fast">
+               <Link
+                  to="/"
+                  className="text-xl font-semibold text-foreground hover:opacity-80 transition-fast"
+               >
                   HappySeeds
                </Link>
             </div>
@@ -60,6 +64,20 @@ export function AppHeader() {
                            Graines
                         </Link>
                         <Link
+                           to="/calendar"
+                           search={{
+                              year: new Date().getFullYear(),
+                              month: new Date().getMonth() + 1,
+                           }}
+                           className={`font-medium transition-fast relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-foreground after:transition-fast ${
+                              isCalendarRoute
+                                 ? "text-foreground after:scale-x-100"
+                                 : "text-wire-text-muted hover:text-foreground after:scale-x-0 hover:after:scale-x-100"
+                           }`}
+                        >
+                           Calendrier
+                        </Link>
+                        <Link
                            to="/sowing-sessions"
                            className={`font-medium transition-fast relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-foreground after:transition-fast ${
                               isSessionRoute
@@ -76,7 +94,10 @@ export function AppHeader() {
                   </div>
                ) : (
                   <div className="flex items-center gap-4">
-                     <Link to="/login" className="text-foreground hover:opacity-70 font-medium transition-fast">
+                     <Link
+                        to="/login"
+                        className="text-foreground hover:opacity-70 font-medium transition-fast"
+                     >
                         Se connecter
                      </Link>
                      <Button asChild>
