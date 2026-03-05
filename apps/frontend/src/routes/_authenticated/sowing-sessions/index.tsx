@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { useSowingSessions } from "@/hooks/useSowingSession";
 import { SowingSessionListElement } from "@/components/sowing-session/sowing-session-list-element";
+import { SimpleLoadingText } from "@/components/common/loadings";
 
 export const Route = createFileRoute("/_authenticated/sowing-sessions/")({
    component: SowingSessionsIndexPage,
@@ -11,11 +12,7 @@ function SowingSessionsIndexPage() {
    const { data, isLoading, isError } = useSowingSessions({ page: 1, limit: 20 });
 
    if (isLoading) {
-      return (
-         <div className="container mx-auto py-8">
-            <p>Chargement des semis...</p>
-         </div>
-      );
+      return <SimpleLoadingText text="Chargement des semis..." />;
    }
 
    if (isError) {
@@ -58,7 +55,8 @@ function SowingSessionsIndexPage() {
          {data?.pagination && data.pagination.totalPages > 1 && (
             <div className="mt-6 flex justify-center gap-2">
                <p className="text-sm text-muted-foreground mt-4">
-                  {data.pagination.total} session(s) — Page {data.pagination.page}/{data.pagination.totalPages}
+                  {data.pagination.total} session(s) — Page {data.pagination.page}/
+                  {data.pagination.totalPages}
                </p>
             </div>
          )}

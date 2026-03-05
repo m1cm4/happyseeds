@@ -13,7 +13,6 @@ import { Route as SignupRouteImport } from './routes/signup'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AuthenticatedDashboard_version1RouteImport } from './routes/_authenticated/dashboard_version1'
 import { Route as AuthenticatedSeedsRouteRouteImport } from './routes/_authenticated/seeds/route'
 import { Route as AuthenticatedSowingSessionsIndexRouteImport } from './routes/_authenticated/sowing-sessions/index'
 import { Route as AuthenticatedSeedsIndexRouteImport } from './routes/_authenticated/seeds/index'
@@ -46,12 +45,6 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedDashboard_version1Route =
-  AuthenticatedDashboard_version1RouteImport.update({
-    id: '/dashboard_version1',
-    path: '/dashboard_version1',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
 const AuthenticatedSeedsRouteRoute = AuthenticatedSeedsRouteRouteImport.update({
   id: '/seeds',
   path: '/seeds',
@@ -126,7 +119,6 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
   '/seeds': typeof AuthenticatedSeedsRouteRouteWithChildren
-  '/dashboard_version1': typeof AuthenticatedDashboard_version1Route
   '/plants/new': typeof AuthenticatedPlantsNewRoute
   '/seeds/new': typeof AuthenticatedSeedsNewRoute
   '/sowing-sessions/new': typeof AuthenticatedSowingSessionsNewRoute
@@ -143,7 +135,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
-  '/dashboard_version1': typeof AuthenticatedDashboard_version1Route
   '/plants/new': typeof AuthenticatedPlantsNewRoute
   '/seeds/new': typeof AuthenticatedSeedsNewRoute
   '/sowing-sessions/new': typeof AuthenticatedSowingSessionsNewRoute
@@ -163,7 +154,6 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
   '/_authenticated/seeds': typeof AuthenticatedSeedsRouteRouteWithChildren
-  '/_authenticated/dashboard_version1': typeof AuthenticatedDashboard_version1Route
   '/_authenticated/plants/new': typeof AuthenticatedPlantsNewRoute
   '/_authenticated/seeds/new': typeof AuthenticatedSeedsNewRoute
   '/_authenticated/sowing-sessions/new': typeof AuthenticatedSowingSessionsNewRoute
@@ -183,7 +173,6 @@ export interface FileRouteTypes {
     | '/login'
     | '/signup'
     | '/seeds'
-    | '/dashboard_version1'
     | '/plants/new'
     | '/seeds/new'
     | '/sowing-sessions/new'
@@ -200,7 +189,6 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/signup'
-    | '/dashboard_version1'
     | '/plants/new'
     | '/seeds/new'
     | '/sowing-sessions/new'
@@ -219,7 +207,6 @@ export interface FileRouteTypes {
     | '/login'
     | '/signup'
     | '/_authenticated/seeds'
-    | '/_authenticated/dashboard_version1'
     | '/_authenticated/plants/new'
     | '/_authenticated/seeds/new'
     | '/_authenticated/sowing-sessions/new'
@@ -269,13 +256,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
-    }
-    '/_authenticated/dashboard_version1': {
-      id: '/_authenticated/dashboard_version1'
-      path: '/dashboard_version1'
-      fullPath: '/dashboard_version1'
-      preLoaderRoute: typeof AuthenticatedDashboard_version1RouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/seeds': {
       id: '/_authenticated/seeds'
@@ -384,7 +364,6 @@ const AuthenticatedSeedsRouteRouteWithChildren =
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedSeedsRouteRoute: typeof AuthenticatedSeedsRouteRouteWithChildren
-  AuthenticatedDashboard_version1Route: typeof AuthenticatedDashboard_version1Route
   AuthenticatedPlantsNewRoute: typeof AuthenticatedPlantsNewRoute
   AuthenticatedSowingSessionsNewRoute: typeof AuthenticatedSowingSessionsNewRoute
   AuthenticatedCalendarIndexRoute: typeof AuthenticatedCalendarIndexRoute
@@ -397,7 +376,6 @@ interface AuthenticatedRouteRouteChildren {
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedSeedsRouteRoute: AuthenticatedSeedsRouteRouteWithChildren,
-  AuthenticatedDashboard_version1Route: AuthenticatedDashboard_version1Route,
   AuthenticatedPlantsNewRoute: AuthenticatedPlantsNewRoute,
   AuthenticatedSowingSessionsNewRoute: AuthenticatedSowingSessionsNewRoute,
   AuthenticatedCalendarIndexRoute: AuthenticatedCalendarIndexRoute,

@@ -12,8 +12,8 @@ function formatDate(dateStr: string): string {
 export function UpcomingList({ entries }: UpcomingListProps) {
    return (
       <Card>
-         <CardHeader>
-            <CardTitle>Prochains semis</CardTitle>
+         <CardHeader className="text-xl">
+            <CardTitle>📅 Prochains semis</CardTitle>
          </CardHeader>
          <CardContent>
             {entries.length === 0 ? (

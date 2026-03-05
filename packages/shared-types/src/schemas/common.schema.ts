@@ -34,6 +34,7 @@ export const apiErrorSchema = z.object({
    error: z.object({
       code: z.string(),
       message: z.string(),
+      //corresond à un details?: Record<string, unknown>;
       details: z.record(z.unknown()).optional(),
    }),
 });

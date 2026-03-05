@@ -39,7 +39,7 @@ function CalendarPage() {
    const entries = data?.success ? data.data : [];
 
    if (isLoading) {
-      return <SimpleLoadingText text="chargement du calendrier ..." />;
+      return <SimpleLoadingText text="Chargement du Calendrier ..." />;
    }
 
    if (isError) {

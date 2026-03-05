@@ -4,53 +4,54 @@ import { SeedForm } from "@/components/seed/seed-form";
 import { seedApi } from "@/services/seed.service";
 import type { UpdateSeedInput } from "@happyseeds/shared-types";
 import { toast } from "sonner";
+import { SimpleLoadingText } from "@/components/common/loadings";
 
 export const Route = createFileRoute("/_authenticated/seeds/$id/edit")({
-  component: EditSeedPage,
+   component: EditSeedPage,
 });
 
 function EditSeedPage() {
-  const { id } = Route.useParams();
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
+   const { id } = Route.useParams();
+   const navigate = useNavigate();
+   const queryClient = useQueryClient();
 
-  const { data, isLoading } = useQuery({
-    queryKey: ["seeds", id],
-    queryFn: () => seedApi.getById(id),
-  });
+   const { data, isLoading } = useQuery({
+      queryKey: ["seeds", id],
+      queryFn: () => seedApi.getById(id),
+   });
 
-  const mutation = useMutation({
-    mutationFn: (formData: UpdateSeedInput) => seedApi.update(id, formData),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["seeds"] });
-      toast.success("Graine modifiée avec succès");
+   const mutation = useMutation({
+      mutationFn: (formData: UpdateSeedInput) => seedApi.update(id, formData),
+      onSuccess: () => {
+         queryClient.invalidateQueries({ queryKey: ["seeds"] });
+         toast.success("Graine modifiée avec succès");
 
-      // Retour vers la plante si elle existe
-      if (data?.success && data?.data?.plantId) {
-        navigate({ to: "/plants/$id", params: { id: data.data.plantId } });
-      } else {
-        navigate({ to: "/seeds" });
-      }
-    },
-    onError: () => {
-      toast.error("Erreur lors de la modification");
-    },
-  });
+         // Retour vers la plante si elle existe
+         if (data?.success && data?.data?.plantId) {
+            navigate({ to: "/plants/$id", params: { id: data.data.plantId } });
+         } else {
+            navigate({ to: "/seeds" });
+         }
+      },
+      onError: () => {
+         toast.error("Erreur lors de la modification");
+      },
+   });
 
-  if (isLoading) return <div>Chargement...</div>;
-  if (!data?.success) return <div>Graine non trouvée</div>;
+   if (isLoading) return <SimpleLoadingText text="Chargement..." />;
+   if (!data?.success) return <div>Graine non trouvée</div>;
 
-  return (
-    <div className="max-w-2xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-6">Modifier la graine</h1>
-      <div className="bg-white p-6 rounded-lg border">
-        <SeedForm
-          defaultValues={data.data}
-          onSubmit={(formData) => mutation.mutate(formData)}
-          isSubmitting={mutation.isPending}
-          submitLabel="Enregistrer"
-        />
+   return (
+      <div className="max-w-2xl mx-auto p-6">
+         <h1 className="text-2xl font-bold mb-6">Modifier la graine</h1>
+         <div className="bg-white p-6 rounded-lg border">
+            <SeedForm
+               defaultValues={data.data}
+               onSubmit={(formData) => mutation.mutate(formData)}
+               isSubmitting={mutation.isPending}
+               submitLabel="Enregistrer"
+            />
+         </div>
       </div>
-    </div>
-  );
+   );
 }
