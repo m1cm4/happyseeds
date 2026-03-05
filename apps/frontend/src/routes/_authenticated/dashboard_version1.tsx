@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 // convention de nommage : avec "_", "_autheticated" n'est pas visible
 // le chemin réel sera "/dashboard"
-export const Route = createFileRoute("/_authenticated/dashboard")({
+export const Route = createFileRoute("/_authenticated/dashboard_version1")({
   component: DashboardPage,
 });
 

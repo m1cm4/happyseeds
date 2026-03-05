@@ -13,11 +13,12 @@ import { Route as SignupRouteImport } from './routes/signup'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedDashboard_version1RouteImport } from './routes/_authenticated/dashboard_version1'
 import { Route as AuthenticatedSeedsRouteRouteImport } from './routes/_authenticated/seeds/route'
 import { Route as AuthenticatedSowingSessionsIndexRouteImport } from './routes/_authenticated/sowing-sessions/index'
 import { Route as AuthenticatedSeedsIndexRouteImport } from './routes/_authenticated/seeds/index'
 import { Route as AuthenticatedPlantsIndexRouteImport } from './routes/_authenticated/plants/index'
+import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authenticated/dashboard/index'
 import { Route as AuthenticatedCalendarIndexRouteImport } from './routes/_authenticated/calendar/index'
 import { Route as AuthenticatedSowingSessionsNewRouteImport } from './routes/_authenticated/sowing-sessions/new'
 import { Route as AuthenticatedSeedsNewRouteImport } from './routes/_authenticated/seeds/new'
@@ -45,11 +46,12 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
+const AuthenticatedDashboard_version1Route =
+  AuthenticatedDashboard_version1RouteImport.update({
+    id: '/dashboard_version1',
+    path: '/dashboard_version1',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedSeedsRouteRoute = AuthenticatedSeedsRouteRouteImport.update({
   id: '/seeds',
   path: '/seeds',
@@ -70,6 +72,12 @@ const AuthenticatedPlantsIndexRoute =
   AuthenticatedPlantsIndexRouteImport.update({
     id: '/plants/',
     path: '/plants/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardIndexRoute =
+  AuthenticatedDashboardIndexRouteImport.update({
+    id: '/dashboard/',
+    path: '/dashboard/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedCalendarIndexRoute =
@@ -118,11 +126,12 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
   '/seeds': typeof AuthenticatedSeedsRouteRouteWithChildren
-  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/dashboard_version1': typeof AuthenticatedDashboard_version1Route
   '/plants/new': typeof AuthenticatedPlantsNewRoute
   '/seeds/new': typeof AuthenticatedSeedsNewRoute
   '/sowing-sessions/new': typeof AuthenticatedSowingSessionsNewRoute
   '/calendar/': typeof AuthenticatedCalendarIndexRoute
+  '/dashboard/': typeof AuthenticatedDashboardIndexRoute
   '/plants/': typeof AuthenticatedPlantsIndexRoute
   '/seeds/': typeof AuthenticatedSeedsIndexRoute
   '/sowing-sessions/': typeof AuthenticatedSowingSessionsIndexRoute
@@ -134,11 +143,12 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
-  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/dashboard_version1': typeof AuthenticatedDashboard_version1Route
   '/plants/new': typeof AuthenticatedPlantsNewRoute
   '/seeds/new': typeof AuthenticatedSeedsNewRoute
   '/sowing-sessions/new': typeof AuthenticatedSowingSessionsNewRoute
   '/calendar': typeof AuthenticatedCalendarIndexRoute
+  '/dashboard': typeof AuthenticatedDashboardIndexRoute
   '/plants': typeof AuthenticatedPlantsIndexRoute
   '/seeds': typeof AuthenticatedSeedsIndexRoute
   '/sowing-sessions': typeof AuthenticatedSowingSessionsIndexRoute
@@ -153,11 +163,12 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
   '/_authenticated/seeds': typeof AuthenticatedSeedsRouteRouteWithChildren
-  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/dashboard_version1': typeof AuthenticatedDashboard_version1Route
   '/_authenticated/plants/new': typeof AuthenticatedPlantsNewRoute
   '/_authenticated/seeds/new': typeof AuthenticatedSeedsNewRoute
   '/_authenticated/sowing-sessions/new': typeof AuthenticatedSowingSessionsNewRoute
   '/_authenticated/calendar/': typeof AuthenticatedCalendarIndexRoute
+  '/_authenticated/dashboard/': typeof AuthenticatedDashboardIndexRoute
   '/_authenticated/plants/': typeof AuthenticatedPlantsIndexRoute
   '/_authenticated/seeds/': typeof AuthenticatedSeedsIndexRoute
   '/_authenticated/sowing-sessions/': typeof AuthenticatedSowingSessionsIndexRoute
@@ -172,11 +183,12 @@ export interface FileRouteTypes {
     | '/login'
     | '/signup'
     | '/seeds'
-    | '/dashboard'
+    | '/dashboard_version1'
     | '/plants/new'
     | '/seeds/new'
     | '/sowing-sessions/new'
     | '/calendar/'
+    | '/dashboard/'
     | '/plants/'
     | '/seeds/'
     | '/sowing-sessions/'
@@ -188,11 +200,12 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/signup'
-    | '/dashboard'
+    | '/dashboard_version1'
     | '/plants/new'
     | '/seeds/new'
     | '/sowing-sessions/new'
     | '/calendar'
+    | '/dashboard'
     | '/plants'
     | '/seeds'
     | '/sowing-sessions'
@@ -206,11 +219,12 @@ export interface FileRouteTypes {
     | '/login'
     | '/signup'
     | '/_authenticated/seeds'
-    | '/_authenticated/dashboard'
+    | '/_authenticated/dashboard_version1'
     | '/_authenticated/plants/new'
     | '/_authenticated/seeds/new'
     | '/_authenticated/sowing-sessions/new'
     | '/_authenticated/calendar/'
+    | '/_authenticated/dashboard/'
     | '/_authenticated/plants/'
     | '/_authenticated/seeds/'
     | '/_authenticated/sowing-sessions/'
@@ -256,11 +270,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/dashboard': {
-      id: '/_authenticated/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+    '/_authenticated/dashboard_version1': {
+      id: '/_authenticated/dashboard_version1'
+      path: '/dashboard_version1'
+      fullPath: '/dashboard_version1'
+      preLoaderRoute: typeof AuthenticatedDashboard_version1RouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/seeds': {
@@ -289,6 +303,13 @@ declare module '@tanstack/react-router' {
       path: '/plants'
       fullPath: '/plants/'
       preLoaderRoute: typeof AuthenticatedPlantsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/': {
+      id: '/_authenticated/dashboard/'
+      path: '/dashboard'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof AuthenticatedDashboardIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/calendar/': {
@@ -363,10 +384,11 @@ const AuthenticatedSeedsRouteRouteWithChildren =
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedSeedsRouteRoute: typeof AuthenticatedSeedsRouteRouteWithChildren
-  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedDashboard_version1Route: typeof AuthenticatedDashboard_version1Route
   AuthenticatedPlantsNewRoute: typeof AuthenticatedPlantsNewRoute
   AuthenticatedSowingSessionsNewRoute: typeof AuthenticatedSowingSessionsNewRoute
   AuthenticatedCalendarIndexRoute: typeof AuthenticatedCalendarIndexRoute
+  AuthenticatedDashboardIndexRoute: typeof AuthenticatedDashboardIndexRoute
   AuthenticatedPlantsIndexRoute: typeof AuthenticatedPlantsIndexRoute
   AuthenticatedSowingSessionsIndexRoute: typeof AuthenticatedSowingSessionsIndexRoute
   AuthenticatedPlantsIdEditRoute: typeof AuthenticatedPlantsIdEditRoute
@@ -375,10 +397,11 @@ interface AuthenticatedRouteRouteChildren {
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedSeedsRouteRoute: AuthenticatedSeedsRouteRouteWithChildren,
-  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedDashboard_version1Route: AuthenticatedDashboard_version1Route,
   AuthenticatedPlantsNewRoute: AuthenticatedPlantsNewRoute,
   AuthenticatedSowingSessionsNewRoute: AuthenticatedSowingSessionsNewRoute,
   AuthenticatedCalendarIndexRoute: AuthenticatedCalendarIndexRoute,
+  AuthenticatedDashboardIndexRoute: AuthenticatedDashboardIndexRoute,
   AuthenticatedPlantsIndexRoute: AuthenticatedPlantsIndexRoute,
   AuthenticatedSowingSessionsIndexRoute: AuthenticatedSowingSessionsIndexRoute,
   AuthenticatedPlantsIdEditRoute: AuthenticatedPlantsIdEditRoute,
