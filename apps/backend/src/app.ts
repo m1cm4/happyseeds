@@ -9,6 +9,7 @@ import { seedRoutes } from "./routes/seed.routes";
 import { sowingSessionRoutes } from "./routes/sowing-session.routes";
 import { sowingEntryRoutes } from "./routes/sowing-entry.routes";
 import { calendarRoutes } from "./routes/calendar.routes";
+import { dashboardRoutes } from "./routes/dashboard.routes";
 
 const app = new Hono();
 
@@ -46,6 +47,9 @@ app.route("/api/sowing-sessions", sowingSessionRoutes);
 
 // Calendar ---------------------------
 app.route("/api/calendar", calendarRoutes);
+
+// Dashboard ---------------------------
+app.route("/api/dashboard", dashboardRoutes);
 
 // Health check - check that API is alive --------
 app.get("/api/health", (c) => {
