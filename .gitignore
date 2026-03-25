@@ -147,3 +147,7 @@ vite.config.ts.timestamp-*
 .turbo/
 .opencode/
 cours/CHECKPOINT.md
+.htp/
+.vscode/
+MIGRATION-SKILL-REPORT.md
+*.cursorrules

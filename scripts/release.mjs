@@ -1,4 +1,13 @@
 #!/usr/bin/env node
+/**
+ * Automated release script for the HappySeeds monorepo.
+ *
+ * Bumps the version across all packages (patch, minor, or major),
+ * creates a tagged git commit, and ensures the working tree is clean
+ * before releasing.
+ *
+ * Usage: pnpm release <patch|minor|major>
+ */
 import { execSync } from "node:child_process";
 
 const bump = process.argv[2];

@@ -2,7 +2,8 @@
    "name": "happyseeds",
    "version": "0.0.1",
    "private": true,
-   "description": "",
+   "description": "Seed library management and sowing planning web application",
+   "author": "Michel Maes",
    "main": "index.js",
    "keywords": [],
    "scripts": {
