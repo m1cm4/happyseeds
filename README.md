@@ -18,24 +18,32 @@ A personal fullstack web application for gardeners who want to catalog their see
 
 ## Screenshots
 
-<!-- TODO: Add screenshots here -->
-*Coming soon*
+<table>
+  <tr>
+    <td><img src="README_assets/screenshot-home.png" alt="Home page" width="400" /></td>
+    <td><img src="README_assets/screenshot-dashboard.png" alt="Dashboard" width="400" /></td>
+  </tr>
+  <tr>
+    <td><img src="README_assets/screenshot-calendrier.png" alt="Sowing calendar" width="400" /></td>
+    <td><img src="README_assets/screenshot-seed-form.png" alt="Seed form" width="400" /></td>
+  </tr>
+</table>
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| **Monorepo** | Turborepo + pnpm |
-| **Backend** | Hono |
-| **ORM** | Drizzle ORM |
-| **Database** | PostgreSQL |
-| **Auth** | Better-Auth (session-based) |
-| **Frontend** | TanStack Start + TanStack Router |
-| **Data Fetching** | TanStack Query |
-| **UI Components** | shadcn/ui + Radix UI |
-| **Styling** | Tailwind CSS v4 |
-| **Validation** | Zod (shared across stack) |
-| **Language** | TypeScript (strict mode) |
+| Layer             | Technology                       |
+| ----------------- | -------------------------------- |
+| **Monorepo**      | Turborepo + pnpm                 |
+| **Backend**       | Hono                             |
+| **ORM**           | Drizzle ORM                      |
+| **Database**      | PostgreSQL                       |
+| **Auth**          | Better-Auth (session-based)      |
+| **Frontend**      | TanStack Start + TanStack Router |
+| **Data Fetching** | TanStack Query                   |
+| **UI Components** | shadcn/ui + Radix UI             |
+| **Styling**       | Tailwind CSS v4                  |
+| **Validation**    | Zod (shared across stack)        |
+| **Language**      | TypeScript (strict mode)         |
 
 ## Architecture
 
@@ -128,7 +136,7 @@ This approach allowed me to deeply understand every technical choice while lever
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/happyseeds.git
+git clone https://github.com/m1cm4/happyseeds.git
 cd happyseeds
 
 # Install dependencies
@@ -154,9 +162,13 @@ The frontend runs on `http://localhost:3000` and the API on `http://localhost:30
 
 - [ ] Search functionality across plants and seeds
 - [ ] Image upload in plant forms
+- [ ] Pagination on list views
+- [ ] Skeleton loaders for better loading experience
+- [ ] SEO-friendly URLs (slugs instead of UUIDs)
 - [ ] Expanded use cases and user workflows
 - [ ] UI/UX redesign
 - [ ] Visual design system
+- [ ] AI-powered features (weather API, plant database, writing assistance)
 - [ ] More tests (unit, integration, e2e)
 
 ## License

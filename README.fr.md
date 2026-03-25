@@ -1,6 +1,6 @@
 # HappySeeds
 
-**Application de gestion de grainotheque et de planification des semis.**
+**Application de gestion de grainothèque et de planification des semis.**
 
 [![Status](https://img.shields.io/badge/status-alpha%20·%20en%20d%C3%A9veloppement-orange)]()
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue)]()
@@ -12,30 +12,38 @@
 
 ---
 
-Application web fullstack personnelle destinee aux jardiniers souhaitant cataloguer leur collection de graines, consulter des fiches plantes et planifier leur calendrier de semis selon les donnees climatiques.
+Application web fullstack personnelle destinée aux jardiniers souhaitant cataloguer leur collection de graines, consulter des fiches plantes et planifier leur calendrier de semis selon les données climatiques.
 
-> **Note :** Ce projet personnel est en cours de developpement (version alpha). Certaines fonctionnalites sont encore en progression.
+> **Note :** Ce projet personnel est en cours de développement (version alpha). Certaines fonctionnalités sont encore en progression.
 
-## Captures d'ecran
+## Captures d'écran
 
-<!-- TODO: Ajouter les captures d'ecran ici -->
-*A venir*
+<table>
+  <tr>
+    <td><img src="README_assets/screenshot-home.png" alt="Page d'accueil" width="400" /></td>
+    <td><img src="README_assets/screenshot-dashboard.png" alt="Tableau de bord" width="400" /></td>
+  </tr>
+  <tr>
+    <td><img src="README_assets/screenshot-calendrier.png" alt="Calendrier des semis" width="400" /></td>
+    <td><img src="README_assets/screenshot-seed-form.png" alt="Formulaire graine" width="400" /></td>
+  </tr>
+</table>
 
 ## Stack technique
 
-| Couche | Technologie |
-|--------|------------|
-| **Monorepo** | Turborepo + pnpm |
-| **Backend** | Hono |
-| **ORM** | Drizzle ORM |
-| **Base de donnees** | PostgreSQL |
-| **Authentification** | Better-Auth (sessions) |
-| **Frontend** | TanStack Start + TanStack Router |
-| **Data Fetching** | TanStack Query |
-| **Composants UI** | shadcn/ui + Radix UI |
-| **Styles** | Tailwind CSS v4 |
-| **Validation** | Zod (partage entre client et serveur) |
-| **Langage** | TypeScript (mode strict) |
+| Couche               | Technologie                           |
+| -------------------- | ------------------------------------- |
+| **Monorepo**         | Turborepo + pnpm                      |
+| **Backend**          | Hono                                  |
+| **ORM**              | Drizzle ORM                           |
+| **Base de données**  | PostgreSQL                            |
+| **Authentification** | Better-Auth (sessions)                |
+| **Frontend**         | TanStack Start + TanStack Router      |
+| **Data Fetching**    | TanStack Query                        |
+| **Composants UI**    | shadcn/ui + Radix UI                  |
+| **Styles**           | Tailwind CSS v4                       |
+| **Validation**       | Zod (partagé entre client et serveur) |
+| **Langage**          | TypeScript (mode strict)              |
 
 ## Architecture
 
@@ -43,7 +51,7 @@ Application web fullstack personnelle destinee aux jardiniers souhaitant catalog
 graph TB
     subgraph Client["Frontend — TanStack Start"]
         Router[TanStack Router<br/>Routing fichier]
-        Query[TanStack Query<br/>Etat serveur]
+        Query[TanStack Query<br/>État serveur]
         UI[shadcn/ui + Tailwind]
     end
 
@@ -53,13 +61,13 @@ graph TB
         Auth[Better-Auth<br/>Middleware session]
     end
 
-    subgraph Data["Base de donnees"]
+    subgraph Data["Base de données"]
         ORM[Drizzle ORM]
         PG[(PostgreSQL)]
     end
 
     subgraph Shared["packages/shared-types"]
-        Zod[Schemas Zod<br/>Source de verite unique]
+        Zod[Schémas Zod<br/>Source de vérité unique]
     end
 
     Router --> Query
@@ -69,8 +77,8 @@ graph TB
     Services --> ORM
     ORM --> PG
 
-    Zod -.->|Inference de types| Client
-    Zod -.->|Validation requetes| Server
+    Zod -.->|Inférence de types| Client
+    Zod -.->|Validation requêtes| Server
 ```
 
 ## Structure du projet
@@ -80,45 +88,45 @@ happyseeds/
 ├── apps/
 │   ├── backend/              # Serveur API Hono
 │   │   └── src/
-│   │       ├── db/schemas/   # Definitions de tables Drizzle
+│   │       ├── db/schemas/   # Définitions de tables Drizzle
 │   │       ├── routes/       # Endpoints API REST
-│   │       ├── services/     # Logique metier
+│   │       ├── services/     # Logique métier
 │   │       └── middleware/   # Middleware d'authentification
 │   └── frontend/             # Application TanStack Start
 │       └── src/
-│           ├── routes/       # Routing base sur les fichiers
+│           ├── routes/       # Routing basé sur les fichiers
 │           ├── components/   # Composants UI
 │           ├── hooks/        # Hooks TanStack Query
 │           ├── services/     # Couche services API
 │           └── lib/          # Utilitaires
 ├── packages/
-│   └── shared-types/         # Schemas Zod partages entre client et serveur
+│   └── shared-types/         # Schémas Zod partagés entre client et serveur
 └── scripts/                  # Outils (import, release)
 ```
 
-## Decisions techniques cles
+## Décisions techniques clés
 
-Ce projet privilegie deliberement des technologies que je n'avais pas ou peu pratiquees — l'objectif etait d'apprendre en construisant, pas de rester en terrain connu.
+Ce projet privilégie délibérément des technologies que je n'avais pas ou peu pratiquées — l'objectif était d'apprendre en construisant, pas de rester en terrain connu.
 
-**Monorepo Turborepo** — Backend, frontend et types partages cohabitent dans un seul depot avec linting, formatage et verification de types unifies. Les schemas Zod partages assurent une securite de types de bout en bout : un schema unique valide les requetes API cote serveur et infere les types TypeScript cote client.
+**Monorepo Turborepo** — Backend, frontend et types partagés cohabitent dans un seul dépôt avec linting, formatage et vérification de types unifiés. Les schémas Zod partagés assurent une sécurité de types de bout en bout : un schéma unique valide les requêtes API côté serveur et infère les types TypeScript côté client.
 
-**TanStack Start + Router** — Choisi pour son routing type-safe base sur les fichiers et son integration etroite avec TanStack Query. L'ecosysteme TanStack offre une alternative moderne et bien concue, construite sur des bibliotheques eprouvees (Query, Router, Form) plutot que sur un framework tout-en-un.
+**TanStack Start + Router** — Choisi pour son routing type-safe basé sur les fichiers et son intégration étroite avec TanStack Query. L'écosystème TanStack offre une alternative moderne et bien conçue, construite sur des bibliothèques éprouvées (Query, Router, Form) plutôt que sur un framework tout-en-un.
 
-**Drizzle ORM** — Approche legere, proche du SQL, avec une excellente inference TypeScript. Les migrations sont des fichiers SQL explicites, offrant un controle total sur le schema de la base de donnees — un flux de travail plus transparent par rapport au moteur de migration abstrait de Prisma.
+**Drizzle ORM** — Approche légère, proche du SQL, avec une excellente inférence TypeScript. Les migrations sont des fichiers SQL explicites, offrant un contrôle total sur le schéma de la base de données — un flux de travail plus transparent par rapport au moteur de migration abstrait de Prisma.
 
-**Hono** — Framework HTTP ultra-rapide et leger avec support TypeScript natif. Son systeme de middlewares s'integre naturellement avec Better-Auth pour l'authentification par sessions.
+**Hono** — Framework HTTP ultra-rapide et léger avec support TypeScript natif. Son système de middlewares s'intègre naturellement avec Better-Auth pour l'authentification par sessions.
 
-## Approche de developpement
+## Approche de développement
 
-Ce projet a ete construit avec une methodologie d'apprentissage assistee par IA. J'ai concu un skill `dev-mentor` — un ensemble de regles qui configure l'IA comme un **guide socratique** : elle explique les concepts, revoit les decisions architecturales, pose des questions et oriente vers la documentation, mais **n'ecrit jamais de code directement**.
+Ce projet a été construit avec une méthodologie d'apprentissage assistée par IA. J'ai conçu un skill `dev-mentor` — un ensemble de règles qui configure l'IA comme un **guide socratique** : elle explique les concepts, revoit les décisions architecturales, pose des questions et oriente vers la documentation, mais **n'écrit jamais de code directement**.
 
-Chaque ligne de code de ce depot a ete ecrite a la main. L'IA a servi de mentor, pas de co-pilote.
+Chaque ligne de code de ce dépôt a été écrite à la main. L'IA a servi de mentor, pas de co-pilote.
 
-Cette approche m'a permis de comprendre en profondeur chaque choix technique tout en exploitant l'IA comme accelerateur d'apprentissage structure.
+Cette approche m'a permis de comprendre en profondeur chaque choix technique tout en exploitant l'IA comme accélérateur d'apprentissage structuré.
 
-## Demarrage rapide
+## Démarrage rapide
 
-### Pre-requis
+### Pré-requis
 
 - Node.js >= 18
 - pnpm >= 10
@@ -127,24 +135,24 @@ Cette approche m'a permis de comprendre en profondeur chaque choix technique tou
 ### Installation
 
 ```bash
-# Cloner le depot
-git clone https://github.com/YOUR_USERNAME/happyseeds.git
+# Cloner le dépôt
+git clone https://github.com/m1cm4/happyseeds.git
 cd happyseeds
 
-# Installer les dependances
+# Installer les dépendances
 pnpm install
 
 # Configurer les variables d'environnement
 cp apps/backend/.env.example apps/backend/.env
 cp apps/frontend/.env.example apps/frontend/.env
-# Editer les fichiers .env avec vos identifiants de base de donnees
+# Éditer les fichiers .env avec vos identifiants de base de données
 
-# Executer les migrations
+# Exécuter les migrations
 cd apps/backend
 pnpm drizzle-kit migrate
 cd ../..
 
-# Lancer les serveurs de developpement
+# Lancer les serveurs de développement
 pnpm dev
 ```
 
@@ -152,12 +160,16 @@ Le frontend tourne sur `http://localhost:3000` et l'API sur `http://localhost:30
 
 ## Feuille de route
 
-- [ ] Fonctionnalite de recherche dans les plantes et graines
+- [ ] Fonctionnalité de recherche dans les plantes et graines
 - [ ] Upload d'images dans les formulaires de plantes
+- [ ] Pagination sur les vues listes
+- [ ] Skeleton loaders pour une meilleure expérience de chargement
+- [ ] URLs SEO-friendly (slugs au lieu des UUID)
 - [ ] Enrichissement des cas d'utilisation et workflows
 - [ ] Refonte UI/UX
-- [ ] Systeme de design visuel
-- [ ] Plus de tests (unitaires, integration, e2e)
+- [ ] Système de design visuel
+- [ ] Fonctionnalités IA (API météo, base de données plantes, aide à la rédaction)
+- [ ] Plus de tests (unitaires, intégration, e2e)
 
 ## Licence
 
@@ -165,6 +177,6 @@ Le frontend tourne sur `http://localhost:3000` et l'API sur `http://localhost:30
 
 ## Contact
 
-**Michel Maes** — Developpeur Full Stack JS | Front-End Designer
+**Michel Maes** — Développeur Full Stack JS | Front-End Designer
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-mic--maes-blue?logo=linkedin)](https://linkedin.com/in/mic-maes)
