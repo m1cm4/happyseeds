@@ -1,0 +1,43 @@
+{
+   "name": "happyseeds",
+   "version": "0.0.1",
+   "private": true,
+   "description": "Seed library management and sowing planning web application",
+   "author": "Michel Maes",
+   "main": "index.js",
+   "keywords": [],
+   "scripts": {
+      "dev": "turbo run dev",
+      "build": "turbo run build",
+      "lint": "pnpm lint:js && pnpm lint:css",
+      "lint:js": "eslint .",
+      "lint:css": "stylelint '**/*.css'",
+      "check-types": "turbo run check-types",
+      "format": "prettier --write .",
+      "fix": "eslint . --fix && stylelint '**/*.css' --fix && prettier --write .",
+      "release": "node ./scripts/release.mjs",
+      "release:patch": "pnpm release patch",
+      "release:minor": "pnpm release minor",
+      "release:major": "pnpm release major"
+   },
+   "devDependencies": {
+      "@eslint/js": "^9.39.2",
+      "@stylistic/stylelint-plugin": "^5.0.1",
+      "eslint": "^9.39.2",
+      "eslint-config-prettier": "^10.1.8",
+      "eslint-plugin-react-hooks": "^7.0.1",
+      "globals": "^17.3.0",
+      "prettier": "^3.2.5",
+      "root": "^3.2.0",
+      "stylelint": "^17.2.0",
+      "stylelint-config-standard": "^40.0.0",
+      "stylelint-config-tailwindcss": "^1.0.1",
+      "turbo": "^2.8.0",
+      "typescript": "^5.7.3",
+      "typescript-eslint": "^8.55.0"
+   },
+   "packageManager": "pnpm@10.28.2",
+   "engines": {
+      "node": ">=18"
+   }
+}

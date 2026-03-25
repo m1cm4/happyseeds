@@ -1,0 +1,20 @@
+{
+   "extends": ["stylelint-config-standard", "stylelint-config-tailwindcss"],
+   "plugins": ["@stylistic/stylelint-plugin"],
+   "rules": {
+      "@stylistic/indentation": 2,
+      "@stylistic/block-opening-brace-space-before": "always",
+      "@stylistic/block-opening-brace-newline-after": "always-multi-line",
+      "@stylistic/block-closing-brace-newline-before": "always-multi-line",
+      "@stylistic/block-opening-brace-space-after": "always-single-line",
+      "@stylistic/block-closing-brace-space-before": "always-single-line",
+      "declaration-block-single-line-max-declarations": 1,
+      "at-rule-empty-line-before": null,
+      "at-rule-no-unknown": [
+         true,
+         {
+            "ignoreAtRules": ["theme", "tailwind", "apply", "variants", "responsive", "screen", "custom-variant"]
+         }
+      ]
+   }
+}

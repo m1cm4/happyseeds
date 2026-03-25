@@ -1,0 +1,38 @@
+{
+  "name": "@happyseeds/backend",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "check-types": "tsc --noEmit",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "@happyseeds/shared-types": "workspace:*",
+    "@hono/node-server": "^1.14.0",
+    "@hono/zod-validator": "^0.7.6",
+    "better-auth": "^1.4.17",
+    "dotenv": "^16.4.7",
+    "drizzle-orm": "^0.45.1",
+    "hono": "^4.7.4",
+    "postgres": "^3.4.5",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "@vitest/coverage-v8": "4.0.18",
+    "drizzle-kit": "^0.31.8",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "vitest": "^4.0.18"
+  }
+}

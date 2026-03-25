@@ -1,0 +1,3 @@
+*.css
+*.scss
+**/routeTree.gen.ts
